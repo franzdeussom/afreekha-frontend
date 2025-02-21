@@ -1,0 +1,10 @@
+<ul class="product-image">
+  @for (image of store.product_images; track image) {
+    <li>
+      <img [src]="image ? image : 'assets/images/product.png'" class="img-fluid" alt="store logo">
+    </li>
+  }
+  @if (store && store.products_count > 3) {
+    <li>+{{ store.products_count - 3 }}</li>
+  }
+</ul>

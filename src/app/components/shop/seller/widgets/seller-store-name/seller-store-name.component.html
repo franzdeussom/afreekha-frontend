@@ -1,0 +1,5 @@
+<a [routerLink]="['/seller/store/', store && store.slug ? store.slug : '']">
+  @if(store && store.store_name) {
+    <h3>{{ store.store_name | titleCase }}</h3>
+  }
+</a>

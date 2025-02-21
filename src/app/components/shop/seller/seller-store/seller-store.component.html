@@ -1,0 +1,20 @@
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+<section class="seller-grid-section section-b-space">
+  @if (layout === 'basic_store') {
+    <app-seller-store-basic [stores]="(store$ | async)?.data!" [skeletonItems]="skeletonItems" ></app-seller-store-basic>
+  }
+  @if (layout === 'classic_store') {
+    <app-seller-store-classic [stores]="(store$ | async)?.data!" [skeletonItems]="skeletonItems"></app-seller-store-classic>
+  }
+</section>
+@if ((store$ | async)?.data?.length && !storeService.skeletonLoader) {
+  <nav class="custome-pagination section-b-space"
+    >
+    <app-pagination
+      [total]="totalItems"
+      [currentPage]="filter['page']"
+      [pageSize]="filter['paginate']"
+      (setPage)="setPaginate($event)">
+    </app-pagination>
+  </nav>
+}

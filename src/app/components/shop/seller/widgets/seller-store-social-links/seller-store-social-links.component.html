@@ -1,0 +1,40 @@
+<div class="vendor-share">
+  <h5>{{ 'follow_us' | translate }} :</h5>
+  <ul>
+    @if (store && store.facebook) {
+      <li>
+        <a href="{{ store.facebook }}" target="_blank">
+          <i class="ri-facebook-fill"></i>
+        </a>
+      </li>
+    }
+    @if (store && store.twitter) {
+      <li>
+        <a href="{{ store.twitter }}" target="_blank">
+          <i class="ri-twitter-fill"></i>
+        </a>
+      </li>
+    }
+    @if (store && store.instagram) {
+      <li>
+        <a href="{{ store.instagram }}" target="_blank">
+          <i class="ri-instagram-fill"></i>
+        </a>
+      </li>
+    }
+    @if (store && store.youtube) {
+      <li>
+        <a href="{{ store.youtube }}" target="_blank">
+          <i class="ri-youtube-fill"></i>
+        </a>
+      </li>
+    }
+    @if (store && store.pinterest) {
+      <li>
+        <a href="{{ store.pinterest }}" target="_blank">
+          <i class="ri-pinterest-fill"></i>
+        </a>
+      </li>
+    }
+  </ul>
+</div>

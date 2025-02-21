@@ -1,0 +1,5 @@
+<a [routerLink]="['/seller/store/', store && store.slug ? store.slug : '']">
+  @if(store && store.products_count) {
+    <span class="product-label">{{ store.products_count }} {{ 'products' | translate }}</span>
+  }
+</a>

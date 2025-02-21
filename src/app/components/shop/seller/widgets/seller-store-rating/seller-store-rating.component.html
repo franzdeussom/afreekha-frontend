@@ -1,0 +1,9 @@
+<div class="product-rating">
+    @if(store && store.rating_count) {
+        <ngb-rating [rate]="store.rating_count"></ngb-rating>
+    }
+
+    @if(store && store.reviews_count) {
+        <h6>({{ store.reviews_count }} {{ 'review' | translate }})</h6>
+    }
+</div>

@@ -1,0 +1,7 @@
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+@if (layout == 'basic_store_details') {
+  <app-seller-details-basic [store]="(store$ | async)!" [filter]="filter"></app-seller-details-basic>
+}
+@if (layout == 'classic_store_details') {
+  <app-seller-details-classic [store]="(store$ | async)!" [filter]="filter"></app-seller-details-classic>
+}

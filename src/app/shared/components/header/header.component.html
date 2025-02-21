@@ -1,0 +1,13 @@
+@if (style == 'basic_header') {
+  <app-basic-header [data]="(themeOption$ | async)" [logo]="logo" [sticky]="sticky"></app-basic-header>
+}
+@if (style == 'classic_header') {
+  <app-classic-header [data]="(themeOption$ | async)" [logo]="logo" [sticky]="sticky"></app-classic-header>
+}
+@if (style == 'standard_header') {
+  <app-standard-header [data]="(themeOption$ | async)" [logo]="logo" [sticky]="sticky"></app-standard-header>
+}
+@if (style == 'minimal_header') {
+  <app-minimal-header [data]="(themeOption$ | async)" [logo]="logo" [sticky]="sticky"></app-minimal-header>
+}
+<app-mobile-menu></app-mobile-menu>
