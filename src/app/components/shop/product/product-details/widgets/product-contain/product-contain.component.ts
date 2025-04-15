@@ -127,13 +127,12 @@ export class ProductContainComponent {
       });
     }
   }
-
-  addToWishlist(id: number) {
-    this.store.dispatch(new AddToWishlist({ product_id: id }));
+  addToWishlist(product: Product){
+    this.store.dispatch(new AddToWishlist(product));
   }
 
-  addToCompare(id: number) {
-    this.store.dispatch(new AddToCompare({ product_id: id }));
+  addToCompare(product: Product) {
+    this.store.dispatch(new AddToCompare(product));
   }
 
   ngOnDestroy() {

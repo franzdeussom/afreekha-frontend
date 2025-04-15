@@ -1,7 +1,7 @@
 import {
   CommonModule,
   NgClass
-} from "./chunk-IEIHAYKO.js";
+} from "./chunk-LZOUTGY5.js";
 import {
   ChangeDetectorRef,
   Component,
@@ -31,12 +31,12 @@ import {
   ɵɵsanitizeUrl,
   ɵɵstyleProp,
   ɵɵviewQuery
-} from "./chunk-JTNCKGUX.js";
-import "./chunk-KKSL7W6X.js";
+} from "./chunk-BXO5P2VD.js";
 import "./chunk-CXNAVVMS.js";
+import "./chunk-KKSL7W6X.js";
 import "./chunk-XQSEKRDZ.js";
 import "./chunk-HM5YLMWO.js";
-import "./chunk-WDMUDEB6.js";
+import "./chunk-EIB7IA3J.js";
 
 // node_modules/ngx-image-zoom/fesm2020/ngx-image-zoom.mjs
 var _c0 = ["zoomContainer"];

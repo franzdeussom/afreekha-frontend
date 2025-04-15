@@ -1,8 +1,9 @@
 <!-- Paris Theme-->
 @if (theme == 'paris') {
+
   <div class="container-fluid-lg">
     <div class="row g-4">
-      @if (data?.main_banner?.image_url) {
+      @if (data?.[0]?.lien) {
         <div class="col-xl-8 ratio_65">
           <div class="home-contain h-100 skeleton-banner-xl">
             <div class="skeleton-text-wrap">
@@ -11,14 +12,14 @@
               <span class="placeholder col-4"></span>
               <span class="placeholder col-6"></span>
             </div>
-            <app-image-link class="b-cl" [image]="data?.main_banner" [bgImage]="true"></app-image-link>
+            <app-image-link class="b-cl" [image]="data?.[0]" [bgImage]="true"></app-image-link>
           </div>
         </div>
       }
-      @if (data?.sub_banner_1?.image_url && data?.sub_banner_2?.image_url) {
+      @if (data?.[1]?.lien) {
         <div class="col-xl-4 ratio_65">
           <div class="row g-4">
-            @if (data?.sub_banner_1?.image_url) {
+            @if (data?.[2]?.lien) {
               <div class="col-xl-12 col-md-6 skeleton-banner-sm">
                 <div class="home-contain">
                   <div class="skeleton-text-wrap">
@@ -27,11 +28,11 @@
                     <span class="placeholder col-4"></span>
                     <span class="placeholder col-6"></span>
                   </div>
-                  <app-image-link class="b-cl" [image]="data?.sub_banner_1" [bgImage]="true"></app-image-link>
+                  <app-image-link class="b-cl" [image]="data?.[0]" [bgImage]="true"></app-image-link>
                 </div>
               </div>
             }
-            @if (data?.sub_banner_2?.image_url) {
+            @if (data?.[2]?.lien) {
               <div class="col-xl-12 col-md-6 skeleton-banner-sm">
                 <div class="home-contain">
                   <div class="skeleton-text-wrap">
@@ -40,7 +41,7 @@
                     <span class="placeholder col-4"></span>
                     <span class="placeholder col-6"></span>
                   </div>
-                  <app-image-link class="b-cl" [image]="data?.sub_banner_2" [bgImage]="true"></app-image-link>
+                  <app-image-link class="b-cl" [image]="data?.[2]" [bgImage]="true"></app-image-link>
                 </div>
               </div>
             }
@@ -50,8 +51,8 @@
     </div>
   </div>
 }
+<!--
 
-<!-- Tokyo Theme-->
 @if (theme == 'tokyo') {
   <div class="container-fluid-lg">
     <div class="row g-4">
@@ -96,7 +97,7 @@
   </div>
 }
 
-<!-- Osaka Theme-->
+< !-- Osaka Theme
 @if (theme == 'osaka') {
   <div class="container-fluid-lg">
     <div class="row g-4">
@@ -126,7 +127,7 @@
   </div>
 }
 
-<!-- Rome Theme-->
+< !-- Rome Theme
 @if (theme == 'rome') {
   <div class="container-fluid-lg">
     <div class="row g-4">
@@ -184,7 +185,7 @@
   </div>
 }
 
-<!-- Madrid Theme-->
+< !-- Madrid Theme
 @if (theme == 'madrid') {
   <div class="container-fluid p-0 ratio_30">
     <div class="row">
@@ -199,7 +200,7 @@
   </div>
 }
 
-<!-- Berlin Theme-->
+<! --Berlin Theme
 @if (theme == 'berlin') {
   <div class="container-fluid-lg">
     <div class="row g-4">
@@ -227,7 +228,7 @@
   </div>
 }
 
-<!-- Denver Theme-->
+< !-- Denver Theme
 @if (theme == 'denver') {
   <div class="container-fluid p-0 ratio_30">
     <div class="row">
@@ -242,3 +243,4 @@
     </div>
   </div>
 }
+-->

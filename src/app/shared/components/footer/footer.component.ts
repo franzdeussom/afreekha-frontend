@@ -6,6 +6,8 @@ import { ThemeOptionState } from '../../state/theme-option.state';
 import { Footer } from '../../interface/theme.interface';
 import { AsyncPipe } from '@angular/common';
 import { BasicFooterComponent } from './basic-footer/basic-footer.component';
+import { HomeState } from '../../state/home.state';
+import { CategoryState } from '../../state/category.state';
 
 @Component({
     selector: 'app-footer',
@@ -20,6 +22,6 @@ export class FooterComponent {
   @Input() footer: Footer;
 
   themeOption$: Observable<Option> = inject(Store).select(ThemeOptionState.themeOptions) as Observable<Option>;
-
-
+  categorie$: Observable<any> = inject(Store).select(CategoryState.category);
+  
 }

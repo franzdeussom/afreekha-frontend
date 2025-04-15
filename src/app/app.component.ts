@@ -1,13 +1,21 @@
 import { Component, inject, Inject, NgZone } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ThemeOptionState } from './shared/state/theme-option.state';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { Option } from './shared/interface/theme-option.interface';
 import { Actions, ofActionDispatched, Select, Store } from '@ngxs/store';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import { Logout } from './shared/action/auth.action';
+import { GetThemeOption } from './shared/action/theme-option.action';
+import { GetCurrencies } from './shared/action/currency.action';
+import { GetCountries } from './shared/action/country.action';
+import { GetSettingOption } from './shared/action/setting.action';
+import { GetStates } from './shared/action/state.action';
+import { Values } from './shared/interface/setting.interface';
+import { SettingState } from './shared/state/setting.state';
+import { GetHomeData } from './shared/action/home.action';
 
 @Component({
   selector: 'app-root',
@@ -25,16 +33,33 @@ export class AppComponent {
   public isTabInFocus = true;
   public timeoutId: any;
   private currentMessageIndex = 0;
-  private messages = ["⚡ Come Back !!", "🎉 Offers for you..."];
+  private messages = ["⚡ Come Back !!", "🎉 Offers for you...", "⚡ Revenez !!", "🎉 Offres pour vous..."];
   private currentMessage: string;
   private delay = 1000; // Delay between messages in milliseconds
+  setting$: Observable<Values> = inject(Store).select(SettingState.setting) as Observable<Values>;
 
+  public isMaintenanceModeOn: boolean = false;
   constructor(
     @Inject(DOCUMENT) document: Document,
     config: NgbRatingConfig, private actions: Actions,
     private router: Router, private titleService: Title,
+    private store: Store,
     private ngZone: NgZone, private meta: Meta) {
+    this.store.dispatch(new GetHomeData);
+    
+    this.store.dispatch(new GetThemeOption());
+    this.store.dispatch(new GetCurrencies({ status: 1 }));
+     this.store.dispatch(new GetCountries());
+     this.store.dispatch(new GetStates());
+      this.store.dispatch(new GetSettingOption());
 
+        this.setting$.subscribe(setting => {
+          this.isMaintenanceModeOn = setting?.maintenance?.maintenance_mode!
+        });
+        if(this.isMaintenanceModeOn) {
+          this.router.navigate(['/maintenance']);
+        }
+    
     config.max = 5;
     config.readonly = true;
 
@@ -72,7 +97,7 @@ export class AppComponent {
             clearTimeout(this.timeoutId);
             // Set site title
             return this.titleService.setTitle(theme?.general?.site_title && theme?.general?.site_tagline
-              ? `${theme?.general?.site_title} | ${theme?.general?.site_tagline}` : 'FastKart Marketplace: Where Vendors Shine Together')
+              ? `${theme?.general?.site_title} | ${theme?.general?.site_tagline}` : 'Afreekha Marketplace: Where Vendors Shine Together')
           } else {
              this.updateMessage();
           }

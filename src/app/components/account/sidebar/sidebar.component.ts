@@ -26,7 +26,7 @@ export class SidebarComponent {
   @Output() menu: EventEmitter<boolean> = new EventEmitter();
 
   notification$: Observable<Notification[]> = inject(Store).select(NotificationState.notification) as Observable<Notification[]>;
-  user$: Observable<User> = inject(Store).select(AccountState.user) as Observable<User>;
+  user$: Observable<any> = inject(Store).select(AccountState.user) as Observable<any>;
 
   @ViewChild("confirmationModal") ConfirmationModal: ConfirmationModalComponent;
 

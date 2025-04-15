@@ -58,6 +58,7 @@ export class CartState {
 
   @Action(GetCartItems)
   getCartItems(ctx: StateContext<CartStateModel>) {
+   
     return this.cartService.getCartItems().pipe(
       tap({
         next: result => {
@@ -67,6 +68,7 @@ export class CartState {
               item.variation.selected_variation = item?.variation?.attribute_values?.map(values => values?.value).join('/');
             }
           });
+          console.log("cart loaded", result);
           ctx.patchState(result);
         },
         error: err => {
@@ -87,14 +89,15 @@ export class CartState {
   @Action(AddToCartLocalStorage)
   addToLocalStorage(ctx: StateContext<CartStateModel>, action: AddToCartLocalStorage) {
 
-    let salePrice = action.payload.variation ?  action.payload.variation.sale_price : action.payload.product?.sale_price;
+    let salePrice = action.payload.variation ?  (action.payload.product?.promo ? (action.payload.product?.prix-(action.payload.product?.prix*action.payload.product?.pourcentage_promo)/100) : action.payload.product?.prix) : action.payload.product?.prix;
+
     let result: CartModel = {
       items: [{
         id: Number(Math.floor(Math.random() * 10000).toString().padStart(4, '0')), // Generate Random Id
         quantity: action.payload.quantity,
         sub_total: salePrice ? salePrice * action.payload.quantity : 0,
         product: action.payload.product!,
-        product_id: action.payload.product_id,
+        product_id: action.payload.product!.idArticle,
         variation: action.payload.variation!,
         variation_id: action.payload.variation_id
       }]
@@ -111,11 +114,11 @@ export class CartState {
     }
 
     // Set Selected Varaint
-    output.items.filter(item => {
+    /*output.items.filter(item => {
       if(item?.variation) {
         item.variation.selected_variation = item?.variation?.attribute_values?.map(values => values.value).join('/');
       }
-    });
+    });*/
 
     // Calculate Total
     output.total = output.items.reduce((prev, curr: Cart) => {
@@ -124,6 +127,7 @@ export class CartState {
 
     output.stickyCartOpen = true;
     output.sidebarCartOpen = true;
+    
     ctx.patchState(output);
 
     setTimeout(() => {
@@ -144,7 +148,7 @@ export class CartState {
         return this.store.dispatch(new ReplaceCart(action.payload));
     }
 
-    const productQty = cart[index]?.variation ? cart[index]?.variation?.quantity : cart[index]?.product?.quantity;
+    const productQty = cart[index]?.variation ? cart[index]?.variation?.quantite : cart[index]?.product?.quantite;
 
     if (productQty < cart[index]?.quantity + action?.payload.quantity) {
       this.notificationService.showError(`You can not add more items than available. In stock ${productQty} items.`);
@@ -155,7 +159,12 @@ export class CartState {
       cart[index].variation.selected_variation = cart[index]?.variation?.attribute_values?.map(values => values.value).join('/');
     }
     cart[index].quantity = cart[index]?.quantity + action?.payload.quantity;
-    cart[index].sub_total = cart[index]?.quantity * (cart[index]?.variation ? cart[index]?.variation?.sale_price : cart[index].product.sale_price);
+    if(cart[index].product.promo){
+      const sale_price = cart[index]?.product.prix - ((cart[index]?.product.prix*cart[index]?.product.pourcentage_promo)/100);
+      cart[index].sub_total = cart[index]?.quantity * sale_price;
+    }else{
+      cart[index].sub_total = cart[index]?.quantity * (cart[index]?.variation ? cart[index]?.variation?.prix : cart[index].product.sale_price);
+    }
 
     if (cart[index].quantity < 1) {
       this.store.dispatch(new DeleteCart(action.payload.id!));

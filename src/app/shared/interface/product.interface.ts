@@ -12,6 +12,26 @@ export interface ProductModel extends PaginateModel {
 }
 
 export interface Product {
+    idArticle: number,
+    nom_article: string,
+    prix: number,
+    promo: boolean,
+    quantite: number,
+    caracteristiques: string,
+    pourcentage_promo: number,
+    marque: string,
+    garantie: string,
+    idCategorie: number,
+    featured: true,
+    inTrend: true,
+    statut: string,
+    quantite_critique: number,
+    createdAt: string,
+    updatedAt: string,
+    idSousCategorie: any[],
+    Images: {idImage: number, lien: string}[],
+    lien: string,
+
     id: number;
     name: string;
     slug: string;
@@ -102,6 +122,26 @@ export interface PivotProduct {
 }
 
 export interface Variation {
+    idArticle: number,
+    nom_article: string,
+    prix: number,
+    promo: boolean,
+    quantite: number,
+    caracteristiques: string,
+    pourcentage_promo: number,
+    marque: string,
+    garantie: string,
+    idCategorie: number,
+    featured: true,
+    inTrend: true,
+    statut: string,
+    quantite_critique: number,
+    createdAt: string,
+    updatedAt: string,
+    idSousCategorie: any[],
+    Images: {idImage: number, lien: string}[],
+    lien: string,
+    
     id: number;
     name: string;
     price: number;

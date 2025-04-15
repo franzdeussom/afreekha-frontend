@@ -46,7 +46,7 @@ export class StateState {
   @Action(GetStates)
   getStates(ctx: StateContext<StateStateModel>, action: GetStates) {
     const state = ctx.getState();
-    if (state?.state?.data?.length) {
+    /*if (state?.state?.data?.length) {
       // If the state has been already loaded
       // we just break the execution
       return true;
@@ -64,7 +64,7 @@ export class StateState {
           throw new Error(err?.error?.message);
         }
       })
-    );
+    );*/
   }
 
 }

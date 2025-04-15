@@ -29,7 +29,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     standalone: true,
     imports: [LoadingBarModule, LoaderComponent, HeaderComponent, RouterOutlet, 
       FooterComponent, RecentPurchasePopupComponent, StickyCartComponent, 
-      StickyCompareComponent, BackToTopComponent, NewsletterModalComponent, 
+      BackToTopComponent, NewsletterModalComponent, 
       CookieComponent, ExitModalComponent, AsyncPipe]
 })
 
@@ -52,7 +52,7 @@ export class LayoutComponent {
     this.exit$.subscribe(res => this.exit = res);
     this.themeOptionService.preloader = true;
     this.store.dispatch(new GetUserDetails());
-    const getCategories$ = this.store.dispatch(new GetCategories({ status: 1 }));
+    const getCategories$ = this.store.dispatch(new GetCategories());
     const getBlog$ = this.store.dispatch(new GetBlogs({ status: 1, paginate: 10 }));
     const getProduct$ = this.store.dispatch(new GetDealProducts({ status: 1, paginate: 2 }));
     forkJoin([getCategories$, getBlog$, getProduct$]).subscribe({

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, Inject, PLATFORM_ID, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Inject, PLATFORM_ID, inject, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions, CarouselModule } from 'ngx-owl-carousel-o';
 import { Select, Store } from '@ngxs/store';
@@ -8,7 +8,8 @@ import { CategoryState } from '../../../state/category.state';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
-import { isPlatformBrowser } from '@angular/common';
+import { AsyncPipe, isPlatformBrowser } from '@angular/common';
+import { response } from 'express';
 
 @Component({
     selector: 'app-categories',
@@ -20,9 +21,9 @@ import { isPlatformBrowser } from '@angular/common';
 
 export class CategoriesComponent {
 
-  category$: Observable<CategoryModel> = inject(Store).select(CategoryState.category);
+  category$: Observable<any> = inject(Store).select(CategoryState.category) as Observable<any>;
 
-  @Input() categoryIds: number[] = [];
+  @Input() category: Category[];
   @Input() style: string = 'vertical';
   @Input() title?: string;
   @Input() image?: string;
@@ -38,36 +39,35 @@ export class CategoriesComponent {
   public isBrowser: boolean;
 
   constructor(private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
     private router: Router, @Inject(PLATFORM_ID) platformID: object) {
     this.isBrowser = isPlatformBrowser(platformID);
-    this.category$.subscribe(res => this.categories = res?.data?.filter(category => category.type == 'product'));
     this.route.queryParams.subscribe(params => {
       this.selectedCategorySlug = params['category'] ? params['category'].split(',') : [];
     });
   }
-
-  ngOnChanges() {
-    if(this.categoryIds && this.categoryIds.length) {
-      this.category$.subscribe(res => this.categories = res.data.filter(category => this.categoryIds?.includes(category.id)));
-    }
+ 
+  ngOnChanges(changes: SimpleChanges) {
+    this.category$.subscribe((resp: any)=>{
+        this.category = resp.data;
+    });
   }
-
+  
   selectCategory(id: number) {
     this.selectedCategory.emit(id);
   }
 
-  redirectToCollection(slug: string) {
-    let index = this.selectedCategorySlug.indexOf(slug);
+  redirectToCollection(nom: string) {
+    /*let index = this.selectedCategorySlug.indexOf(slug);
     if(index === -1)
       this.selectedCategorySlug.push(slug);
     else
       this.selectedCategorySlug.splice(index,1);
-
+*/
     this.router.navigate(['/collections'], {
       relativeTo: this.route,
       queryParams: {
-        category: this.selectedCategorySlug.length ? this.selectedCategorySlug.join(',') : null
-      },
+        category: nom      },
       queryParamsHandling: 'merge', // preserve the existing query params in the route
       skipLocationChange: false  // do trigger navigation
     });

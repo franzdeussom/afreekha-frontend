@@ -24,7 +24,7 @@ export interface CartAddOrUpdate {
     id: number | null;
     product: Product | null;
     product_id: number;
-    variation: Variation | null;
+    variation: any | null;
     variation_id: number | null;
     quantity: number;
 }

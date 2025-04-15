@@ -42,7 +42,7 @@ export class RegisterComponent {
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
-      country_code: new FormControl('91', [Validators.required]),
+      country_code: new FormControl('237', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       password_confirmation: new FormControl('', [Validators.required]),
     },{validator : CustomValidators.MatchValidator('password', 'password_confirmation')});

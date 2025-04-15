@@ -23,23 +23,18 @@ export class CurrencySymbolPipe implements PipeTransform {
     this.selectedCurrency$.subscribe(currency => this.selectedCurrency = currency);
   }
 
-  transform(value: number | undefined, position: 'before_price' | 'after_price' | string = 'before_price'): string | number {
+  transform(value: number | undefined, position: 'before_price' | 'after_price' | string = 'after_price'): string | number {
     if(!value) {
       value = 0;
     };
     value = Number(value);
-    value = (value * this.selectedCurrency?.exchange_rate);
 
-    this.symbol = this.selectedCurrency?.symbol || '$';
-    position = this.selectedCurrency?.symbol_position;
+    this.symbol = 'FCFA';
 
     let formattedValue = this.currencyPipe.transform(value, this.symbol);
     formattedValue = formattedValue?.replace(this.symbol, '')!;
 
-    if (position === 'before_price') {
-      return `${this.symbol} ${formattedValue}`;
-    } else {
+  
       return `${formattedValue} ${this.symbol}`;
-    }
   }
 }

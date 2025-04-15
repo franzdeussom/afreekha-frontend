@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="dashboard-user-name">
-      <h6 class="text-content">{{ 'hello' | translate }}, <b class="text-title">{{ (user$ | async)?.name! | titleCase }}</b></h6>
+      <h6 class="text-content">{{ 'hello' | translate }}, <b class="text-title">{{ (user$ | async)?.user?.nom! | titleCase }}</b></h6>
       <p class="text-content">
         {{ "welcome_to_your_personalized_my_account_dashboard_here_you_have_the_power_to_manage_your_entire_e-commerce_experience_in_one_place_whether_you're_exploring_the_latest_products_checking_your_wallet_balance_or_updating_your_profile_everything_is_at_your_fingertips"| translate}}
       </p>
@@ -20,8 +20,7 @@
               <img src="assets/images/svg/wallet.svg" alt="wallet">
               <div class="totle-detail">
                 <h5>{{ 'balance'| translate}}</h5>
-                <h3>{{ ((user$ | async)?.wallet ? (user$ | async)?.wallet?.balance : 0) | currencySymbol }}
-                </h3>
+                <h3>{{ ((user$ | async)?.montantTotalCommandePaye ? (user$ | async)?.montantTotalCommandePaye : 0) | currencySymbol }}</h3>
               </div>
             </div>
           </div>
@@ -33,7 +32,7 @@
               <img src="assets/images/svg/coin.svg" alt="coin">
               <div class="totle-detail">
                 <h5>{{ 'total_points'| translate}}</h5>
-                <h3>{{ (user$ | async)?.point ? (user$ | async)?.point?.balance : 0 }}</h3>
+                <h3>{{ ((user$ | async)?.montantTotalCommandeImpaye ? (user$ | async)?.montantTotalCommandeImpaye : 0) | currencySymbol }} </h3>
               </div>
             </div>
           </div>
@@ -45,7 +44,7 @@
               <img src="assets/images/svg/order.svg" alt="order">
               <div class="totle-detail">
                 <h5>{{ 'total_orders' | translate}}</h5>
-                <h3>{{ (user$ | async)?.orders_count ? (user$ | async)?.orders_count : 0 }}</h3>
+                <h3>{{ (user$ | async)?.nbreTotalCommande ? (user$ | async)?.nbreTotalCommande : 0 }}</h3>
               </div>
             </div>
           </div>
@@ -64,21 +63,19 @@
               <tbody>
                 <tr>
                   <td>{{ 'name'| translate}}:</td>
-                  <td>{{ (user$ | async)?.name | titleCase }}</td>
+                  <td>{{ (user$ | async)?.user?.nom | titleCase }}</td>
                 </tr>
                 <tr>
                   <td>{{ 'phone'| translate}}:</td>
                   <td>
-                    +{{ (user$ | async)?.country_code }} {{ (user$ | async)?.phone }}
+                     {{ (user$ | async)?.user?.tel }}
                   </td>
                 </tr>
                 @if (address) {
                   <tr>
                     <td>{{ 'address'| translate}}:</td>
                     <td>
-                      {{ address.street }}
-                      {{ address.city }}, {{ address.state.name }},
-                      {{ address.country.name }} {{ address.pincode }}
+                      {{ address.ville }}, {{ address.adresse }},
                     </td>
                   </tr>
                 }
@@ -96,7 +93,7 @@
                 <tr>
                   <td>{{ 'email'| translate}} :</td>
                   <td>
-                    {{ (user$ | async)?.email }}
+                    {{ (user$ | async)?.user?.email }}
                     <a href="javascript:void(0)" (click)="ProfileModal.openModal()">{{ 'edit' | translate }}</a>
                   </td>
                 </tr>

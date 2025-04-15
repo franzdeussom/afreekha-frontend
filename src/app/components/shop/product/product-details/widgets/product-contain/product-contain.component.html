@@ -57,13 +57,13 @@
 <div class="note-box product-package">
   <div class="cart_qty qty-box product-qty">
     <div class="input-group">
-      <app-button [class]="'btn qty-left-minus'" [id]="'add-to-cart'+product.id" [spinner]="false"
+      <app-button [class]="'btn qty-left-minus'" [id]="'add-to-cart'+product.idArticle" [spinner]="false"
         (click)="updateQuantity(-1)">
         <i class="ri-subtract-fill"></i>
       </app-button>
       <input class="form-control input-number qty-input" type="text" name="quantity" value="{{productQty}}"
         readonly>
-      <app-button [class]="'btn qty-left-minus'" [id]="'qty-left-minus'+product.id" [spinner]="false"
+      <app-button [class]="'btn qty-left-minus'" [id]="'qty-left-minus'+product.idArticle" [spinner]="false"
         (click)="updateQuantity(1)">
         <i class="ri-add-line"></i>
       </app-button>
@@ -71,11 +71,11 @@
   </div>
   <div class="wishlist-btn-group">
     <app-button [class]="'wishlist-button btn'" [id]="'wishlist_btn'" [spinner]="false"
-      (click)="addToWishlist(product.id)">
+      (click)="addToWishlist(product)">
       <i class="ri-heart-line"></i>
     </app-button>
     <app-button [class]="'wishlist-button btn'" [id]="'compare_btn'" [spinner]="false"
-      (click)="addToCompare(product.id)">
+      (click)="addToCompare(product)">
       <i class="ri-refresh-line"></i>
     </app-button>
   </div>

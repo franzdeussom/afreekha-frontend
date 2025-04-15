@@ -38,13 +38,14 @@ export class RegisterComponent {
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.form = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
+      nom: new FormControl('', [Validators.required]),
+      prenom: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
-      country_code: new FormControl('91', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      tel: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+      country_code: new FormControl('237', [Validators.required]),
+      mot_de_passe: new FormControl('', [Validators.required]),
       password_confirmation: new FormControl('', [Validators.required]),
-    },{validator : CustomValidators.MatchValidator('password', 'password_confirmation')});
+    },{validator : CustomValidators.MatchValidator('mot_de_passe', 'password_confirmation')});
   }
 
   get passwordMatchError() {

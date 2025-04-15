@@ -8,19 +8,20 @@ import { ThemeOptionState } from '../../state/theme-option.state';
 import { BasicHeaderComponent } from './basic-header/basic-header.component';
 import { ClassicHeaderComponent } from './classic-header/classic-header.component';
 import { MinimalHeaderComponent } from './minimal-header/minimal-header.component';
-import { StandardHeaderComponent } from './standard-header/standard-header.component';
 import { MobileMenuComponent } from './widgets/mobile-menu/mobile-menu.component';
+import { CategoryState } from '../../state/category.state';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
     standalone: true,
-    imports: [BasicHeaderComponent, ClassicHeaderComponent, StandardHeaderComponent, MinimalHeaderComponent, MobileMenuComponent, AsyncPipe]
+    imports: [BasicHeaderComponent, ClassicHeaderComponent, MinimalHeaderComponent, MobileMenuComponent, AsyncPipe]
 })
 export class HeaderComponent {
 
   themeOption$: Observable<Option> = inject(Store).select(ThemeOptionState.themeOptions) as Observable<Option>;
+  categorie$: Observable<any> = inject(Store).select(CategoryState.category);
   
   @Input() logo?: string | undefined;
 
@@ -34,6 +35,12 @@ export class HeaderComponent {
         this.setHeader();
       }
     });
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    console.log('header', this.categorie$);
   }
 
   setHeader() {

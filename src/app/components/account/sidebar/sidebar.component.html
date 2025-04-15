@@ -15,14 +15,14 @@
             >
         } @else {
           <div class="user-round">
-            <h4>{{ (user$ | async)?.name?.charAt(0)?.toString()?.toUpperCase() }}</h4>
+            <h4>{{ (user$ | async)?.user?.nom?.charAt(0)?.toString()?.toUpperCase() }}</h4>
           </div>
         }
       </div>
     </div>
     <div class="profile-name">
-      <h3>{{ (user$ | async)?.name | titleCase }}</h3>
-      <h6 class="text-content">{{ (user$ | async)?.email }}</h6>
+      <h3>{{ (user$ | async)?.user?.nom | titleCase }}</h3>
+      <h6 class="text-content">{{ (user$ | async)?.user?.email }}</h6>
     </div>
   </div>
 </div>
@@ -32,41 +32,13 @@
       <i class="ri-home-line me-2"></i> {{ 'dashboard' | translate }}
     </a>
   </li>
-
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/account/notifications']" (click)="openMenu(false)">
-      <i class="ri-notification-line me-2"></i> {{ 'notifications'| translate}}
-      @if (unreadNotificationCount) {
-        <span class="notification-count">{{ unreadNotificationCount }}</span>
-      }
-    </a>
-  </li>
-
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/account/bank-details']" (click)="openMenu(false)">
-      <i class="ri-bank-line me-2"></i> {{ 'bank_details'| translate}}
-    </a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/account/wallet']" (click)="openMenu(false)">
-      <i class="ri-wallet-line me-2"></i> {{ 'my_wallet'| translate}}
-    </a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/account/point']" (click)="openMenu(false)">
-      <i class="ri-coin-line me-2"></i> {{ 'earning_points'| translate}}
-    </a>
-  </li>
+ 
   <li class="nav-item" role="presentation">
     <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/account/order']" (click)="openMenu(false)">
       <i class="ri-file-text-line me-2"></i>{{ 'my_orders'| translate}}
     </a>
   </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/account/refund']" (click)="openMenu(false)">
-      <i class="ri-money-dollar-circle-line me-2"></i> {{ 'refund_history'| translate}}
-    </a>
-  </li>
+  
   <li class="nav-item" role="presentation">
     <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/account/addresses']" (click)="openMenu(false)">
       <i class="ri-map-pin-line me-2"></i> {{ 'saved_address'| translate}}

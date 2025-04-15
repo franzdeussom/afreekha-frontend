@@ -22,7 +22,7 @@ import { ButtonComponent } from '../../../shared/components/widgets/button/butto
 })
 export class AdressesComponent {
 
-  user$: Observable<AccountUser> = inject(Store).select(AccountState.user) as Observable<AccountUser>;
+  user$: Observable<any> = inject(Store).select(AccountState.user) as Observable<any>;
 
   @ViewChild("addressModal") AddressModal: AddressModalComponent;
   @ViewChild("deleteModal") DeleteModal: DeleteModalComponent;
@@ -32,7 +32,7 @@ export class AdressesComponent {
 
   delete(action: string, data: UserAddress) {
     if(action == 'delete')
-      this.store.dispatch(new DeleteAddress(data.id));
+      this.store.dispatch(new DeleteAddress(data.idAdresse));
   }
 
 }

@@ -25,7 +25,7 @@ import {
   core_default,
   freeMode
 } from "./chunk-YV7E3QSO.js";
-import "./chunk-WDMUDEB6.js";
+import "./chunk-EIB7IA3J.js";
 export {
   A11y,
   Autoplay,

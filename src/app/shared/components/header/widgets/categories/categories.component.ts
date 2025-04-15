@@ -13,6 +13,6 @@ import { ButtonComponent } from '../../../widgets/button/button.component';
 })
 export class CategoriesBlockComponent {
 
-  @Input() data: Option | null;
+  @Input() data: any[];
 
 } 

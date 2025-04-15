@@ -64,18 +64,16 @@
         <li class="product-box-contain">
           <div class="drop-cart">
             <a href="javascript:void(0)" class="drop-image">
-                    <img [src]="item?.variation && item?.variation?.variation_image
-                            ? item?.variation?.variation_image?.original_url
-                            : item?.product?.product_thumbnail
-                            ? item?.product?.product_thumbnail?.original_url
-                            : 'assets/images/product.png'" class="img-fluid" [alt]="item?.product?.name">
+                    <img [src]="item?.variation?.Images
+                            ? item?.variation?.Images?.[0]?.lien
+                            : 'assets/images/product.png'" class="img-fluid" [alt]="item?.product?.nom_article">
               </a>
               <div class="drop-contain">
                 <a href="javascript:void(0)">
-                  <h5>{{ item?.variation ? item?.variation?.name : item?.product?.name }}</h5>
+                  <h5>{{ item?.variation ? item?.variation?.nom_article : item?.product?.nom_article }}</h5>
                 </a>
-                <h6>{{ (item?.variation ? item.variation.sale_price : item.product.sale_price) | currencySymbol }}</h6>
-                @if (item?.variation) {
+                <h6>{{  item.sub_total | currencySymbol }}</h6>
+                @if (item?.variation?.selected_variation) {
                   <h5 class="gram">
                     {{ item?.variation?.selected_variation }}
                   </h5>
@@ -84,7 +82,7 @@
                   <div class="input-group h-100">
                     <app-button
                       [class]="'btn qty-left-minus'"
-                      [id]="'add-to-cart'+item.product.id"
+                      [id]="'add-to-cart'+item.product.idArticle"
                       [spinner]="false"
                       (click)="updateQuantity(item, -1)">
                     @if (item.quantity > 1) {
@@ -97,7 +95,7 @@
                   <input class="form-control input-number qty-input" type="number" name="quantity" [value]="item?.quantity" readonly>
                   <app-button
                     [class]="'btn qty-left-minus'"
-                    [id]="'qty-left-minus'+item.product.id"
+                    [id]="'qty-left-minus'+item.product.idArticle"
                     [spinner]="false"
                     (click)="updateQuantity(item, 1)">
                     <i class="ri-add-line"></i>
@@ -106,12 +104,12 @@
               </div>
               <div>
                 <div class="header-button-group">
-                  @if (item?.variation) {
+                  @if (false) {
                     <app-button [class]="'edit-button close_button'" [id]="'cart_item_edit_btn'+item.product.id" [spinner]="false" (click)="VariationModal.openModal(item)">
                       <i class="ri-pencil-line"></i>
                     </app-button>
                   }
-                  <app-button [class]="'delete-button close_button'" [id]="'cart_item_delete_btn'+item.product.id" [spinner]="false" (click)="delete(item.id)">
+                  <app-button [class]="'delete-button close_button'" [id]="'cart_item_delete_btn'+item.product.idArticle" [spinner]="false" (click)="delete(item.id)">
                     <i class="ri-delete-bin-line"></i>
                   </app-button>
                 </div>

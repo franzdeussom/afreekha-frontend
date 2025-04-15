@@ -1,4 +1,5 @@
 import { Params } from "../interface/core.interface";
+import { Product } from "../interface/product.interface";
 
 export class GetWishlist {
   static readonly type = "[Wishlist] Get";
@@ -6,7 +7,7 @@ export class GetWishlist {
 
 export class AddToWishlist {
   static readonly type = "[Wishlist] post";
-  constructor(public payload: Params) {}
+  constructor(public payload: Product) {}
 }
 
 export class DeleteWishlist {

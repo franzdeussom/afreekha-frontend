@@ -7,6 +7,19 @@ import { Point } from "./point.interface";
 import { PaymentDetails } from "./payment-details.interface";
 
 export interface User {
+    idUser?: number;
+    nom?: string;
+    prenom?: string;
+    date_naissance?: string;
+    password?: string;
+    tel?: number;
+    createdAt?: string;
+    updatedAt?: string;
+    adresses?: UserAddress[];
+    nbrTotalCommande?: number;
+    montantTotalCommandeImpaye?: number;
+    montantTotalCommandePaye?: number;
+
     id: number;
     name: string;
     email: string;
@@ -44,5 +57,14 @@ export interface UserAddress {
     country_code: number;
     phone: number;
     country_id: number;
+
+    idAdresse: number
+    adresse: string;
+    ville: string;
+    pays: string;
+    etat: string;
+    numero_telephone: string;
+    titre: string;
+    idUser: number;
     is_default: boolean;
 }

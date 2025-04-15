@@ -1,15 +1,15 @@
 <div class="bg-effect">
   <!-- Home Section Start -->
-  @if (data?.content?.home_banner) {
+  @if (false) {
     <section class="home-section pt-2">
-      <app-theme-home-banner [theme]="'paris'" [data]="data?.content?.home_banner"></app-theme-home-banner>
+      <app-theme-home-banner [theme]="'paris'" [data]="data?.v_img"></app-theme-home-banner>
     </section>
   }
   <!-- Home Section End -->
 
   <!-- Banner Section Start -->
   <section class="banner-section ratio_60">
-    <app-theme-banner [style]="'horizontal'" [banners]="data?.content?.featured_banners?.banners"></app-theme-banner>
+    <app-theme-banner [style]="'horizontal'" [banners]="data?.v_img"></app-theme-banner>
   </section>
   <!-- Banner Section End -->
 
@@ -18,13 +18,13 @@
     <div class="container-fluid-lg">
       <div class="row g-sm-4 g-3">
         <!-- Left Content Start -->
-        @if (data?.content?.main_content?.sidebar?.status) {
+        @if (true) {
           <div class="col-xxl-3 col-xl-4 d-none d-xl-block">
             <div class="p-sticky">
               <!-- Sidebar Category Vertical Style -->
-              @if (data?.content?.main_content?.sidebar?.categories_icon_list?.category_ids?.length) {
+              @if ((data?.list_categories?.length || 0) > 0) {
                 <app-theme-categories
-                  [categoryIds]="data?.content?.main_content?.sidebar?.categories_icon_list?.category_ids || []"
+                  [category]="data?.list_categories || []"
                   [style]="'vertical'">
                 </app-theme-categories>
               }
@@ -32,22 +32,21 @@
               <app-theme-banner
                 [class]="'ratio_156 section-t-space'"
                 [style]="'vertical'"
-                [banners]="data?.content?.main_content?.sidebar?.left_side_banners?.banner_1">
+                [banners]="data?.v_img">
               </app-theme-banner>
               <!-- Sidebar Vertical Banner -->
               <app-theme-banner
                 [class]="'ratio_medium section-t-space'" [style]="'vertical'"
-                [banners]="data?.content?.main_content?.sidebar?.left_side_banners?.banner_2">
+                [banners]="data?.v_img">
               </app-theme-banner>
               <!-- Products -->
-              @if (data?.content?.main_content?.sidebar?.sidebar_products?.status
-                && data?.content?.main_content?.sidebar?.sidebar_products?.product_ids?.length || 0 > 3) {
+              @if (data?.firt_section?.article?.length || 0 >= 1) {
                 <div class="section-t-space">
                   <div class="category-menu">
-                    <h3>{{ data?.content?.main_content?.sidebar?.sidebar_products?.title }}</h3>
+                    <h3>{{ data?.firt_section?.title }}</h3>
                     <app-theme-product
                       [style]="'vertical'"
-                      [productIds]="data?.content?.main_content?.sidebar?.sidebar_products?.product_ids || []">
+                      [product]="data?.firt_section?.article || []">
                     </app-theme-product>
                   </div>
                 </div>
@@ -58,18 +57,17 @@
         <!-- Left Content End -->
 
         <!-- Right Content Start -->
-        <div [class]="data?.content?.main_content?.sidebar?.status ? 'col-xxl-9 col-xl-8' : 'col-xxl-12 col-xl-12'">
+        <div [class]="true ? 'col-xxl-9 col-xl-8' : 'col-xxl-12 col-xl-12'">
 
           <!-- Top Save Today Section Start -->
-          @if (data?.content?.main_content?.section1_products?.status &&
-            data?.content?.main_content?.section1_products?.product_ids?.length || 0 >= 5) {
+          @if (data?.secode_section?.article?.length || 0 >= 1) {
             <app-title
-              [title]="data?.content?.main_content?.section1_products?.title"
-              [description]="data?.content?.main_content?.section1_products?.description">
+              [title]="data?.secode_section?.title"
+              [description]="data?.secode_section?.description">
             </app-title>
             <div class="section-b-space">
               <app-theme-product
-                [productIds]="data?.content?.main_content?.section1_products?.product_ids || []"
+                [product]="data?.secode_section?.article || []"
                 [slider]="true"
                 [style]="'horizontal'">
               </app-theme-product>
@@ -78,16 +76,15 @@
           <!-- Top Save Today Section End -->
 
           <!-- Categories Section Start-->
-          @if (data?.content?.main_content?.section2_categories_list?.status) {
+          @if (true) {
             <div>
               <app-title
-                [title]="data?.content?.main_content?.section2_categories_list?.title"
-                [description]="data?.content?.main_content?.section2_categories_list?.description">
+                [title]="'Decouvrez plus...'"
+                [description]="'Par categorie !'">
               </app-title>
               <app-theme-categories
                 [sliderOption]="categorySlider"
-                [image]="data?.content?.main_content?.section2_categories_list?.image_url!"
-                [categoryIds]="data?.content?.main_content?.section2_categories_list?.category_ids || []"
+                [category]="data?.list_categories || []"
                 [theme]="'paris'"
                 [style]="'horizontal'">
               </app-theme-categories>
@@ -96,19 +93,19 @@
           <!-- Categories Section End-->
 
           <!-- Two Column Banner Section Start-->
-          @if (data?.content?.main_content?.section3_two_column_banners?.status) {
+          @if (true) {
             <div class="section-t-space section-b-space">
               <div class="row g-md-4 g-3">
                 <div class="col-md-6">
                   <div class="banner-contain hover-effect">
-                    <app-image-link [image]="data?.content?.main_content?.section3_two_column_banners?.banner_1"
+                    <app-image-link [image]="data?.v_img?.[1]"
                       [bgImage]="false">
                     </app-image-link>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="banner-contain hover-effect">
-                    <app-image-link [image]="data?.content?.main_content?.section3_two_column_banners?.banner_2"
+                    <app-image-link [image]="data?.v_img?.[1]"
                       [bgImage]="false">
                     </app-image-link>
                   </div>
@@ -119,15 +116,14 @@
           <!-- Two Column Banner Section End-->
 
           <!-- Section Start -->
-          @if (data?.content?.main_content?.section4_products?.status &&
-            data?.content?.main_content?.section4_products?.product_ids?.length || 0 >= 5) {
+          @if (true) {
             <app-title
-              [title]="data?.content?.main_content?.section4_products?.title"
-              [description]="data?.content?.main_content?.section4_products?.description">
+              [title]="data?.fourth_section?.title"
+              [description]="data?.fourth_section?.description">
             </app-title>
             <div class="section-b-space">
               <app-theme-product
-                [productIds]="data?.content?.main_content?.section4_products?.product_ids || []"
+                [product]="data?.fourth_section?.article || []"
                 [slider]="true"
                 [style]="'horizontal'">
               </app-theme-product>
@@ -136,11 +132,11 @@
           <!-- Section End -->
 
           <!-- Coupons Banner Section Start -->
-          @if (data?.content?.main_content?.section5_coupons?.status) {
+          @if (true) {
             <div class="section-b-space ratio_12">
               <app-theme-banner
                 class="sale-banner"
-                [banners]="data?.content?.main_content?.section5_coupons"
+                [banners]="data?.v_img"
                 [style]="'full_width'">
               </app-theme-banner>
             </div>
@@ -148,21 +144,21 @@
           <!-- Coupons Banner Section End -->
 
           <!-- Two Column Banner Section Start -->
-          @if (data?.content?.main_content?.section6_two_column_banners?.status) {
-            @if (data?.content?.main_content?.section6_two_column_banners?.status) {
+          @if (true) {
+            @if (true) {
               <div class="section-b-space">
                 <div class="row g-md-4 g-3">
                   <div class="col-xxl-8 col-xl-12 col-md-7">
                     <div class="banner-contain hover-effect">
                       <app-image-link
-                        [image]="data?.content?.main_content?.section6_two_column_banners?.banner_1"
+                        [image]="data?.v_img?.[2]"
                         [bgImage]="false">
                       </app-image-link>
                     </div>
                   </div>
                   <div class="col-xxl-4 col-xl-12 col-md-5">
                     <div class="banner-contain hover-effect">
-                      <app-image-link [image]="data?.content?.main_content?.section6_two_column_banners?.banner_2"
+                      <app-image-link [image]="data?.v_img?.[2]"
                         [bgImage]="false">
                       </app-image-link>
                     </div>
@@ -174,24 +170,23 @@
           <!-- Two Column Banner Section End -->
 
           <!-- Our Best Seller Section Start -->
-          @if (data?.content?.main_content?.section4_products?.status &&
-            data?.content?.main_content?.section7_products?.product_ids?.length || 0 >= 3) {
+          @if (data?.third_section?.article?.length || 0 >= 1) {
             <app-title
-              [title]="data?.content?.main_content?.section7_products?.title"
-              [description]="data?.content?.main_content?.section7_products?.description">
+              [title]="data?.third_section?.title"
+              [description]="data?.third_section?.description">
             </app-title>
             <app-theme-product
-              [productIds]="data?.content?.main_content?.section7_products?.product_ids || []"
+              [product]="data?.third_section?.article || []"
               [style]="'classic'">
             </app-theme-product>
           }
           <!-- Our Best Seller Section End -->
 
           <!-- Full Width Banner Section Start -->
-          @if (data?.content?.main_content?.section8_full_width_banner?.status) {
+          @if (true) {
             <div class="section-b-space section-t-space">
               <div class="banner-contain hover-effect">
-                <app-image-link [image]="data?.content?.main_content?.section8_full_width_banner" [bgImage]="false">
+                <app-image-link [image]="data?.v_img?.[2]" [bgImage]="false">
                 </app-image-link>
               </div>
             </div>
@@ -199,16 +194,7 @@
           <!-- Full Width Banner Section End -->
 
           <!-- Blogs Section Start -->
-          @if (data?.content?.main_content?.section9_featured_blogs?.status &&
-            data?.content?.main_content?.section9_featured_blogs?.blog_ids?.length || 0 >= 3) {
-            <app-title
-              [title]="data?.content?.main_content?.section9_featured_blogs?.title"
-              [description]="data?.content?.main_content?.section9_featured_blogs?.description">
-            </app-title>
-            <app-blog
-              [blogIds]="data?.content?.main_content?.section9_featured_blogs?.blog_ids || []">
-            </app-blog>
-          }
+
           <!-- Blogs Section End -->
         </div>
         <!-- Right Content End -->
@@ -217,11 +203,11 @@
   </section>
   <!-- Product Section End -->
 
-  <!-- Newsletter Section Start -->
+  <!-- Newsletter Section Start 
   @if (data?.content?.news_letter?.status) {
     <section class="newsletter-section section-b-space">
       <app-newsletter [data]="data?.content?.news_letter!"></app-newsletter>
     </section>
-  }
+  }-->
   <!-- Newsletter Section End -->
 </div>

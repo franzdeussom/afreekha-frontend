@@ -22,7 +22,7 @@ export class MyAccountComponent {
   @Input() style: string = 'basic';
 
   isAuthenticated$: Observable<Boolean> = inject(Store).select(AuthState.isAuthenticated)
-  user$: Observable<AccountUser> = inject(Store).select(AccountState.user) as Observable<AccountUser>;
+  user$: Observable<any> = inject(Store).select(AccountState.user) as Observable<any>;
 
   @ViewChild("confirmationModal") ConfirmationModal: ConfirmationModalComponent;
 

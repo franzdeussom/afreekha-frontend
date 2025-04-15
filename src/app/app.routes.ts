@@ -6,7 +6,7 @@ import { content } from './shared/routes/routes';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/theme/paris',
+        redirectTo: '/home',
         pathMatch: 'full',
       },
       {

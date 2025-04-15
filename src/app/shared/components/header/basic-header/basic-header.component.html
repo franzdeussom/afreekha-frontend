@@ -13,7 +13,7 @@
             <app-logo [textClass]="'txt-theme f-w-600'" [data]="data" [logo]="logo"></app-logo>
             <div class="middle-box">
               <div class="location-box">
-                <app-categories [style]="'input_dropdown'"></app-categories>
+                <app-categories [category]="categories" [style]="'input_dropdown'"></app-categories>
               </div>
               <div class="search-box">
                 <app-search></app-search>
@@ -52,7 +52,7 @@
       <div class="col-12">
         <div class="header-nav">
           <div class="header-nav-left">
-            <app-header-categories [data]="data"></app-header-categories>
+            <app-header-categories [data]="categories"></app-header-categories>
           </div>
           <div class="header-nav-middle">
             <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">

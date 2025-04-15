@@ -46,6 +46,7 @@ import { ThemeState } from './shared/state/theme.state';
 import { WalletState } from './shared/state/wallet.state';
 import { WishlistState } from './shared/state/wishlist.state';
 import { GlobalErrorHandlerInterceptor } from './core/interceptors/global-error-handler.interceptor';
+import { HomeState } from './shared/state/home.state';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -102,6 +103,7 @@ export const appConfig: ApplicationConfig = {
         ProductState,
         StoreState,
         CartState,
+        HomeState,
         BlogState,
         TagState,
         WishlistState,

@@ -40,10 +40,11 @@ export class EditProfileModalComponent {
       this.user$.subscribe(user => {
         this.flicker = true;
         this.form = this.formBuilder.group({
-          name: new FormControl(user?.name, [Validators.required]),
+          nom: new FormControl(user?.name, [Validators.required]),
+          prenom: new FormControl(user?.name, [Validators.required]),
           email: new FormControl(user?.email, [Validators.required, Validators.email]),
-          phone: new FormControl(user?.phone, [Validators.required, Validators.pattern(/^[0-9]*$/)]),
-          country_code: new FormControl(user?.country_code), 
+          numero_telephone: new FormControl(user?.phone, [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+          country_code: new FormControl("237"), 
           profile_image_id: new FormControl(user?.profile_image_id),
         });
         this.form?.controls?.['email'].disable();

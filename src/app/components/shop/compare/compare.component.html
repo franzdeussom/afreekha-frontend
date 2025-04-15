@@ -65,12 +65,12 @@
             <div class="compare-part">
               <div class="img-section">
                 <div>
-                  <img [src]="product.product_thumbnail ? product.product_thumbnail.original_url : 'assets/images/product.png'"
+                  <img [src]="product.Images.length ? product.Images[0].lien : 'assets/images/product.png'"
                     class="img-fluid blur-up lazyloaded"
-                    [alt]="product.name">
+                    [alt]="product.nom_article">
                 </div>
                 <a href="javascript:void(0)">
-                  <h5 class="text-title">{{ product.name }}</h5>
+                  <h5 class="text-title">{{ product.nom_article }}</h5>
                 </a>
               </div>
               <div class="detail-part">
@@ -78,7 +78,7 @@
                   <h5>{{ 'discount' | translate }}</h5>
                 </div>
                 <div class="inner-detail">
-                  <p>{{ product.discount ? product.discount : '-' }}</p>
+                  <p style="color: rgb(255, 47, 47);">{{ product.promo ? (-product.pourcentage_promo + "%"): '-' }}</p>
                 </div>
               </div>
               <div class="detail-part">
@@ -86,7 +86,23 @@
                   <h5>{{ 'price' | translate }}</h5>
                 </div>
                 <div class="inner-detail">
-                  <p>{{product.sale_price | currencySymbol}}</p>
+                  <p>{{product.prix | currencySymbol}}</p>
+                </div>
+              </div>
+              <div class="detail-part">
+                <div class="title-detail">
+                  <h5>{{'marque' | translate}}</h5>
+                </div>
+                <div class="inner-detail">
+                  <p>{{product.marque ? product.marque: '-' }}</p>
+                </div>
+              </div>
+              <div class="detail-part">
+                <div class="title-detail">
+                  <h5>{{ 'garantie' | translate }}</h5>
+                </div>
+                <div class="inner-detail">
+                  <p>{{product.garantie ? product.garantie: '-'}}</p>
                 </div>
               </div>
               <div class="detail-part">
@@ -94,33 +110,16 @@
                   <h5>{{ 'availability' | translate }}</h5>
                 </div>
                 <div class="inner-detail">
-                  <p>{{ product.stock_status | titleCase }}</p>
+                  <p>{{ product.statut| titleCase }}</p>
                 </div>
               </div>
-              <div class="detail-part">
-                <div class="title-detail">
-                  <h5>{{ 'rating' | translate }}</h5>
-                </div>
-                <div class="inner-detail">
-                  <div class="compare-rating">
-                    <ngb-rating [rate]="product.rating_count"></ngb-rating>
-                    <span class="text-content rating-text">({{ product.reviews_count }} {{ 'review' | translate }})</span>
-                  </div>
-                </div>
-              </div>
-              <div class="detail-part">
-                <div class="title-detail">
-                  <h5>{{ 'weight' | translate }}</h5>
-                </div>
-                <div class="inner-detail">
-                  <p>{{ product.weight ? product.weight : "-" }}</p>
-                </div>
-              </div>
+              
+             
               <div class="btn-part">
-                <button class="btn btn-animation btn-sm">{{ 'move_to_cart' | translate }}</button>
+                <button class="btn btn-animation btn-sm" (click)="back()"> <-- {{ 'nav_back' | translate }} </button>
               </div>
               <div class="remove-part">
-                <a href="javascript:void(0)" class="text-content remove_column" (click)="removeCompare(product.id)"><i
+                <a href="javascript:void(0)" class="text-content remove_column" (click)="removeCompare(product.idArticle)"><i
                 class="ri-delete-bin-line"></i> {{ 'remove' | translate }}</a>
               </div>
             </div>
@@ -132,8 +131,8 @@
       <app-no-data
         [class]="'no-data-added'"
         [image]="'assets/svg/no-category.svg'"
-        [text]="'No Items Added'"
-        [description]="'It appears that nothing has been added to your compare list. Explore products if you want to.'"
+        [text]="'Aucun Article à comparer | No Items Added'"
+        [description]=" 'Il semble que rien ait été ajouté à votre liste de comparaison. Explorez les produits si vous le souhaitez.|It appears that nothing has been added to your compare list. Explore products if you want to.'"
         >
       </app-no-data>
     }

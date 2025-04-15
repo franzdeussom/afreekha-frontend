@@ -33,7 +33,7 @@ export class CurrencyState {
 
   @Action(GetCurrencies)
   getCurrencies(ctx: StateContext<CurrencyStateModel>, action: GetCurrencies) {
-    return this.currencyService.getCurrencies(action.payload).pipe(
+     /*return this.currencyService.getCurrencies(action.payload).pipe(
       tap({
         next: result => {
           ctx.patchState({
@@ -47,7 +47,7 @@ export class CurrencyState {
           throw new Error(err?.error?.message);
         }
       })
-    );
+    );*/
   }
   
 }

@@ -51,31 +51,41 @@ export class OrderState {
 
   @Action(GetOrders)
   getOrders(ctx: StateContext<OrderStateModel>, action: GetOrders) {
-    return this.orderService.getOrders(action?.payload).pipe(
-      tap({
-        next: result => {
-          ctx.patchState({
-            order: {
-              data: result.data,
-              total: result?.total ? result?.total : result.data ? result.data.length : 0
-            }
-          });
-        },
-        error: err => {
-          throw new Error(err?.error?.message);
+     this.orderService.getOrder(action.id).subscribe((resp: any)=>{
+     
+       if(Object.keys(resp).length > 0){
+        console.log("response", resp[0].data);
+         ctx.patchState({
+           order: {
+             data: resp[0].data,
+             total: resp?.total ? resp?.total : resp.data ? resp.data.length : 0
+           }
+         });
         }
-      })
-    );
+
+     });
   }
 
   @Action(ViewOrder)
   viewOrder(ctx: StateContext<OrderStateModel>, { id }: ViewOrder) {
     this.orderService.skeletonLoader = true;
-    return this.orderService.getOrders().pipe(
+    
+    const order = ctx.getState().order.data.find(order => order.idCommande == id);
+    ctx.patchState({
+      ...ctx.getState(),
+      selectedOrder: order
+    });
+    console.log("order find", order);
+    if (order) {
+      this.orderService.skeletonLoader = false;
+      return;
+    }
+
+    /*return this.orderService.getOrders().pipe(
       tap({
         next: result => {
           const state = ctx.getState();
-          const order = result.data.find(order => order.order_number == id);
+          const order = result.data.find(order => order.idCommande == id);
 
           ctx.patchState({
             ...state,
@@ -89,7 +99,7 @@ export class OrderState {
           this.orderService.skeletonLoader = false;
         }
       })
-    );
+    );*/
   }
 
   @Action(Checkout)

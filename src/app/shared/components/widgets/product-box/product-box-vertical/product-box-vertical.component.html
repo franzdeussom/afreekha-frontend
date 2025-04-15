@@ -1,21 +1,20 @@
 <div class="offer-product">
-  <a [routerLink]="['/product/', product.slug]" class="offer-image">
-        <img [src]="product.product_thumbnail
-                ? product.product_thumbnail.original_url
-                : 'assets/images/product.png'" alt="product">
+  <a [routerLink]="['/product/', product.nom_article, product.idArticle]" class="offer-image">
+        <img [src]="product.Images ? (product.Images[0].lien ? product.Images[0].lien : product.lien) : 'assets/images/product.png'" alt="product">
     </a>
     <div class="offer-detail">
       <div>
-        <a [routerLink]="['/product/', product.slug]" class="text-title">
-          <h6 class="name">{{ product.name }}</h6>
+        <a [routerLink]="['/product/', product.nom_article]" class="text-title">
+          <h6 class="name">{{ product.nom_article }}</h6>
         </a>
-        @if (product.unit) {
-          <span>{{ product.unit }}</span>
+        @if (product.prix) {
+          <span>{{ product.prix }}</span>
         }
         <div class="vertical-price">
-          <h5 class="price theme-color">{{ product.sale_price | currencySymbol }}</h5>
-          @if (product.discount) {
-            <del class="text-content">{{ product.price | currencySymbol }}</del>
+          @if (product.promo) {
+             <h5 class="price theme-color">{{ (product.prix - (product.prix * product.pourcentage_promo)/100) | currencySymbol }}</h5>
+
+            <del class="text-content">{{  product.prix | currencySymbol }}</del>
           }
         </div>
       </div>

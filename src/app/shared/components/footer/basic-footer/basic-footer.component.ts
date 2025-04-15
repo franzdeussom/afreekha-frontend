@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Option } from '../../../../shared/interface/theme-option.interface';
 import { Footer } from '../../../../shared/interface/theme.interface';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,11 @@ import { LinksComponent } from '../widgets/links/links.component';
 import { FooterCategoriesComponent } from '../widgets/categories/categories.component';
 import { AboutComponent } from '../widgets/about/about.component';
 import { FooterLogoComponent } from '../widgets/logo/logo.component';
-import { NgClass } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
+import { Category } from 'src/app/shared/interface/category.interface';
+import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { CategoryState } from 'src/app/shared/state/category.state';
 
 @Component({
     selector: 'app-basic-footer',
@@ -25,7 +29,8 @@ export class BasicFooterComponent {
 
   @Input() data: Option | null;
   @Input() footer: Footer;
-
+  @Input() categories: {data: any[]};
+ 
   public active: { [key: string]: boolean } = {
     categories: false,
     useful_link: false,

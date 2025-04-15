@@ -24,7 +24,7 @@ import { RouterLink } from '@angular/router';
     styleUrls: ['./product-box-horizontal.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [RouterLink, ButtonComponent, NgbRating, 
+    imports: [RouterLink, ButtonComponent, 
       ProductDetailModalComponent_1, VariationModalComponent, TranslateModule, TitleCasePipe, CurrencySymbolPipe]
 })
 export class ProductBoxHorizontalComponent {
@@ -50,32 +50,34 @@ export class ProductBoxHorizontalComponent {
 
   ngOnInit() {
     this.cartItem$.subscribe(items => {
-      this.cartItem = items.find(item => item.product.id == this.product.id)!;
+      this.cartItem = items.find(item => item.product.idArticle == this.product.idArticle)!;
     });
+
+
   }
 
   addToCart(product: Product, qty: number) {
     const params: CartAddOrUpdate = {
       id: this.cartItem ? this.cartItem.id : null,
       product: product,
-      product_id: product?.id,
+      product_id: product?.idArticle,
       variation_id: this.cartItem ? this.cartItem?.variation_id : null,
-      variation: this.cartItem ? this.cartItem?.variation : null,
+      variation: product,
       quantity: qty
     }
     this.store.dispatch(new AddToCart(params));
   }
 
-  addToWishlist(id: number){
-    this.store.dispatch(new AddToWishlist({ product_id: id }));
+  addToWishlist(product: Product){
+    this.store.dispatch(new AddToWishlist(product));
   }
 
   removeWishlist(id: number){
     this.store.dispatch(new DeleteWishlist(id));
   }
 
-  addToCompar(id: number){
-    this.store.dispatch(new AddToCompare({ product_id: id }));
+  addToCompar(product: Product){
+    this.store.dispatch(new AddToCompare(product));
   }
 
 }

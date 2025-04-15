@@ -15,5 +15,4 @@ import { RouterLink } from '@angular/router';
 export class ProductBoxVerticalComponent {
 
   @Input() product: Product;
-
 }

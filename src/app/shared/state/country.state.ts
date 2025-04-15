@@ -54,6 +54,7 @@ export class CountryState {
           });
         },
         error: err => { 
+          console.log(err);
           throw new Error(err?.error?.message);
         }
       })

@@ -21,7 +21,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class DashboardComponent {
 
-  user$: Observable<User> = inject(Store).select(AccountState.user) as Observable<User>;
+  user$: Observable<any> = inject(Store).select(AccountState.user) as Observable<any>;
 
   @ViewChild("profileModal") ProfileModal: EditProfileModalComponent;
   @ViewChild("passwordModal") PasswordModal: ChangePasswordModalComponent;
@@ -31,7 +31,9 @@ export class DashboardComponent {
   constructor() {
     this.user$.subscribe(user => {
       if(user) {
-        this.address = user?.address?.length ? user?.address?.[0] : null;
+       // this.address = user?.address?.length ? user?.address?.[0] : null;
+       console.log('user address', user);
+       this.address = user.adresses ? user.adresses[0] : null;
       }
     });
   }

@@ -20,7 +20,7 @@ import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcru
     styleUrls: ['./compare.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [BreadcrumbComponent, NgbRating, NoDataComponent, 
+    imports: [BreadcrumbComponent,  NoDataComponent, 
       AsyncPipe, TitleCasePipe, CurrencySymbolPipe, TranslateModule]
 })
 export class CompareComponent {
@@ -40,5 +40,9 @@ export class CompareComponent {
 
   removeCompare(id: number){
     this.store.dispatch(new DeleteCompare(id));
+  }
+
+  back(){
+    window.history.back();
   }
 }

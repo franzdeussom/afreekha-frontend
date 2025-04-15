@@ -17,9 +17,18 @@
             <form class="row g-4" [formGroup]="form" (ngSubmit)="submit()">
               <div class="col-12">
                 <div class="form-floating log-in-form">
-                  <input type="name" class="form-control" id="name" id="name" formControlName="name" placeholder="{{ 'name' | translate }}">
+                  <input type="name" class="form-control" id="name" id="name" formControlName="nom" placeholder="{{ 'name' | translate }}">
                   <label for="name">{{ 'full_name' | translate }}</label>
-                  @if (form.controls['name'].touched && form.controls['name'].errors?.['required']) {
+                  @if (form.controls['nom'].touched && form.controls['nom'].errors?.['required']) {
+                    <div class="invalid-feedback">{{ 'name_is_required' | translate }}</div>
+                  }
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating log-in-form">
+                  <input type="name" class="form-control" id="name" id="name" formControlName="prenom" placeholder="{{ 'name' | translate }}">
+                  <label for="name">{{ 'full_name' | translate }}</label>
+                  @if (form.controls['prenom'].touched && form.controls['prenom'].errors?.['required']) {
                     <div class="invalid-feedback">{{ 'name_is_required' | translate }}</div>
                   }
                 </div>

@@ -35,7 +35,7 @@
               "link_type": "collection"
             },
             "status": true,
-            "image_url": "assets/images/data/themes/paris/3.jpg"
+            "image_url": "assets/images/data/LOO.jpg"
           },
           {
             "redirect_link": {
@@ -43,7 +43,7 @@
               "link_type": "collection"
             },
             "status": true,
-            "image_url": "assets/images/data/themes/paris/3.jpg"
+            "image_url": "assets/images/data/LOO.jpg"
           },
           {
             "redirect_link": {
@@ -51,7 +51,7 @@
               "link_type": "collection"
             },
             "status": true,
-            "image_url": "assets/images/data/themes/paris/3.jpg"
+            "image_url": "assets/images/data/LOO.jpg"
           },
           {
             "redirect_link": {
@@ -59,7 +59,7 @@
               "link_type": "collection"
             },
             "status": true,
-            "image_url": "assets/images/data/themes/paris/3.jpg"
+            "image_url": "assets/images/data/LOO.jpg"
           }
         ]
       },
@@ -101,7 +101,7 @@
             }
           },
           "sidebar_products": {
-            "title": "Trending Products",
+            "title": "Article en tendance",
             "status": true,
             "product_ids": [
               1,
@@ -112,8 +112,8 @@
           }
         },
         "section1_products": {
-          "title": "Top Save Today",
-          "description": "Don't miss this opportunity at a special discount just for this week.",
+          "title": "En vedette",
+          "description": "Ne manquer pas ces articles à prix reduit aujourd'hui...",
           "product_ids": [
             8,
             10,
@@ -126,8 +126,8 @@
         },
         "section2_categories_list": {
           "image_url": null,
-          "title": "Bowse By Categories",
-          "description": "Uncover Hidden Gems and Culinary Delights",
+          "title": "Parcourir par Categorie",
+          "description": "Trouver des articles dans sa classification",
           "category_ids": [
             1,
             2,
@@ -144,14 +144,14 @@
         "section3_two_column_banners": {
           "status": true,
           "banner_1": {
-            "image_url": "assets/images/data/themes/paris/6.jpg",
+            "image_url": "assets/images/data/LOO.jpg",
             "redirect_link": {
               "link": "vegetables-fruits",
               "link_type": "collection"
             }
           },
           "banner_2": {
-            "image_url": "assets/images/data/themes/paris/6.jpg",
+            "image_url": "assets/images/data/LOO.jpg",
             "redirect_link": {
               "link": "vegetables-fruits",
               "link_type": "collection"
@@ -159,8 +159,8 @@
           }
         },
         "section4_products": {
-          "title": "Fresh Veggies and Fruits",
-          "description": "Unlocking the Pantry: A Journey into Essential Veggies Staples",
+          "title": "Deal de la semaines",
+          "description": "Ces articles à prix promo cette semaine...",
           "status": true,
           "product_ids": [
             19,
@@ -198,8 +198,8 @@
           }
         },
         "section7_products": {
-          "title": "Our Best Seller",
-          "description": "A virtual assistant collects the products from your list.",
+          "title": "Nos meilleures ventes",
+          "description": "les articles les plus vendus.",
           "status": true,
           "product_ids": [
             6,
@@ -239,7 +239,7 @@
         "title": "Join Our Newsletter And Get...",
         "sub_title": "$20 discount for your first order",
         "image_url": "assets/images/data/newsletter.jpg",
-        "status": true
+        "status": false
       },
       "products_ids": [
         19,

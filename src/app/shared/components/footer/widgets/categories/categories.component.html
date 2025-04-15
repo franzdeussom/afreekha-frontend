@@ -1,7 +1,7 @@
 <ul>
-  @for (category of categories; track category) {
+  @for (category of data; track category) {
     <li>
-      <a href="javascript:void(0)" [routerLink]="['/collections']" [queryParams]="{ category: category?.slug }" class="text-content">{{ category.name }}</a>
+      <a href="javascript:void(0)" [routerLink]="['/collections']" [queryParams]="{ category: category?.nom, nui: category.idCategorie}" class="text-content">{{ category.nom }}</a>
     </li>
   }
 </ul>

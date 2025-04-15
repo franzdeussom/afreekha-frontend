@@ -14,7 +14,7 @@
               <h4>{{ 'categories' | translate }}</h4>
             </div>
             <div class="footer-contain">
-              <app-footer-categories [data]="data"></app-footer-categories>
+              <app-footer-categories [data]="categories ? categories.data : []"></app-footer-categories>
             </div>
           </div>
         }

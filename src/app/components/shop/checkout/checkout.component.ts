@@ -21,7 +21,6 @@ import { ButtonComponent } from '../../../shared/components/widgets/button/butto
 import { LoaderComponent } from '../../../shared/components/widgets/loader/loader.component';
 import { NoDataComponent } from '../../../shared/components/widgets/no-data/no-data.component';
 import { PaymentBlockComponent } from './payment-block/payment-block.component';
-import { DeliveryBlockComponent } from './delivery-block/delivery-block.component';
 import { AsyncPipe, isPlatformBrowser } from '@angular/common';
 import { AddressBlockComponent } from './address-block/address-block.component';
 import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcrumb/breadcrumb.component';
@@ -32,7 +31,7 @@ import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcru
     styleUrls: ['./checkout.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [BreadcrumbComponent, AddressBlockComponent, DeliveryBlockComponent, 
+    imports: [BreadcrumbComponent, AddressBlockComponent, 
       PaymentBlockComponent, NoDataComponent, ReactiveFormsModule, LoaderComponent, 
       ButtonComponent, AddressModalComponent, AsyncPipe, CurrencySymbolPipe, TranslateModule]
 })
@@ -67,15 +66,12 @@ export class CheckoutComponent {
     this.form = this.formBuilder.group({
       products: this.formBuilder.array([], [Validators.required]),
       shipping_address_id: new FormControl('', [Validators.required]),
-      billing_address_id: new FormControl('', [Validators.required]),
       points_amount: new FormControl(false),
       wallet_balance: new FormControl(false),
-      coupon: new FormControl(),
-      delivery_description: new FormControl('', [Validators.required]),
-      delivery_interval: new FormControl(),
       payment_method: new FormControl('', [Validators.required])
     });
   }
+  amoutToPay: number = 0;
 
   get productControl(): FormArray {
     return this.form.get("products") as FormArray;
@@ -84,6 +80,7 @@ export class CheckoutComponent {
   ngOnInit() {
     this.checkout$.subscribe(data => this.checkoutTotal = data);
     this.cartItem$.subscribe(items => {
+      this.setTotal(items)
       if(!items.length) {
         return;
       }
@@ -97,6 +94,16 @@ export class CheckoutComponent {
           })
       ));
     });
+
+    this.setting$.subscribe((reslt)=>{
+      console.log("setting sus", reslt);
+    })
+  }
+
+  setTotal(listItems: Cart[]){
+    listItems.forEach((article)=>{
+        this.amoutToPay += (article.sub_total);
+    });
   }
 
   selectShippingAddress(id: number) {
@@ -104,19 +111,6 @@ export class CheckoutComponent {
       this.form.controls['shipping_address_id'].setValue(Number(id));
       this.checkout();
     }
-  }
-
-  selectBillingAddress(id: number) {
-    if(id) {
-      this.form.controls['billing_address_id'].setValue(Number(id));
-      this.checkout();
-    }
-  }
-
-  selectDelivery(value: DeliveryBlock) {
-    this.form.controls['delivery_description'].setValue(value?.delivery_description);
-    this.form.controls['delivery_interval'].setValue(value?.delivery_interval);
-    this.checkout();
   }
 
   selectPaymentMethod(value: string) {
@@ -132,33 +126,6 @@ export class CheckoutComponent {
   toggleWallet(event: Event) {
     this.form.controls['wallet_balance'].setValue((<HTMLInputElement>event.target)?.checked);
     this.checkout();
-  }
-
-  showCoupon() {
-    this.coupon = true;
-  }
-
-  setCoupon(value?: string) {
-    this.couponError = null;
-
-    if(value)
-      this.form.controls['coupon'].setValue(value);
-    else
-      this.form.controls['coupon'].reset();
-
-    this.store.dispatch(new Checkout(this.form.value)).subscribe({
-      error: (err) => {
-        this.couponError = err.message;
-      },
-      complete: () => {
-        this.appliedCoupon = value ? true : false;
-        this.couponError = null;
-      }
-    });
-  }
-
-  couponRemove() {
-    this.setCoupon();
   }
 
   checkout() {

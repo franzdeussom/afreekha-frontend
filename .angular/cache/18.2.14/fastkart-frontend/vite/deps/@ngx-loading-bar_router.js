@@ -5,26 +5,26 @@ import {
   NavigationStart,
   Router,
   RouterModule
-} from "./chunk-4JIR5XZK.js";
-import "./chunk-DDCLDWSR.js";
-import "./chunk-XC2D5ALT.js";
+} from "./chunk-YTJUEMKA.js";
+import "./chunk-V2N4HNN2.js";
+import "./chunk-SDIITPJY.js";
 import {
   LoadingBarModule,
   LoadingBarService
-} from "./chunk-YCBN6CG3.js";
-import "./chunk-IEIHAYKO.js";
+} from "./chunk-MCNWQ2PV.js";
+import "./chunk-LZOUTGY5.js";
 import {
   NgModule,
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-JTNCKGUX.js";
-import "./chunk-KKSL7W6X.js";
+} from "./chunk-BXO5P2VD.js";
 import "./chunk-CXNAVVMS.js";
+import "./chunk-KKSL7W6X.js";
 import "./chunk-XQSEKRDZ.js";
 import "./chunk-HM5YLMWO.js";
-import "./chunk-WDMUDEB6.js";
+import "./chunk-EIB7IA3J.js";
 
 // node_modules/@ngx-loading-bar/router/fesm2020/ngx-loading-bar-router.mjs
 var LoadingBarRouterModule = class {

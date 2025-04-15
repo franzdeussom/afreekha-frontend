@@ -2,8 +2,8 @@
     "data": [
       {
         "id": 1,
-        "code": "USD",
-        "symbol": "$",
+        "code": "FCFA",
+        "symbol": "FCFA",
         "no_of_decimal": 2,
         "exchange_rate": "1.00",
         "symbol_position": "before_price",

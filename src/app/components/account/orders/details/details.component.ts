@@ -54,6 +54,7 @@ export class OrderDetailsComponent {
       )
       .subscribe(order => {
         this.order = order!
+        console.log("order articles", order?.Article);
       });
   }
 

@@ -4,12 +4,12 @@
       <li>
         <div class="form-check ps-0 m-0 category-list-box">
           <input class="checkbox_animated" type="checkbox"
-            id="category-{{category.id}}"
-            [value]="category.slug"
-            [checked]="checked(category.slug!)"
+            id="category-{{category.idCategorie}}"
+            [value]="category.nom"
+            [checked]="checked(category.nom!)"
             (change)="applyFilter($event)">
-          <label class="form-check-label" for="category-{{category.id}}">
-            <span class="name">{{ category.name }}</span>
+          <label class="form-check-label" for="category-{{category.idCategorie}}">
+            <span class="name">{{ category.nom}}</span>
           </label>
         </div>
       </li>

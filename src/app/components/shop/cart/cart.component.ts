@@ -13,6 +13,7 @@ import { ButtonComponent } from '../../../shared/components/widgets/button/butto
 import { RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcrumb/breadcrumb.component';
+import { Product } from 'src/app/shared/interface/product.interface';
 
 @Component({
     selector: 'app-cart',
@@ -51,8 +52,8 @@ export class CartComponent {
     this.store.dispatch(new DeleteCart(id));
   }
 
-  addToWishlist(id: number){
-    this.store.dispatch(new AddToWishlist({ product_id: id }));
+  addToWishlist(product: Product){
+    this.store.dispatch(new AddToWishlist(product));
   }
 
 }

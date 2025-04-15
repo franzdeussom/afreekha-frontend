@@ -40,7 +40,7 @@ export class LoginComponent {
     private authService: AuthService
   ) {
     this.form = this.formBuilder.group({
-      email: new FormControl('john.customer@example.com', [Validators.required, Validators.email]),
+      email: new FormControl('john@example.com', [Validators.required, Validators.email]),
       password: new FormControl('123456789', [Validators.required]),
     });
   }
@@ -48,16 +48,7 @@ export class LoginComponent {
   submit() {
     this.form.markAllAsTouched();
     if(this.form.valid) {
-      this.store.dispatch(new Login(this.form.value)).subscribe({
-        complete: () => {
-          // Navigate to the intended URL after successful login
-          const redirectUrl = this.authService.redirectUrl || '/account/dashboard';
-          this.router.navigateByUrl(redirectUrl);
-
-          // Clear the stored redirect URL
-          this.authService.redirectUrl = undefined;
-        }
-      });
+      this.store.dispatch(new Login(this.form.value));
     }
   }
 

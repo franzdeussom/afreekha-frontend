@@ -12,6 +12,7 @@ import { UserAddress } from '../../../../interface/user.interface';
 import * as data from '../../../../data/country-code';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonComponent } from '../../button/button.component';
+import { AccountState } from 'src/app/shared/state/account.state';
 
 @Component({
     selector: 'address-modal',
@@ -34,6 +35,7 @@ export class AddressModalComponent {
   @ViewChild("addressModal", { static: false }) AddressModal: TemplateRef<string>;
   
   countries$: Observable<Select2Data> = inject(Store).select(CountryState.countries);
+  user$ : Observable<any> = inject(Store).select((AccountState.user));
 
   constructor(private modalService: NgbModal,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -41,14 +43,14 @@ export class AddressModalComponent {
     private formBuilder: FormBuilder) {
       this.isBrowser = isPlatformBrowser(this.platformId);
     this.form = this.formBuilder.group({
-      title: new FormControl('', [Validators.required]),
-      street: new FormControl('', [Validators.required]),
-      state_id: new FormControl('', [Validators.required]),
-      country_id: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
-      pincode: new FormControl('', [Validators.required]),
-      country_code: new FormControl('91', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)])
+      titre: new FormControl('', [Validators.required]),
+      ville: new FormControl('', [Validators.required]),
+      etat: new FormControl('', [Validators.required]),
+      country_code: new FormControl('', [Validators.required]),
+      numero_telephone: new FormControl('', [Validators.required]),
+      pays: new FormControl('', [Validators.required]),
+      adresse: new FormControl('', [Validators.required]),
+      idUser: new FormControl(''),
     })
   }
 
@@ -57,10 +59,29 @@ export class AddressModalComponent {
       this.states$ = this.store
           .select(StateState.states)
           .pipe(map(filterFn => filterFn(+data?.value)));
-      if(!this.address)
-        this.form.controls['state_id'].setValue('');
-    } else {
-      this.form.controls['state_id'].setValue('');
+
+      let index = 0;
+      let pays : any;
+      this.countries$.subscribe((country)=>{
+          index = country.findIndex((pays: any)=> pays.value == data?.value);
+        pays = country[index]
+        this.form?.controls?.["pays"].setValue(country[index].label)
+
+      });
+    } 
+  }
+
+  stateChange(data: Select2UpdateEvent){
+    if(data && data?.value){
+      let index = 0;
+      let value : any;
+       this.states$.subscribe((state)=>{
+           index = state.findIndex((st: any)=> st.value == data?.value);
+           value = state[index];
+       });
+
+       console.log('etat value', value.label);
+      this.form?.controls?.["etat"].setValue(value.label);
     }
   }
 
@@ -95,39 +116,42 @@ export class AddressModalComponent {
     if(value) {
       this.address = value;
       this.form.patchValue({
-        user_id: value?.user_id,
-        title: value?.title,
-        street: value?.street,
+        idUser: value?.idUser,
+        titre: value?.titre,
         country_id: value?.country_id,
         state_id: value?.state_id,
-        city: value?.city,
-        pincode: value?.pincode,
+        ville: value?.ville,
         country_code: value?.country_code,
-        phone: value?.phone
+        numero_telephone: value?.numero_telephone
       });
     } else {
       this.address = null;
       this.form.reset();
-      this.form?.controls?.['country_code'].setValue('91');
+      this.form?.controls?.['country_code'].setValue('237');
     }
   }
 
   submit(){
 
-    this.form.markAllAsTouched();
+    this.user$.subscribe((user) => {
+    
+      this.form?.controls?.['idUser'].setValue(user.idUser);
+    });
 
     let action = new CreateAddress(this.form.value);
 
     if(this.address) {
-      action = new UpdateAddress(this.form.value, this.address.id);
+      action = new UpdateAddress(this.form.value, this.address.idAdresse);
     }
 
     if(this.form.valid) {
       this.store.dispatch(action).subscribe({
         complete: () => {
           this.form.reset();
+          this.modalService.dismissAll();
+          this.modalOpen = false;
           if(!this.address){
-            this.form?.controls?.['country_code'].setValue('91');
+            this.form?.controls?.['country_code'].setValue('237');
           }
         }
       });

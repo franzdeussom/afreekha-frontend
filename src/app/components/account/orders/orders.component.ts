@@ -12,6 +12,7 @@ import { NoDataComponent } from '../../../shared/components/widgets/no-data/no-d
 import { PaginationComponent } from '../../../shared/components/widgets/pagination/pagination.component';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe, DatePipe } from '@angular/common';
+import { AccountState } from 'src/app/shared/state/account.state';
 
 @Component({
     selector: 'app-orders',
@@ -26,19 +27,22 @@ export class OrdersComponent {
 
 
   order$: Observable<OrderModel> = inject(Store).select(OrderState.order) as Observable<OrderModel>;
-
+  user: any;
   public filter: Params = {
     'page': 1, // Current page number
     'paginate': 10, // Display per page,
   };
 
   constructor(private store: Store) {
-    this.store.dispatch(new GetOrders(this.filter));
+    this.user = this.store.selectSnapshot(AccountState.user);
+    if(this.user?.user.id){
+        this.store.dispatch(new GetOrders(this.user?.user.id));
+    }
   }
 
   setPaginate(page: number) {
     this.filter['page'] = page;
-    this.store.dispatch(new GetOrders(this.filter));
+    this.store.dispatch(new GetOrders(this.user.idUser));
   }
 
 }

@@ -58,6 +58,8 @@ export class ThemeOptionState {
           });
         },
         error: (err) => {
+          console.log(err.message);
+          console.log(err.error);
           throw new Error(err?.error?.message);
         },
       })

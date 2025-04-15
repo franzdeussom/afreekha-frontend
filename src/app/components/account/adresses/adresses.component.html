@@ -12,37 +12,38 @@
       </app-button>
     </div>
   </div>
-  @if ((user$ | async)?.address?.length) {
+  @if ((user$ | async)?.adresses?.length) {
     <div class="row g-sm-4 g-3">
-      @for (address of (user$ | async)?.address; track address; let i = $index) {
+      @for (address of (user$ | async)?.adresses; track address; let i = $index) {
         <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
           <div class="address-box">
             <div>
               <div class="label">
-                <label>{{ address?.title }}</label>
+                <label>{{ address?.titre ? address?.titre: "" }}</label>
               </div>
               <div class="table-responsive address-table">
                 <table class="table">
                   <tbody>
                     <tr>
-                      <td colspan="2">{{ (user$ | async)?.name | titleCase }}</td>
+                      <td colspan="2">{{ (user$ | async)?.user.nom | titleCase }}</td>
                     </tr>
                     <tr>
                       <td>{{ 'address' | translate }} :</td>
                       <td>
                         <p>
-                          {{ address?.street }}, {{ address?.city }}, {{ address?.state?.name }},
-                          {{ address?.country?.name }}
+                      
+                          {{ address?.ville }} {{ address?.adresse }}
+
                         </p>
                       </td>
                     </tr>
                     <tr>
                       <td>{{ 'pin_code' | translate }} :</td>
-                      <td>{{ address?.pincode }}</td>
+                      <td>{{ address?.state }}</td>
                     </tr>
                     <tr>
                       <td>{{ 'phone' | translate }} :</td>
-                      <td>+{{ address?.country_code }} {{ address?.phone }}</td>
+                      <td> {{ address?.numero_telephone }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -53,7 +54,7 @@
                 [class]="'btn btn-sm add-button'"
                 [type]="'button'"
                 [spinner]="false"
-                [id]="'edit_address'+address.id"
+                [id]="'edit_address'+address.idAdresse"
                 (click)="AddressModal.openModal(address)">
                 <i class="ri-edit-box-line"></i> {{ 'edit' | translate }}
               </app-button>
@@ -72,7 +73,7 @@
     </div>
   }
 </div>
-@if (!(user$ | async)?.address?.length) {
+@if (!(user$ | async)?.adresses?.length) {
   <app-no-data [class]="'no-data-added'"
     [image]="'assets/svg/empty-items.svg'"
     [text]="'No Address Found'"

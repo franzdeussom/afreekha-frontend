@@ -16,6 +16,7 @@ import { CategoriesComponent } from '../../widgets/categories/categories.compone
 import { LogoComponent } from '../widgets/logo/logo.component';
 import { NavbarMenuButtonComponent } from '../widgets/navbar-menu-button/navbar-menu-button.component';
 import { TopbarComponent } from '../widgets/topbar/topbar.component';
+import { Category } from 'src/app/shared/interface/category.interface';
 
 @Component({
     selector: 'app-basic-header',
@@ -32,6 +33,7 @@ export class BasicHeaderComponent {
   @Input() data: Option | null;
   @Input() logo: string | null | undefined;
   @Input() sticky: boolean | number | undefined; // Default false
+  @Input() categories: any[];
 
   public stick: boolean = false;
   public active: boolean = false;

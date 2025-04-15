@@ -13,70 +13,16 @@
                       <td class="product-detail">
                         <div class="product border-0">
                           <a [routerLink]="['/product/', item.product.slug]" class="product-image">
-                                                <img [src]="item.variation && item.variation.variation_image
-                                                        ? item.variation.variation_image.original_url
-                                                        : item.product.product_thumbnail
-                                                        ? item.product.product_thumbnail.original_url
-                                                        : 'assets/images/product.png'" class="img-fluid" alt="product">
+                                                <img [src]="item.product.Images.length ?  item.product.Images[0].lien : 'assets/images/product.png'" class="img-fluid" alt="product">
                             </a>
                             <div class="product-detail">
                               <ul>
                                 <li class="name">
-                                  <a [routerLink]="['/product/', item.product.slug]">
-                                    {{item.variation ? item.variation.name : item.product.name}}
+                                  <a [routerLink]="['/product/', item.product.idArticle]">
+                                    {{ item.product.nom_article}}
                                   </a>
                                 </li>
-                                <li class="text-content">
-                                  <span class="text-title">{{ 'sold_by' | translate }}:</span> {{ 'fastkart' | translate }}
-                                </li>
-                                @if (item.product && item.product.unit) {
-                                  <li class="text-content">
-                                    <span class="text-title">{{ 'unit' | translate }}:</span> {{item.product.unit}}
-                                  </li>
-                                }
-                                <li>
-                                  <h5 class="text-content d-inline-block">{{ 'price' | translate }} :</h5>
-                                  <span>{{ (item?.variation ? item.variation.sale_price : item.product.sale_price) | currencySymbol }}</span>
-                                  @if (item.product.discount) {
-                                    <span class="text-content">{{ (item.variation ? item.variation!.price : item.product.price) | currencySymbol }}</span>
-                                  }
-                                </li>
-                                @if (item.product.discount) {
-                                  <li>
-                                    <h5 class="saving theme-color">
-                                      {{ 'saving' | translate }}: {{ ((item.variation ? item.variation!.price
-                                      : item.product.price) - (item.variation
-                                      ? item.variation!.sale_price
-                                      : item.product.sale_price)) | currencySymbol }}
-                                    </h5>
-                                  </li>
-                                }
-                                <li class="quantity-price-box">
-                                  <div class="cart_qty">
-                                    <div class="input-group">
-                                      <app-button
-                                        [class]="'btn qty-left-minus'"
-                                        [id]="'minus_quantity'"
-                                        [spinner]="false"
-                                        [type]="'button'"
-                                        (click)="updateQuantity(item, -1)">
-                                      <i class="ri-subtract-fill ms-0"></i>
-                                    </app-button>
-                                    <input class="form-control input-number qty-input" type="text" name="quantity" value="{{ item.quantity }}" readonly>
-                                    <app-button
-                                      [class]="'btn qty-left-minus'"
-                                      [id]="'plus_quantity'"
-                                      [spinner]="false"
-                                      [type]="'button'"
-                                      (click)="updateQuantity(item, 1)">
-                                      <i class="ri-add-line ms-0"></i>
-                                    </app-button>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <h5>{{ 'total' | translate }}: {{ (item.variation ? item.variation.sale_price : item.product.sale_price) * item.quantity | currencySymbol }}</h5>
-                              </li>
+              
                             </ul>
                           </div>
                         </div>
@@ -84,17 +30,14 @@
                       <td class="price">
                         <h4 class="table-title text-content">{{ 'price' | translate }}</h4>
                         <h5>
-                          {{ (item?.variation ? item.variation.sale_price : item.product.sale_price) | currencySymbol }}
-                          @if (item.product.discount) {
-                            <del class="text-content">{{ (item.variation ? item.variation.price : item.product.price) | currencySymbol }}</del>
+                          {{ (item.product.promo ? item.product.prix-((item.product.prix*item.product.pourcentage_promo)/100 ): item.product.prix) | currencySymbol }}
+                          @if (item.product.promo) {
+                            <del class="text-content" style="color: red">{{ item.product.prix | currencySymbol }}</del>
                           }
                         </h5>
-                        @if (item.product.discount) {
+                        @if (item.product.promo) {
                           <h6 class="theme-color">
-                            {{ 'you_save' | translate }} : {{ ((item.variation ? item.variation.price
-                            : item.product.price) - (item.variation
-                            ? item.variation.sale_price
-                            : item.product.sale_price)) | currencySymbol }}
+                            {{ 'you_save' | translate }} : {{ ( item.product.prix - (item.product.prix-((item.product.prix*item.product.pourcentage_promo)/100) ))*item.quantity| currencySymbol }}
                           </h6>
                         }
                       </td>
@@ -126,11 +69,11 @@
                       </td>
                       <td class="subtotal">
                         <h4 class="table-title text-content">{{ 'total' | translate }}</h4>
-                        <h5>{{ (item.variation ? item.variation.sale_price : item.product.sale_price) * item.quantity | currencySymbol }}</h5>
+                        <h5>{{ item.sub_total | currencySymbol }}</h5>
                       </td>
                       <td class="save-remove">
                         <h4 class="table-title text-content">{{ 'action' | translate }}</h4>
-                        <a class="save notifi-wishlist" href="javascript:void(0)" (click)="addToWishlist(item.product.id)">{{ 'save_for_later' | translate }}</a>
+                        <a class="save notifi-wishlist" href="javascript:void(0)" (click)="addToWishlist(item.product)">{{ 'save_for_later' | translate }}</a>
                         <a class="remove close_button" href="javascript:void(0)" (click)="delete(item.id)">{{ 'remove' | translate }}</a>
                       </td>
                     </tr>
@@ -190,8 +133,8 @@
       <app-no-data
         [class]="'no-data-added'"
         [image]="'assets/svg/empty-items.svg'"
-        [text]="'No Items Added'"
-        [description]="'It appears that nothing has been added to your cart.'"
+        [text]="'Panier Vide'"
+        [description]="'Aucun article ajouté a votre panier.|It appears that nothing has been added to your cart.'"
         >
       </app-no-data>
     }

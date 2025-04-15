@@ -83,7 +83,7 @@ export class CartComponent {
   updateQuantity(item: Cart, qty: number) {
     const params: CartAddOrUpdate = {
       id: item?.id,
-      product_id: item?.product?.id,
+      product_id: item?.product?.idArticle,
       product: item?.product ? item?.product : null,
       variation_id: item?.variation_id ? item?.variation_id : null,
       variation: item?.variation ? item?.variation : null,

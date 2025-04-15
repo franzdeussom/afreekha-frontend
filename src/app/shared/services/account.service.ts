@@ -1,18 +1,56 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../../../public/environments/environment";
-import { AccountUser } from "../interface/account.interface";
+import { AccountUser, HomeData } from "../interface/account.interface";
+import { ROUTES_API } from "../api/routes";
+import { CryptoJsService } from "./crypto-js.service";
+import { UserAddress } from "../interface/user.interface";
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
   providedIn: "root",
 })
 export class AccountService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private crypt: CryptoJsService, @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-  getUserDetails(): Observable<AccountUser> {
-    return this.http.get<AccountUser>(`${environment.URL}/account.json`);
+  getUserDetails(): any | null{
+     //return 
+     if(isPlatformBrowser(this.platformId)){
+      const data = JSON.parse(localStorage.getItem("UserDetails")!) || null ? this.crypt.decryptData(JSON.parse(localStorage.getItem("UserDetails")!)): null;
+      console.log('local storage data get', data);
+      return data;
+     }else{
+      return null;
+     }
+     
+      //return this.http.get<AccountUser>(`${environment.URL}/account.json`);
   }
 
+  getHomeData(): Observable<HomeData>{
+  
+    return this.http.get<HomeData>(`${environment.URL_API}/api${ROUTES_API.HOME.GET}`);
+  }
+
+  updateUserProfile(payload: AccountUser, id: string): Observable<AccountUser> {
+    return this.http.patch<AccountUser>(`${environment.URL_API}/api${ROUTES_API.USERS.UPDATE(String(id))}`, payload);
+  }
+
+  updateUserPassword(payload: any, id: string): Observable<any>{
+    return this.http.patch<any>(`${environment.URL_API}/api${ROUTES_API.USERS.UPDATE_PASSWORD(id)}`, payload);
+  }
+
+  createAdresse(payload: UserAddress): Observable<UserAddress>{
+    return this.http.post<UserAddress>(`${environment.URL_API}/api${ROUTES_API.ADRESSE.POST_GET_PUT}`, payload )
+  }
+
+  updateAdresse(payload: UserAddress): Observable<UserAddress>{
+    return this.http.put<UserAddress>(`${environment.URL_API}/api${ROUTES_API.ADRESSE.POST_GET_PUT}`, payload )
+  }
+
+  deleteAdresse(id: number): Observable<UserAddress>{
+    return this.http.delete<UserAddress>(`${environment.URL_API}/api${ROUTES_API.ADRESSE.DELETE}/${id}` );
+  }
 }

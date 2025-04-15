@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../../../public/environments/environment";
 import { Params } from "../interface/core.interface";
 import { CategoryModel } from "../interface/category.interface";
+import { ROUTES_API } from "../api/routes";
 
 @Injectable({
   providedIn: "root",
@@ -14,6 +15,10 @@ export class CategoryService {
 
   getCategories(payload?: Params): Observable<CategoryModel> {
     return this.http.get<CategoryModel>(`${environment.URL}/category.json`, { params: payload });
+  }
+
+  getCategory(payload?: Params): Observable<CategoryModel> {
+    return this.http.get<CategoryModel>(`${environment.URL_API}/api${ROUTES_API.CATEGORIE.GET}`, { params: payload });
   }
   
 }

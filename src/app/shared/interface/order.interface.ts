@@ -12,6 +12,14 @@ export interface OrderModel extends PaginateModel {
 }
 
 export interface Order {
+    idCommande: number;
+    Montant_total: number;
+    quantite_articles: number;
+    statut: string;
+    idUser: number;
+    createdAt: string;
+    updatedAt: string;
+    Article: any[];
     id: number;
     order_id: string;
     order_number: number;

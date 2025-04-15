@@ -2,8 +2,8 @@
     "id": 1,
     "options": {
       "general": {
-        "site_title": "FastKart Marketplace: Where Vendors Shine Together",
-        "site_tagline": "Shop Unique, Sell Exceptional – FastKart's Multi-Vendor Universe.",
+        "site_title": "Afreekha",
+        "site_tagline": "Shop Unique, Sell Exceptional – Afreekha's Multi-Vendor Universe.",
         "cart_style": "cart_sidebar",
         "back_to_top_enable": true,
         "language_direction": "ltr",
@@ -26,35 +26,35 @@
           "created_by_id": "1",
           "created_at": "2023-08-24T08:16:03.000000Z",
           "updated_at": "2023-08-24T08:16:03.000000Z",
-          "original_url": "assets/images/data/favicon.png"
+          "original_url": "assets/images/logo/afreekha.png"
         },
         "header_logo": {
           "id": 4,
           "collection_name": "attachment",
           "name": "logo-dark",
-          "file_name": "logo-dark.png",
-          "mime_type": "image/png",
+          "file_name": "LOO.jpg",
+          "mime_type": "image/jpg",
           "disk": "public",
           "conversions_disk": "public",
           "size": "4997",
           "created_by_id": "1",
           "created_at": "2023-08-24T08:16:03.000000Z",
           "updated_at": "2023-08-24T08:16:03.000000Z",
-          "original_url": "assets/images/data/logo-dark.png"
+          "original_url": "assets/images/logo/afreekha.png"
         },
         "footer_logo": {
           "id": 4,
           "collection_name": "attachment",
           "name": "logo-dark",
-          "file_name": "logo-dark.png",
-          "mime_type": "image/png",
+          "file_name": "LOO.jpg",
+          "mime_type": "image/jpg",
           "disk": "public",
           "conversions_disk": "public",
           "size": "4997",
           "created_by_id": "1",
           "created_at": "2023-08-24T08:16:03.000000Z",
           "updated_at": "2023-08-24T08:16:03.000000Z",
-          "original_url": "assets/images/data/logo-dark.png"
+          "original_url": "assets/images/logo/afreekha.png"
         }
       },
       "header": {
@@ -63,17 +63,17 @@
         "page_top_bar_enable": true,
         "top_bar_content": [
           {
-            "content": "<strong class=\"me-1\">Welcome to Fastkart!</strong>Wrap new offers/gift every single day on Weekends.<strong class=\"ms-1\">New Coupon Code: FAST50</strong>"
+            "content": "<strong class=\"me-1\">Welcome to Afreekha!</strong>Wrap new offers/gift every single day on Weekends."
           },
           {
-            "content": "Something you love is now on sale <strong>Buy Now!</strong>"
+            "content": "Quelque chose que vous aimez ? alors <strong>Acheter maintenant!</strong>"
           },
           {
             "content": "Your must-have item is calling – <strong>Buy Now!</strong>"
           }
         ],
-        "page_top_bar_dark": false,
-        "support_number": "+1-555-186-5359",
+        "page_top_bar_dark": true,
+        "support_number": "+237 698403201",
         "today_deals": [
           1,
           12,
@@ -91,12 +91,12 @@
         ]
       },
       "footer": {
-        "footer_style": "light_mode",
+        "footer_style": "light mode",
         "footer_copyright": true,
-        "copyright_content": "©2023 Fastkart All rights reserved",
-        "footer_about": "Discover convenience redefined at our multipurpose store. From fresh groceries to the latest fashion trends, find everything you need under one roof. Your one-stop shopping destination for a diverse range of products.",
-        "about_address": "1418 Riverwood Drive, CA 96052, US",
-        "about_email": "support@fastkart.com",
+        "copyright_content": "©2025 Afreekha All rights reserved",
+        "footer_about": "Découvrez la commodité redéfinie dans notre magasin polyvalent. Des produits aux dernières tendances mode, trouvez tout ce dont vous avez besoin sous un même toit. Votre destination d'achat unique pour une gamme variée de produits.",
+        "about_address": "Douala, Cameroon",
+        "about_email": "support@afreekha.com",
         "footer_categories": [
           6,
           5,
@@ -107,24 +107,16 @@
         ],
         "help_center": [
           {
-            "label": "My Account",
+            "label": "Mon Compte",
             "link": "account/dashboard"
           },
           {
-            "label": "My Orders",
+            "label": "Mes Factures",
             "link": "account/order"
           },
           {
-            "label": "Wishlist",
+            "label": "Favoris",
             "link": "wishlist"
-          },
-          {
-            "label": "Compare",
-            "link": "compare"
-          },
-          {
-            "label": "FAQ's",
-            "link": "faq"
           },
           {
             "label": "Contact Us",
@@ -139,33 +131,15 @@
           {
             "label": "Collections",
             "link": "collections"
-          },
-          {
-            "label": "About",
-            "link": "about-us"
-          },
-          {
-            "label": "Blogs",
-            "link": "blogs"
-          },
-          {
-            "label": "Offers",
-            "link": "offer"
-          },
-          {
-            "label": "Search",
-            "link": "search"
           }
         ],
-        "support_number": "+1-555-186-5359",
-        "support_email": "support@fastkart.com",
+        "support_number": "+237 698403201",
+        "support_email": "support@afreekha.com",
         "play_store_url": "https://play.google.com/",
         "app_store_url": "https://apple.com/",
         "social_media_enable": true,
         "facebook": "https://facebook.com/",
-        "instagram": "https://instagram.com/",
-        "twitter": "https://twitter.com/",
-        "pinterest": "https://pinterest.com/"
+        "instagram": "https://instagram.com/"
       },
       "collection": {
         "collection_layout": "collection_category_slider",
@@ -179,7 +153,7 @@
         "safe_checkout": true,
         "safe_checkout_image": "assets/images/data/payments.png",
         "secure_checkout": true,
-        "secure_checkout_image": "assets/images/data/secure_payments.png",
+        "secure_checkout_image": "assets/images/data/mobile-money.jpg",
         "encourage_order": true,
         "encourage_max_order_count": 50,
         "encourage_view": true,
@@ -198,7 +172,7 @@
       "seller": {
         "about": {
           "status": true,
-          "title": "Become a seller on Fastkart...",
+          "title": "Become a seller on Afreekha...",
           "description": "Ready to showcase your products to the world? Join our dynamic marketplace and become a seller at our thriving multipurpose store. With a diverse customer base and a wide range of categories including groceries, fashion, electronics, and more, you'll have the perfect platform to reach a vast audience.\n\nAs a seller, you'll benefit from our user-friendly interface, seamless payment processing, and dedicated support to ensure your products shine. Whether you're a local artisan or a growing brand, our store provides the visibility and tools you need to succeed.\n\nTap into our established customer traffic, set up your shop with ease, and let your products take center stage. Join us in creating a shopping experience that caters to every need and taste. Your journey to success starts here – become a seller at our multipurpose store today!",
           "image_url": "assets/images/data/banner-2.jpg"
         },
@@ -227,7 +201,7 @@
         },
         "steps": {
           "status": true,
-          "title": "Doing Business on Fastkart is really easy",
+          "title": "Doing Business on Afreekha is really easy",
           "step_1": {
             "title": "List Your Products & Get Support Provider",
             "description": "Elevate your business by listing your products with us. Experience dedicated support services for your growth."
@@ -244,7 +218,7 @@
         "start_selling": {
           "status": true,
           "title": "Start Selling",
-          "description": "Fastkart marketplace is India's leading platform for selling online. Be it a manufacturer, vendor or supplier, simply sell your products online on Fastkart and become a top ecommerce player with minimum investment. Through a team of experts offering exclusive seller workshops, training, seller support and convenient seller portal, Fastkart focuses on educating and empowering sellers across India. Selling on Fastkart.com is easy and absolutely free. All you need is to register, list your catalogue and start selling your products."
+          "description": "Afreekha marketplace is India's leading platform for selling online. Be it a manufacturer, vendor or supplier, simply sell your products online on Afreekha and become a top ecommerce player with minimum investment. Through a team of experts offering exclusive seller workshops, training, seller support and convenient seller portal, Afreekha focuses on educating and empowering sellers across India. Selling on afreekha.com is easy and absolutely free. All you need is to register, list your catalogue and start selling your products."
         },
         "store_layout": "basic_store",
         "store_details": "basic_store_details"
@@ -259,7 +233,7 @@
         "detail_2": {
           "label": "Email",
           "icon": "ri-mail-line",
-          "text": "support@fastkart.com"
+          "text": "support@afreekha.com"
         },
         "detail_3": {
           "label": "London Office",
@@ -278,11 +252,11 @@
         "back_button_text": "Back To Home"
       },
       "seo": {
-        "meta_tags": "FastKart Marketplace: Where Vendors Shine Together",
+        "meta_tags": "Afreekha",
         "meta_title": "Online Marketplace, Vendor Collaboration, E-commerce Platform",
-        "meta_description": "Discover FastKart Marketplace – a vibrant online platform where vendors unite to showcase their products, creating a diverse shopping experience. Explore a wide range of offerings and connect with sellers on a single platform.",
-        "og_title": "FastKart Marketplace: Uniting Vendors for Shopping Excellence",
-        "og_description": "Experience a unique shopping journey at FastKart Marketplace, where vendors collaborate to provide a vast array of products. Explore, shop, and connect in one convenient destination.",
+        "meta_description": "Discover Afreekha Marketplace – a vibrant online platform where vendors unite to showcase their products, creating a diverse shopping experience. Explore a wide range of offerings and connect with sellers on a single platform.",
+        "og_title": "Afreekha Marketplace: Uniting Vendors for Shopping Excellence",
+        "og_description": "Experience a unique shopping journey at Afreekha Marketplace, where vendors collaborate to provide a vast array of products. Explore, shop, and connect in one convenient destination.",
         "og_image_id": 4,
         "og_image": {
           "id": 4,
@@ -296,7 +270,7 @@
           "created_by_id": "1",
           "created_at": "2023-08-24T08:16:03.000000Z",
           "updated_at": "2023-08-24T08:16:03.000000Z",
-          "original_url": "assets/images/data/logo-dark.png"
+          "original_url": "assets/images/data/LOO.jpg"
         }
       }
     }

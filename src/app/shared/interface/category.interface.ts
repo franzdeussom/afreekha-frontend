@@ -6,6 +6,13 @@ export interface CategoryModel extends PaginateModel {
 }
 
 export interface Category {
+    idCategorie: number;
+    nom: string;
+    idUser: number;
+    urlLogo: string,
+    createdAt: string;
+    updateAt: string;
+
     id: number;
     name: string;
     slug: string;

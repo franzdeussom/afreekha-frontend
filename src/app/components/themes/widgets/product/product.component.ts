@@ -20,7 +20,7 @@ import { CommonModule, NgClass } from '@angular/common';
 export class ProductComponent {
 
   @Input() style: string = 'vertical';
-  @Input() productIds: number[] = [];
+  @Input() product: Product[] = [];
   @Input() boxClass: string;
   @Input() productStyle: string = "product-modern";
   @Input() layout: string;
@@ -34,14 +34,20 @@ export class ProductComponent {
 
   product$: Observable<ProductModel> = inject(Store).select(ProductState.product);
 
-  constructor(public productService: ProductService) {}
-
+  constructor(public productService: ProductService) {
+  }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+   console.log("produits", this.product)
+    
+  }
   ngOnChanges() {
-    if (Array.isArray(this.productIds)) {
+   /* if (Array.isArray(this.productIds)) {
       this.product$.subscribe(products => {
         this.products = products.data.filter(product => this.productIds?.includes(product?.id));
       });
-    }
+    }*/
+   this.products = this.product;
   }
-
 }

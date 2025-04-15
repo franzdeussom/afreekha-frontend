@@ -16,12 +16,16 @@
 @if ((themeOption$ | async)?.general?.cart_style == 'cart_mini') {
   <app-sticky-cart></app-sticky-cart>
 }
-<app-sticky-compare></app-sticky-compare>
+
+
+<!-- <app-sticky-compare></app-sticky-compare>-->
 <div class="theme-option">
   @if ((themeOption$ | async)?.general?.back_to_top_enable) {
     <app-back-to-top></app-back-to-top>
   }
 </div>
+
+
 <app-newsletter-modal></app-newsletter-modal>
 <app-cookie></app-cookie>
 @if (exit) {

@@ -24,6 +24,7 @@ export class PaymentBlockComponent {
         this.selectPaymentMethod.emit(this.setting?.payment_methods?.[0].name);
       }
     }
+    console.log('setting payeme', this.setting);
   }
 
   set(value: string) {

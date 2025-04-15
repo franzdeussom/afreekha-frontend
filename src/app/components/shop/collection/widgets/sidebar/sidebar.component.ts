@@ -7,7 +7,6 @@ import { AttributeModel } from '../../../../../shared/interface/attribute.interf
 import { AttributeState } from '../../../../../shared/state/attribute.state';
 import { GetAttributes } from '../../../../../shared/action/attribute.action';
 import { TranslateModule } from '@ngx-translate/core';
-import { CollectionRatingFilterComponent } from '../filter/collection-rating-filter/collection-rating-filter.component';
 import { CollectionPriceFilterComponent } from '../filter/collection-price-filter/collection-price-filter.component';
 import { CollectionAttributesComponent } from '../filter/collection-attributes-filter/collection-attributes-filter.component';
 import { CollectionCategoryFilterComponent } from '../filter/collection-category-filter/collection-category-filter.component';
@@ -21,7 +20,7 @@ import { CollectionFilterComponent } from '../filter/collection-filter/collectio
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
     standalone: true,
-    imports: [CollectionFilterComponent, SkeletonCollectionSidebarComponent, NgbAccordionDirective, NgbAccordionItem, NgbAccordionHeader, NgbAccordionToggle, NgbAccordionButton, NgbCollapse, NgbAccordionCollapse, NgbAccordionBody, CollectionCategoryFilterComponent, CollectionAttributesComponent, CollectionPriceFilterComponent, CollectionRatingFilterComponent, AsyncPipe, TranslateModule]
+    imports: [CollectionFilterComponent, SkeletonCollectionSidebarComponent, NgbAccordionDirective, NgbAccordionItem, NgbAccordionHeader, NgbAccordionToggle, NgbAccordionButton, NgbCollapse, NgbAccordionCollapse, NgbAccordionBody, CollectionCategoryFilterComponent, CollectionAttributesComponent, CollectionPriceFilterComponent, AsyncPipe, TranslateModule]
 })
 export class CollectionSidebarComponent {
 

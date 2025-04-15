@@ -16,10 +16,21 @@
           <div class="col-xxl-12">
             <div class="">
               <label class="form-label" for="name">{{ 'full_name' | translate }}</label>
-              <input class="form-control" id="name" type="text" placeholder="{{ 'enter_name' | translate }}" formControlName="name" />
-              @if (form.controls['name'].touched && form.controls['name'].errors?.['required']) {
+              <input class="form-control" id="name" type="text" placeholder="{{ 'enter_name' | translate }}" formControlName="nom" />
+              @if (form.controls['nom'].touched && form.controls['nom'].errors?.['required']) {
                 <div class="invalid-feedback">
                   {{ 'name_is_required' | translate }}
+                </div>
+              }
+            </div>
+          </div>
+          <div class="col-xxl-12">
+            <div class="">
+              <label class="form-label" for="name">{{ 'surname' | translate }}</label>
+              <input class="form-control" id="name" type="text" placeholder="{{ 'enter_surname' | translate }}" formControlName="prenom" />
+              @if (form.controls['prenom'].touched && form.controls['prenom'].errors?.['required']) {
+                <div class="invalid-feedback">
+                  {{ 'surname_is_required' | translate }}
                 </div>
               }
             </div>
@@ -58,13 +69,13 @@
                     </div>
                   </ng-template>
                 </select2>
-                <input type="number" class="form-control intl-input-padding" formControlName="phone" placeholder="{{ 'enter_phone' | translate }}" name="phone">
-                @if (form.controls['phone'].touched && form.controls['phone'].errors?.['required']) {
+                <input type="number" class="form-control intl-input-padding" formControlName="numero_telephone" placeholder="{{ 'enter_phone' | translate }}" name="phone">
+                @if (form.controls['numero_telephone'].touched && form.controls['numero_telephone'].errors?.['required']) {
                   <div class="invalid-feedback">
                     {{ 'phone_number_is_required' | translate }}
                   </div>
                 }
-                @if (form.controls['phone'].touched && form.controls['phone'].errors?.['pattern']) {
+                @if (form.controls['numero_telephone'].touched && form.controls['numero_telephone'].errors?.['pattern']) {
                   <div class="invalid-feedback">
                     {{ 'phone_number_is_invalid' | translate }}
                   </div>

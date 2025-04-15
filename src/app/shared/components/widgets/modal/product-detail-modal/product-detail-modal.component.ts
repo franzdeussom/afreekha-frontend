@@ -21,7 +21,7 @@ import { ButtonComponent } from '../../button/button.component';
     styleUrls: ['./product-detail-modal.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [ButtonComponent, CarouselModule, NgbRating, 
+    imports: [ButtonComponent, CarouselModule, 
       VariantAttributesComponent, TranslateModule, TitleCasePipe, CurrencySymbolPipe]
 })
 export class ProductDetailModalComponent {
@@ -52,9 +52,10 @@ export class ProductDetailModalComponent {
   }
 
   ngOnInit() {
-    this.cartItem$.subscribe(items => {
+    /*this.cartItem$.subscribe(items => {
       this.cartItem = items.find(item => item.product.id == this.product.id)!;
-    });
+    });*/
+
   }
 
   async openModal() {
@@ -83,21 +84,18 @@ export class ProductDetailModalComponent {
   }
 
   checkStockAvailable() {
-    if(this.selectedVariation) {
-      this.selectedVariation['stock_status'] = this.selectedVariation?.quantity < this.productQty ? 'out_of_stock' : 'in_stock';
-    } else {
-      this.product['stock_status']  = this.product?.quantity < this.productQty ? 'out_of_stock' : 'in_stock';
-    }
+    
+      this.product['statut']  = this.product?.quantite < this.productQty ? 'Rupture' : 'En stock';
+    
   }
 
   addToCart(product: Product) {
     if(product) {
       const params: CartAddOrUpdate = {
-        id: this.cartItem && (this.selectedVariation && this.cartItem?.variation && 
-          this.selectedVariation?.id == this.cartItem?.variation?.id) ? this.cartItem.id : null,
-        product_id: product?.id!,
+        id: null,
+        product_id: product?.idArticle!,
         product: product ? product : null,
-        variation: this.selectedVariation ? this.selectedVariation : null,
+        variation: product ? product : null,
         variation_id: this.selectedVariation?.id ? this.selectedVariation?.id! : null,
         quantity: this.productQty
       }

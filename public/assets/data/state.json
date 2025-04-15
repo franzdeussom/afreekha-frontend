@@ -7,6 +7,9 @@
       "updated_at": "2023-08-24T08:16:46.000000Z"
     },
     {
+
+    },
+    {
       "id": 3912,
       "name": "al-Jawf",
       "country_id": "887",
@@ -22520,14 +22523,14 @@
     },
     {
       "id": 650,
-      "name": "Nord Extreme",
+      "name": "Extreme Nord",
       "country_id": "120",
       "created_at": "2023-08-24T08:16:10.000000Z",
       "updated_at": "2023-08-24T08:16:10.000000Z"
     },
     {
       "id": 651,
-      "name": "Nordouest",
+      "name": "Nord Ouest",
       "country_id": "120",
       "created_at": "2023-08-24T08:16:10.000000Z",
       "updated_at": "2023-08-24T08:16:10.000000Z"
@@ -22548,11 +22551,18 @@
     },
     {
       "id": 654,
-      "name": "Sudouest",
+      "name": "Sud Ouest",
       "country_id": "120",
       "created_at": "2023-08-24T08:16:10.000000Z",
       "updated_at": "2023-08-24T08:16:10.000000Z"
     },
+    {
+      "id": 2000,
+      "name": "Littoral",
+      "country_id": "120",
+      "created_at": "2023-08-24T08:16:10.000000Z",
+      "updated_at": "2023-08-24T08:16:10.000000Z"
+    }, 
     {
       "id": 655,
       "name": "Alberta",

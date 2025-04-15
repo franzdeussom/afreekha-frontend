@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoriesComponent as CategoriesComponent_1 } from '../../../../shared/components/widgets/categories/categories.component';
+import { Category } from 'src/app/shared/interface/category.interface';
 
 @Component({
     selector: 'app-theme-categories',
@@ -11,7 +12,7 @@ import { CategoriesComponent as CategoriesComponent_1 } from '../../../../shared
 })
 export class CategoriesComponent {
 
-  @Input() categoryIds: number[] = [];
+  @Input() category: Category[] = [];
   @Input() style: string = 'vertical';
   @Input() title?: string;
   @Input() image?: string;

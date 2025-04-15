@@ -3,7 +3,7 @@ import { CheckoutPayload, RePaymentPayload } from "../interface/order.interface"
 
 export class GetOrders {
   static readonly type = "[Order] Get";
-  constructor(public payload?: Params) {}
+  constructor(public id?: number) {}
 }
 
 export class ViewOrder {

@@ -12,6 +12,11 @@ import { ImageLinkComponent } from '../../../../shared/components/widgets/image-
 export class HomeBannerComponent {
 
   @Input() theme: string = 'paris';
-  @Input() data: any;
+  @Input() data?: any;
   
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    console.log("banner homme", this.data);
+  }
 }

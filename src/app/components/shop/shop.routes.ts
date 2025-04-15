@@ -39,7 +39,7 @@ export default [
     canActivate: [ScrollPositionGuard],
   },
   {
-    path: 'product/:slug',
+    path: 'product/:slug/id',
     component: ProductComponent,
     resolve: {
       data: ProductResolver

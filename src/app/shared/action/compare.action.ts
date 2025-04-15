@@ -1,4 +1,5 @@
-import { Params } from "../interface/core.interface";
+
+import { Product } from "../interface/product.interface";
 
 export class GetCompare {
   static readonly type = "[Compare] Get";
@@ -6,7 +7,7 @@ export class GetCompare {
 
 export class AddToCompare {
   static readonly type = "[Compare] post";
-  constructor(public payload: Params) {}
+  constructor(public payload: Product) {}
 }
 
 export class DeleteCompare {
