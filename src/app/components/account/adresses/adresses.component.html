@@ -31,15 +31,19 @@
                       <td>{{ 'address' | translate }} :</td>
                       <td>
                         <p>
-                      
+                         
                           {{ address?.ville }} {{ address?.adresse }}
 
                         </p>
                       </td>
                     </tr>
                     <tr>
-                      <td>{{ 'pin_code' | translate }} :</td>
-                      <td>{{ address?.state }}</td>
+                      <td>{{ 'Pays' }} :</td>
+                      <td> {{address?.pays |country }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ 'Region' }} :</td>
+                      <td> {{address?.etat | state }}</td>
                     </tr>
                     <tr>
                       <td>{{ 'phone' | translate }} :</td>
@@ -62,7 +66,7 @@
                 [class]="'btn btn-sm add-button'"
                 [type]="'button'"
                 [spinner]="false"
-                [id]="'remove_address'+address.id"
+                [id]="'remove_address'+address.idAdresse"
                 (click)="DeleteModal.openModal('delete', address)">
                 <i class="ri-delete-bin-line"></i> {{ 'remove' | translate }}
               </app-button>

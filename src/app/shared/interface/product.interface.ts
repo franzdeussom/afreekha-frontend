@@ -31,6 +31,9 @@ export interface Product {
     idSousCategorie: any[],
     Images: {idImage: number, lien: string}[],
     lien: string,
+    taille: string, 
+    couleur: string,
+    relativ_product: Product[],
 
     id: number;
     name: string;

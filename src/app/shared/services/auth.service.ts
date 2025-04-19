@@ -28,17 +28,21 @@ export class AuthService {
   }
   // Auth Function Here
 
-  login(payload: {email: string, password: string}): Observable<LoginResponse>{
-      const data = {
-        email: payload.email,
-        mot_de_passe: payload.password
-      }
-      console.log(data);
-      return this.http.post<LoginResponse>(`${environment.URL_API}/api${ROUTES_API.USERS.AUTH_LOGIN}`, data);
+  login(payload: any): Observable<LoginResponse>{
+      
+      return this.http.post<LoginResponse>(`${environment.URL_API}/api${ROUTES_API.USERS.AUTH_LOGIN}`, payload);
   }
 
   register(payload: any): Observable<User>{
       return this.http.post<User>(`${environment.URL_API}/api${ROUTES_API.USERS.REGISTER}`, {data: this.crypt.encryptData(payload)});
+  }
+
+  fortgotPassword(email: string): Observable<{message: string, done: boolean}>{
+    return this.http.post<{message: string, done: boolean}>(`${environment.URL_API}/api${ROUTES_API.USERS.SEND_CODE}`, email)
+  }
+
+  resetPassword(payload: any): Observable<{message: string, done: boolean}>{
+    return this.http.post<{message: string, done: boolean}>(`${environment.URL_API}/api${ROUTES_API.USERS.RESET_PASSWORD}`, payload);
   }
 
 }

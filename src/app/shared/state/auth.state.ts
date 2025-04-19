@@ -15,6 +15,7 @@ export interface AuthStateModel {
   email: String;
   token: String | Number;
   access_token: String | null;
+  code: number | string
 }
 
 @State<AuthStateModel>({
@@ -22,7 +23,8 @@ export interface AuthStateModel {
   defaults: {
     email: '',
     token: '',
-    access_token: ''
+    access_token: '',
+    code: ''
   },
 })
 @Injectable()
@@ -77,13 +79,32 @@ export class AuthState {
         access_token: result.accessToken || ''
       });
       this.router.navigateByUrl('/auth/login');
+    }, (error: HttpErrorResponse)=>{
+        if(error.status == 404){
+          this.notificationService.showError(error.error.message);
+        }else if(error.status == 400){
+          console.log("error", error);
+        }
     });
   }
 
   @Action(Login)
   login(ctx: StateContext<AuthStateModel>, action: Login) {
     // Login Logic Here
-   this.authService.login(action.payload).subscribe((result)=> {
+    const isTel = Number.parseInt(action.payload.email);
+    let data: any; 
+    if(isTel){
+      data = {
+        tel: action.payload.email,
+        mot_de_passe: action.payload.password
+      }
+    }else{
+      data = {
+        email: action.payload.email,
+        mot_de_passe: action.payload.password
+      }
+    }
+   this.authService.login({data: this.crypt.encryptData(data)}).subscribe((result)=> {
   
           const data = this.crypt.decryptData(result.reps) as {user: User};
           this.notificationService.showSuccess("Login successful");
@@ -97,7 +118,6 @@ export class AuthState {
           });
           this.store.dispatch(new GetUserDetails());
           const redirectUrl = this.authService.redirectUrl || '/account/dashboard';
-          console.log('execute', redirectUrl)
           this.router.navigateByUrl(redirectUrl);
 
           // Clear the stored redirect URL
@@ -105,7 +125,7 @@ export class AuthState {
     },
     (error: HttpErrorResponse)=> {
       if(error.status == 400){
-         this.notificationService.showError(error.error[0].message)
+         this.notificationService.showError(error.error.message)
       }
      });
   
@@ -114,16 +134,50 @@ export class AuthState {
   @Action(ForgotPassWord)
   forgotPassword(ctx: StateContext<AuthStateModel>, action: ForgotPassWord) {
     // Forgot Password Logic Here
+    this.authService.fortgotPassword(action.payload.email).subscribe((resp: any)=>{
+        if(Object.keys(resp).length != 0){
+          if(resp.done){
+              ctx.dispatch({
+                code: resp.code
+              });
+              this.notificationService.showSuccess('Recovery code send to this address'+action.payload.email);
+              this.router.navigateByUrl('/auth/otp'); 
+          }
+        }else{
+          this.notificationService.showError('Something wrong');
+        }
+    }, (error: HttpErrorResponse)=>{
+        if(error.status == 404){
+          this.notificationService.showError(error.error.message);
+        }
+    });
   }
 
   @Action(VerifyEmailOtp)
   verifyEmail(ctx: StateContext<AuthStateModel>, action: VerifyEmailOtp) {
     // Verify Logic Here
+    const code = ctx.getState().code as number;
+    return Number.parseInt(action.payload.token) == code;
   }
 
   @Action(UpdatePassword)
   updatePassword(ctx: StateContext<AuthStateModel>, action: UpdatePassword) {
     // Update Password Logic Here
+    const data = {
+       token: action.payload.token,
+    }
+    console.log('value resting', action.payload);
+      this.authService.resetPassword(data).subscribe((resp: any)=>{
+          if(Object.keys(resp).length != 0){
+              this.router.navigateByUrl('/auth/login'); 
+          }
+      }, (error: HttpErrorResponse)=>{
+          if(error.status == 404){
+            this.notificationService.showError(error.error.message);
+          }else{
+            this.notificationService.showError(error.error.message);
+          }
+      });
   }
 
   @Action(Logout)

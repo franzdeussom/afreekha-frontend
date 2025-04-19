@@ -4,20 +4,18 @@
   </div>
   <div class="product-info">
     <ul class="product-info-list product-info-list-2">
-      @if (product?.sku) {
-        <li>{{ 'sku' | translate }}: {{ product?.sku }}</li>
+     
+      @if (product?.statut) {
+        <li>{{ 'stock_status' | translate }}: {{ product?.statut! | titleCase }}</li>
       }
-      @if (product?.unit) {
-        <li>{{ 'unit' | translate }}: {{ product?.unit }}</li>
+      @if (product?.quantite! > 0) {
+        <li>{{ 'quantity' | translate }}: {{ product?.quantite }} {{ 'items_left' | translate }}</li>
       }
-      @if (product?.sku) {
-        <li>{{ 'weight' | translate }}: {{ product?.weight }} {{ 'gms' | translate }}</li>
+      @if (product?.couleur) {
+        <li>{{ 'couleur' | translate }}: {{ product?.couleur | titleCase}} </li>
       }
-      @if (product?.stock_status) {
-        <li>{{ 'stock_status' | translate }}: {{ product?.stock_status! | titleCase }}</li>
-      }
-      @if (product?.quantity! > 0) {
-        <li>{{ 'quantity' | translate }}: {{ product?.quantity }} {{ 'items_left' | translate }}</li>
+      @if (product?.taille) {
+        <li>{{ 'taille' | translate }}: {{ product?.taille | titleCase }} </li>
       }
     </ul>
   </div>

@@ -3,10 +3,15 @@ import { Router } from "@angular/router";
 import { Store, Action, Selector, State, StateContext } from "@ngxs/store";
 import { tap } from "rxjs";
 import { GetProducts, GetStoreProducts, 
-         GetRelatedProducts, GetProductBySlug, GetDealProducts } from "../action/product.action";
+         GetRelatedProducts, GetProductBySlug, GetDealProducts, 
+         } from "../action/product.action";
 import { Product, ProductModel } from "../interface/product.interface";
 import { ProductService } from "../services/product.service";
 import { ThemeOptionService } from "../services/theme-option.service";
+import { CategoryState } from "./category.state";
+import { CryptoJsService } from "../services/crypto-js.service";
+import { HomeState } from "./home.state";
+import { HomeData } from "../interface/account.interface";
 
 export class ProductStateModel {
   product = {
@@ -36,9 +41,16 @@ export class ProductStateModel {
 })
 @Injectable()
 export class ProductState {
+  public offset = 0;
+  public allLoaded = false;
+  public loading = false;
+  public offsetReset = false;
+
+  public isUniqueFilter = false;
 
   constructor(private store: Store, private router: Router,
     private productService: ProductService, 
+    private crypt: CryptoJsService,
     private themeOptionService: ThemeOptionService) {}
 
   @Selector()
@@ -69,114 +81,121 @@ export class ProductState {
   @Action(GetProducts)
   getProducts(ctx: StateContext<ProductStateModel>, action: GetProducts) {
     this.productService.skeletonLoader = true;
+
+    const appliedFilter = (products: Product[], total?: number)=>{
+      if(products) {
+        if(action?.payload?.['sortBy']) {
+          if(action?.payload?.['sortBy'] === 'asc') {
+            products = products.sort((a, b) => {
+              if (a.idArticle < b.idArticle) {
+                return -1;
+              } else if (a.idArticle > b.idArticle) {
+                return 1;
+              }
+              return 0;
+            })
+          } else if(action?.payload?.['sortBy'] === 'desc') {
+            products = products.sort((a, b) => {
+              if (a.idArticle > b.idArticle) {
+                return -1;
+              } else if (a.idArticle < b.idArticle) {
+                return 1;
+              }
+              return 0;
+            })
+          } else if (action?.payload?.['sortBy'] === 'a-z') {
+            products = products.sort((a, b) => {
+              if (a.nom_article < b.nom_article) {
+                return -1;
+              } else if (a.nom_article > b.nom_article) {
+                return 1;
+              }
+              return 0;
+            })
+          } else if (action?.payload?.['sortBy'] === 'z-a') {
+            products = products.sort((a, b) => {
+              if (a.nom_article > b.nom_article) {
+                return -1;
+              } else if (a.nom_article < b.nom_article) {
+                return 1;
+              }
+              return 0;
+            })
+          } else if (action?.payload?.['sortBy'] === 'low-high') {
+            products = products.sort((a, b) => {
+              if (a.prix < b.prix) {
+                return -1;
+              } else if (a.prix > b.prix) {
+                return 1;
+              }
+              return 0;
+            })
+          } else if (action?.payload?.['sortBy'] === 'high-low') {
+            products = products.sort((a, b) => {
+              if (a.prix > b.prix) {
+                return -1;
+              } else if (a.prix < b.prix) {
+                return 1;
+              }
+              return 0;
+            })
+          } 
+        } else if(!action?.payload?.['ids']) {
+          products = products.sort((a, b) => {
+            if (a.idArticle < b.idArticle) {
+              return -1;
+            } else if (a.id > b.id) {
+              return 1;
+            }
+            return 0;
+          })
+        }
+
+      }
+
+      if(action?.payload?.['search']) {
+        products = products.filter(product => product.nom_article.toLowerCase().includes(action?.payload?.['search'].toLowerCase()))
+      }
+      ctx.patchState({
+        product: {
+          data: this.offsetReset ? products : (ctx.getState().product.data.length > 0 ? [...ctx.getState().product.data, ...products]: products),
+          total: total ? total : 0
+        }
+      });
+      this.productService.skeletonLoader = false;
+
+      return 0;
+    }
     // Note :- You must need to call api for filter and pagination as of now we are using json data so currently get all data from json 
     //          you must need apply this logic on server side
-    return this.productService.getProducts(action.payload).pipe(
-      tap({
-        next: (result: ProductModel) => {
-          let products = result.data || [];
-          if(action?.payload) {
-            // Note:- For Internal filter purpose only, once you apply filter logic on server side then you can remove  it as per your requirement.
-            // Note:- we have covered only few filters as demo purpose
-            products = result?.data?.filter(product => 
-              (action?.payload?.['store_slug'] && product?.store?.slug == action?.payload?.['store_slug']) ||
-              (
-                action?.payload?.['category'] && product?.categories.length &&
-                product?.categories?.some(category => action?.payload?.['category']?.split(',')?.includes(category.slug))
-              )
-            )
+    if(!action?.payload?.['attribute']){
+        delete action?.payload?.['attribute'];
+    }
+    if(!action.payload?.['category']){
+      delete action?.payload?.['category']
+    }
 
-            products = products && products.length ? products : result.data;
+    if(this.isUniqueFilter){
+      if (action.payload) {
+        action.payload['isUniqueFilter'] = this.isUniqueFilter;
+      }
+    }
+    this.productService.getProduct(this.offset, action.payload).subscribe((data: any)=>{
+        if(data.length > 0){
 
-            if(products) {
-              if(action?.payload?.['sortBy']) {
-                if(action?.payload?.['sortBy'] === 'asc') {
-                  products = products.sort((a, b) => {
-                    if (a.id < b.id) {
-                      return -1;
-                    } else if (a.id > b.id) {
-                      return 1;
-                    }
-                    return 0;
-                  })
-                } else if(action?.payload?.['sortBy'] === 'desc') {
-                  products = products.sort((a, b) => {
-                    if (a.id > b.id) {
-                      return -1;
-                    } else if (a.id < b.id) {
-                      return 1;
-                    }
-                    return 0;
-                  })
-                } else if (action?.payload?.['sortBy'] === 'a-z') {
-                  products = products.sort((a, b) => {
-                    if (a.name < b.name) {
-                      return -1;
-                    } else if (a.name > b.name) {
-                      return 1;
-                    }
-                    return 0;
-                  })
-                } else if (action?.payload?.['sortBy'] === 'z-a') {
-                  products = products.sort((a, b) => {
-                    if (a.name > b.name) {
-                      return -1;
-                    } else if (a.name < b.name) {
-                      return 1;
-                    }
-                    return 0;
-                  })
-                } else if (action?.payload?.['sortBy'] === 'low-high') {
-                  products = products.sort((a, b) => {
-                    if (a.sale_price < b.sale_price) {
-                      return -1;
-                    } else if (a.price > b.price) {
-                      return 1;
-                    }
-                    return 0;
-                  })
-                } else if (action?.payload?.['sortBy'] === 'high-low') {
-                  products = products.sort((a, b) => {
-                    if (a.sale_price > b.sale_price) {
-                      return -1;
-                    } else if (a.price < b.price) {
-                      return 1;
-                    }
-                    return 0;
-                  })
-                } 
-              } else if(!action?.payload?.['ids']) {
-                products = products.sort((a, b) => {
-                  if (a.id < b.id) {
-                    return -1;
-                  } else if (a.id > b.id) {
-                    return 1;
-                  }
-                  return 0;
-                })
-              }
-            }
+          let products = this.crypt.decryptData(data[0].data) as Product[];
+          this.offset += products.length;     
+          this.allLoaded = false;
 
-            if(action?.payload?.['search']) {
-              products = products.filter(product => product.name.toLowerCase().includes(action?.payload?.['search'].toLowerCase()))
-            }
-          } 
-
-          ctx.patchState({
-            product: {
-              data: products,
-              total: result?.total ? result?.total : result.data ? result.data.length : 0
-            }
-          });
-        },
-        complete: () => {
+          appliedFilter(products, data[0].total);
+        }else{
+          this.allLoaded = true;
           this.productService.skeletonLoader = false;
-        },
-        error: err => {
-          throw new Error(err?.error?.message);
+
+          return 0;
         }
-      })
-    );
+    })
+
   }
 
   @Action(GetRelatedProducts)
@@ -228,56 +247,62 @@ export class ProductState {
   @Action(GetProductBySlug)
   getProductBySlug(ctx: StateContext<ProductStateModel>, { slug }: GetProductBySlug) {
     this.themeOptionService.preloader = true;
-    return this.productService.getProducts().pipe(
-      tap({
-        next: results => {
-          const result = results.data.find(product => product.slug == slug);
+    const product = ctx.getState().product.data.find(product => product.idArticle == Number.parseInt(slug));
+    if(product) {
+      //product category
+      ctx.patchState({
+        selectedProduct: product
+      });
+      this.themeOptionService.preloader = false;
+      return 0;
+    }else{
+      let homeProduct = this.store.selectSnapshot(HomeState.homeData) as HomeData;
 
-          if(result) {
-            result.related_products = result.related_products && result.related_products.length ? result.related_products : [];
-            result.cross_sell_products = result.cross_sell_products && result.cross_sell_products.length ? result.cross_sell_products : [];
+      if(homeProduct){
 
-            const ids = [...result.related_products, ...result.cross_sell_products];
-            const categoryIds = [...result?.categories?.map(category => category.id)];
-            this.store.dispatch(new GetRelatedProducts({ids: ids.join(','), category_ids: categoryIds.join(','), status: 1}));
-
-            const state = ctx.getState();
+        let products: Product[] = [
+          ...homeProduct.firt_section.article,
+          ...homeProduct.third_section.article,
+          ...homeProduct.secode_section.article,
+          ...homeProduct.fourth_section.article
+        ];
+          let product = products.find((value)=> value.idArticle == Number.parseInt(slug));
+            console.log('product searhc', products);
+            console.log('product home', homeProduct.firt_section.article);
+        
             ctx.patchState({
-              ...state,
-              selectedProduct: result
-            });
-          } else {
-            this.router.navigate(['/404']);
-          }
-
-        },
-        complete: () => {
-          this.themeOptionService.preloader = false;
-        },
-        error: err => {
-          throw new Error(err?.error?.message);
-        }
-      })
-    );
+              selectedProduct : product 
+            })
+            
+            this.themeOptionService.preloader = false;
+            return 0;
+      }else{
+        this.themeOptionService.preloader = false;
+  
+        this.router.navigate(['/404']);
+      } 
+    }
+    
   }
 
   @Action(GetDealProducts)
   getDealProducts(ctx: StateContext<ProductStateModel>, action: GetDealProducts) {
-    return this.productService.getProducts(action.payload).pipe(
-      tap({
-        next: (result: ProductModel) => {
-          const state = ctx.getState();
-          const products = result?.data?.filter(product => 
-            action?.payload?.['ids']?.split(',')?.map((id: number) => Number(id)).includes(product.id));
-          ctx.patchState({
-            ...state,
-            dealProducts: products && products.length ? products : result?.data?.reverse()?.slice(0, 2)
-          });
-        },
-        error: err => {
-          throw new Error(err?.error?.message);
-        }
-      })
-    );
+  
+    const homeArticle = this.store.selectSnapshot(HomeState.homeData) as HomeData;
+    if(homeArticle){
+     const promoArticles = homeArticle.secode_section ? homeArticle.secode_section.article : [];
+      
+     if(promoArticles.length > 0){
+        //process to 3 ramdom on promoArticle
+        const randomArticles = promoArticles
+        .sort(() => 0.5 - Math.random()) // Mélange aléatoire des articles
+        .slice(0, (promoArticles.length >= 3 ? 3: promoArticles.length)); // Prendre les 3 premiers articles après mélange
+        ctx.patchState({
+          dealProducts : randomArticles 
+        });
+        return;
+      }
+    }
+    return;
   }
 }

@@ -24,7 +24,7 @@ export class HomeState {
     
     @Selector()
     static homeData(state: HomeStateModel) {
-        return state.homeData ? state.homeData: [];
+        return state.homeData ? state.homeData: {};
     }
     
     @Action(GetHomeData)

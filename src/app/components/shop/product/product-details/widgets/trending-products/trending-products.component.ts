@@ -6,6 +6,7 @@ import { ProductState } from '../../../../../../shared/state/product.state';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductBoxComponent } from '../../../../../../shared/components/widgets/product-box/product-box.component';
 import { SlicePipe } from '@angular/common';
+import { HomeState } from 'src/app/shared/state/home.state';
 
 @Component({
     selector: 'app-trending-products',
@@ -16,13 +17,13 @@ import { SlicePipe } from '@angular/common';
 })
 export class TrendingProductsComponent {
 
-  relatedProduct$: Observable<Product[]> = inject(Store).select(ProductState.relatedProducts);
+  relatedProduct$: Observable<any> = inject(Store).select(HomeState.homeData) as any;
 
   public relatedProducts: Product[] = [];
 
   ngOnInit() {
     this.relatedProduct$.subscribe(products => {
-      this.relatedProducts = products.length ? products?.filter(product => product?.is_trending) : [];
+      this.relatedProducts = products.secode_section ? products.secode_section.article: [];
     });
   }
 }

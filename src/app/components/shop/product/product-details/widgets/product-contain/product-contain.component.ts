@@ -14,8 +14,7 @@ import { CurrencySymbolPipe } from '../../../../../../shared/pipe/currency-symbo
 import { ButtonComponent } from '../../../../../../shared/components/widgets/button/button.component';
 import { SaleTimerComponent } from '../sale-timer/sale-timer.component';
 import { VariantAttributesComponent } from '../../../../../../shared/components/widgets/variant-attributes/variant-attributes.component';
-import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, TitleCasePipe } from '@angular/common';
 
 
 @Component({
@@ -25,11 +24,10 @@ import { isPlatformBrowser } from '@angular/common';
     standalone: true,
     providers:[CurrencySymbolPipe],
     imports: [
-    NgbRating,
-    VariantAttributesComponent,
     SaleTimerComponent,
     ButtonComponent,
-    CurrencySymbolPipe,
+    CurrencySymbolPipe, 
+    TitleCasePipe,
     TranslateModule
 ],
 })
@@ -74,7 +72,7 @@ export class ProductContainComponent {
     }, 60000);
 
     this.cartItem$.subscribe(items => {
-      this.cartItem = items.find(item => item.product.id == this.product.id)!;
+      this.cartItem = items.find(item => item.product.idArticle == this.product.idArticle)!;
     });
   }
 
@@ -92,7 +90,7 @@ export class ProductContainComponent {
     if(this.selectedVariation) {
       this.selectedVariation['stock_status'] = this.selectedVariation?.quantity < this.productQty ? 'out_of_stock' : 'in_stock';
     } else {
-      this.product['stock_status']  = this.product?.quantity < this.productQty ? 'out_of_stock' : 'in_stock';
+      this.product['statut']  = this.product?.quantite < this.productQty ? 'Hors Stock' : 'En stock';
     }
   }
 
@@ -100,10 +98,10 @@ export class ProductContainComponent {
     if(product) {
       const params: CartAddOrUpdate = {
         id: this.cartItem ? this.cartItem.id : null,
-        product_id: product?.id,
+        product_id: product.idArticle,
         product: product ? product : null,
-        variation: this.selectedVariation ? this.selectedVariation : null,
-        variation_id: this.selectedVariation?.id ? this.selectedVariation?.id! : null,
+        variation: product,
+        variation_id: this.cartItem ? this.cartItem?.variation_id : null,
         quantity: this.productQty
       }
       this.store.dispatch(new AddToCart(params));
@@ -116,7 +114,7 @@ export class ProductContainComponent {
         id: this.cartItem ? this.cartItem.id : null,
         product_id: product?.id,
         product: product ? product : null,
-        variation: this.selectedVariation ? this.selectedVariation : null,
+        variation: product,
         variation_id: this.selectedVariation?.id ? this.selectedVariation?.id! : null,
         quantity: this.productQty
       }

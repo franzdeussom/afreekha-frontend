@@ -62,8 +62,11 @@
                 <div class="pickup-box">
                   <div class="product-info">
                     <ul class="product-info-list product-info-list-2">
-                      @if (product.sku) {
-                        <li>{{ 'sku' | translate }}: {{ product.sku }}</li>
+                      @if (product.couleur) {
+                        <li>{{ 'color' | translate }}: {{ product.couleur }}</li>
+                      }
+                      @if (product.taille) {
+                        <li>{{ 'size' | translate }}: {{ product.taille | titleCase}}</li>
                       }
                       @if (product.statut) {
                         <li>{{ 'stock_status' | translate }}: {{ product.statut! | titleCase }}</li>

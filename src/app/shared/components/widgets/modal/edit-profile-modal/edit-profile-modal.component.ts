@@ -21,7 +21,7 @@ import { ButtonComponent } from '../../button/button.component';
 })
 export class EditProfileModalComponent {
 
-  user$: Observable<AccountUser> = inject(Store).select(AccountState.user) as Observable<AccountUser>;
+  user$: Observable<any> = inject(Store).select(AccountState.user) as Observable<any>;
 
   public form: FormGroup;
   public closeResult: string;
@@ -40,12 +40,11 @@ export class EditProfileModalComponent {
       this.user$.subscribe(user => {
         this.flicker = true;
         this.form = this.formBuilder.group({
-          nom: new FormControl(user?.name, [Validators.required]),
-          prenom: new FormControl(user?.name, [Validators.required]),
-          email: new FormControl(user?.email, [Validators.required, Validators.email]),
-          numero_telephone: new FormControl(user?.phone, [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+          nom: new FormControl(user?.user?.nom, [Validators.required]),
+          prenom: new FormControl(user?.user?.prenom, [Validators.required]),
+          email: new FormControl(user?.user?.email, [Validators.required, Validators.email]),
+          tel: new FormControl(user?.user?.tel, [Validators.required, Validators.pattern(/^[0-9]*$/)]),
           country_code: new FormControl("237"), 
-          profile_image_id: new FormControl(user?.profile_image_id),
         });
         this.form?.controls?.['email'].disable();
         setTimeout( () => this.flicker = false, 200);

@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, HostListener, inject, Input } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../../../../shared/services/product.service';
@@ -11,6 +11,7 @@ import { ProductBoxComponent } from '../../../../../shared/components/widgets/pr
 import { SkeletonProductBoxComponent } from '../../../../../shared/components/widgets/product-box/skeleton-product-box/skeleton-product-box.component';
 import { AsyncPipe } from '@angular/common';
 import { CollectionSortComponent } from '../collection-sort/collection-sort.component';
+import { GetProducts } from 'src/app/shared/action/product.action';
 
 @Component({
     selector: 'app-collection-products',
@@ -30,10 +31,24 @@ export class CollectionProductsComponent {
 
   public skeletonItems = Array.from({ length: 40 }, (_, index) => index);
 
-  constructor(public productService: ProductService) {
+  constructor(public productService: ProductService, 
+              private store: Store,
+              public productState: ProductState) {
   }
 
   setGridClass(gridClass: string) {
     this.gridClass = gridClass;
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
+      if(!this.productState.allLoaded){
+        this.productState.offsetReset = false;
+        this.store.dispatch(new GetProducts(this.filter));
+
+      }
+        
+    }
   }
 }

@@ -18,7 +18,7 @@
             <form class="row g-4" [formGroup]="form" (ngSubmit)="submit()">
               <div class="col-12">
                 <div class="form-floating log-in-form">
-                  <input type="email" class="form-control" id="email" id="email" formControlName="email" placeholder="{{ 'email_address' | translate}}">
+                  <input type="text" class="form-control" id="email" formControlName="email" placeholder="{{ 'email_address' | translate}}">
                   <label for="email">{{ 'email_address' | translate}}</label>
                   @if (form.controls['email'].touched && form.controls['email'].errors?.['required']) {
                     <div class="invalid-feedback">

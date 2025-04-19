@@ -40,8 +40,8 @@ export class LoginComponent {
     private authService: AuthService
   ) {
     this.form = this.formBuilder.group({
-      email: new FormControl('john.customer@example.com', [Validators.required, Validators.email]),
-      password: new FormControl('123456789', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
   }
 

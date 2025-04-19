@@ -6,10 +6,10 @@ import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 export const ProductResolver: ResolveFn<boolean> = (route, state) => {
-  const slug = route.paramMap.get('slug');
-
+  const slug = route.paramMap.get('id');
   if (!slug) {
     // If no slug is present, return false
+
     return of(false);
   }
 

@@ -19,7 +19,7 @@ export interface Order {
     idUser: number;
     createdAt: string;
     updatedAt: string;
-    Article: any[];
+    articles: any[];
     id: number;
     order_id: string;
     order_number: number;

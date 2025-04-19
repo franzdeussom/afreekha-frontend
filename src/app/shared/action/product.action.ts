@@ -2,7 +2,7 @@ import { Params } from "../interface/core.interface";
 
 export class GetProducts {
   static readonly type = "[Product] Get";
-  constructor(public payload?: Params) {}
+  constructor(public payload?: Params, public resetOffset?: boolean) {}
 }
 
 export class GetRelatedProducts {

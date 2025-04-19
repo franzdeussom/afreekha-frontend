@@ -28,12 +28,10 @@ export class CartService {
   saveCartItems(cart: CartModel){
       if(!localStorage.getItem('cart')){
         localStorage.setItem('cart', JSON.stringify(cart));
-        console.log('cart save', cart);
 
       }else{
         localStorage.removeItem('cart');
         localStorage.setItem('cart', JSON.stringify(cart));
-        console.log('cart delete and add');
       }
   }
 

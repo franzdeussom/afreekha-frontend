@@ -21,4 +21,8 @@ export class OrderService {
   getOrder(id: number | undefined): Observable<OrderModel> {
      return this.http.get<OrderModel>(`${environment.URL_API}/api${ROUTES_API.ORDER.GET_BY_ID(String(id), String(this.offset))}`);
   }
+
+  placeOrder(payload: any): Observable<{message: string, data: any, updateMsg: any, amountToBuy: number}> {
+    return this.http.post<{message: string, data: any, updateMsg: any, amountToBuy: number}>(`${environment.URL_API}/api${ROUTES_API.ORDER.POST}`, payload);
+  }
 }

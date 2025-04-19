@@ -40,6 +40,7 @@ export class RegisterComponent {
     this.form = this.formBuilder.group({
       nom: new FormControl('', [Validators.required]),
       prenom: new FormControl('', [Validators.required]),
+      date_naissance: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       tel: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
       country_code: new FormControl('237', [Validators.required]),
@@ -62,9 +63,7 @@ export class RegisterComponent {
     }
     if(this.form.valid) {
       this.store.dispatch(new Register(this.form.value)).subscribe({
-          complete: () => {
-            this.router.navigateByUrl('/account/dashboard');
-          }
+         
         }
       );
     }

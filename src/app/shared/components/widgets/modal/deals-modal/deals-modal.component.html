@@ -16,21 +16,22 @@
             @for (product of products; track product) {
               <li class="list-1">
                 <div class="deal-offer-contain">
-                  <a [routerLink]="['/product/', product?.slug]" class="deal-image" (click)="closeModal()">
-                        <img [src]="product?.product_thumbnail ?
-                                    product?.product_thumbnail?.original_url :
+                  <a [routerLink]="['/product/', product.idArticle]" class="deal-image" (click)="closeModal()">
+                        <img [src]="product?.Images ?
+                                    product.Images[0].lien :
                                     'assets/images/product.png'" alt="product">
                     </a>
-                    <a [routerLink]="['/product/', product?.slug]" class="deal-contain">
-                      <h5 class="fw-semibold">{{ product?.name }}</h5>
+                    <a [routerLink]="['/product/', product.idArticle]" class="deal-contain">
+                      <h5 class="fw-semibold">{{ product?.nom_article }}</h5>
                       <h6>
-                        {{ product.sale_price | currencySymbol }}
-                        @if (product.discount) {
-                          <del>{{ product.price | currencySymbol }}</del>
+                        @if (product.promo) {
+                        {{ (product.prix - (product.prix * product.pourcentage_promo)/100) | currencySymbol }}
+
+                          <del>{{ product.prix | currencySymbol }}</del>
+                        }@else {
+                          {{ product.prix | currencySymbol }}
                         }
-                        @if (product.unit) {
-                          <span>{{ product.unit }}</span>
-                        }
+                        
                       </h6>
                     </a>
                   </div>

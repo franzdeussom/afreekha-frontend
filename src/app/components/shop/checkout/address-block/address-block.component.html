@@ -13,7 +13,7 @@
               <input
                 class="form-check-input"
                 type="radio"
-                value="{{address.id}}"
+                value="{{address.idAdresse}}"
                 name="adddress-{{type}}"
                 id="adddress-{{type}}-{{i}}"
                 [checked]="i === 0"
@@ -21,26 +21,20 @@
             </div>
             <ul class="delivery-address-detail">
               <li>
-                <h4 class="fw-semibold">{{ address.title }}</h4>
+                <h4 class="fw-semibold">{{ address.titre }}</h4>
               </li>
               <li>
                 <p class="text-content">
                   <span class="text-title">{{ 'address' | translate }}: </span>
-                  {{ address.street }}, {{ address.city }}, {{ address.state.name }},
-                  {{ address.country.name }}
+                  {{ address.pays | country}}, {{ address.etat | state}}, {{ address.ville }},
+                  {{ address.adresse }}
                 </p>
               </li>
-              @if (address.pincode) {
-                <li>
-                  <h6 class="text-content">
-                    <span class="text-title">{{ 'pin_code' | translate }}:</span> {{ address.pincode }}
-                  </h6>
-                </li>
-              }
-              @if (address.phone) {
+              
+              @if (address.numero_telephone) {
                 <li>
                   <h6 class="text-content mb-0">
-                    <span class="text-title">{{ 'phone' | translate }} :</span> +{{ address.country_code }} {{ address.phone }}
+                    <span class="text-title">{{ 'phone' | translate }} :</span> {{ address.numero_telephone }}
                   </h6>
                 </li>
               }

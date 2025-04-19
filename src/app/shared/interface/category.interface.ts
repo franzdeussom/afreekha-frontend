@@ -12,6 +12,7 @@ export interface Category {
     urlLogo: string,
     createdAt: string;
     updateAt: string;
+    SousCategories: SousCategories[],
 
     id: number;
     name: string;
@@ -31,4 +32,10 @@ export interface Category {
     created_at?: string;
     updated_at?: string;
     deleted_at?: string;
+}
+export interface SousCategories{
+    idSousCategorie: number,
+    urlLogo: string,
+    nom: string,
+    idCategorie: number
 }

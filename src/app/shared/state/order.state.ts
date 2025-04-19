@@ -6,6 +6,9 @@ import { GetOrders, ViewOrder, Checkout, PlaceOrder, Clear, VerifyPayment, RePay
 import { Order, OrderCheckout } from "../interface/order.interface";
 import { OrderService } from "../services/order.service";
 import { ClearCart } from "../action/cart.action";
+import { NotificationService } from "../services/notification.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { AccountState } from "./account.state";
 
 export class OrderStateModel {
   order = {
@@ -31,6 +34,7 @@ export class OrderStateModel {
 export class OrderState {
 
   constructor(private store: Store,
+    private notif: NotificationService,
     private router: Router,
     private orderService: OrderService) {}
 
@@ -132,7 +136,36 @@ export class OrderState {
 
   @Action(PlaceOrder)
   placeOrder(ctx: StateContext<OrderStateModel>, action: PlaceOrder) {
-    this.router.navigateByUrl(`/account/order/details/1000`);
+    const userData = this.store.selectSnapshot(AccountState.user) as any;
+   
+    if(userData.user.id){
+      this.router.navigateByUrl('/auth/login');
+    }
+    //api payemnt logic here
+
+    let paymentDone = true; //<----- waiting payement api
+    
+    const data = {
+      idUser: userData ? userData.user.id: null,
+      statut: paymentDone ? "payé": "En cours",
+      products: action.payload.products,
+      idAdresse: action.payload.shipping_address_id
+    }
+    console.log('order detai', action.payload);
+    this.orderService.placeOrder(data).subscribe((reslt: any)=>{
+        if(Object.keys(reslt).length != 0){
+          this.store.dispatch(new ClearCart).subscribe({
+            complete: ()=>{
+                this.notif.showSuccess(reslt[0].message);
+                this.router.navigateByUrl(`/account/order`);
+            },
+          });
+        }
+    }, (error: HttpErrorResponse)=>{
+        if(error.status == 400){
+
+        }
+    })
   }
 
   @Action(RePayment)

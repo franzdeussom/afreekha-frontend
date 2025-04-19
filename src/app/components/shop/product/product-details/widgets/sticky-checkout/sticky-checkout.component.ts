@@ -37,7 +37,7 @@ export class StickyCheckoutComponent {
       this.product = changes['product']?.currentValue;
     }
     this.cartItem$.subscribe(items => {
-      this.cartItem = items.find(item => item.product.id == this.product.id)!;
+      this.cartItem = items.find(item => item.product.idArticle == this.product.idArticle)!;
     });
   }
 
@@ -55,7 +55,7 @@ export class StickyCheckoutComponent {
     if(this.selectedVariation) {
       this.selectedVariation['stock_status'] = this.selectedVariation?.quantity < this.productQty ? 'out_of_stock' : 'in_stock';
     } else {
-      this.product['stock_status']  = this.product?.quantity < this.productQty ? 'out_of_stock' : 'in_stock';
+      this.product['statut']  = this.product?.quantite < this.productQty ? 'Hors Stock' : 'En stock';
     }
   }
 

@@ -91,12 +91,13 @@ export class CheckoutComponent {
             product_id: new FormControl(item?.product_id, [Validators.required]),
             variation_id: new FormControl(item?.variation_id ? item?.variation_id : ''),
             quantity: new FormControl(item?.quantity),
+            shipping_address_id: new FormControl(this.form.get('shipping_address_id')?.value),
           })
       ));
     });
 
     this.setting$.subscribe((reslt)=>{
-      console.log("setting sus", reslt);
+      
     })
   }
 

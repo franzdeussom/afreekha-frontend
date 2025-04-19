@@ -14,13 +14,15 @@ import { NgbAccordionDirective, NgbAccordionItem, NgbAccordionHeader, NgbAccordi
 import { SkeletonCollectionSidebarComponent } from '../skeleton-collection-sidebar/skeleton-collection-sidebar.component';
 import { AsyncPipe } from '@angular/common';
 import { CollectionFilterComponent } from '../filter/collection-filter/collection-filter.component';
+import { SubcategorieFilterComponent } from '../filter/subcategorie-filter/subcategorie-filter.component';
 
 @Component({
     selector: 'app-collection-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
     standalone: true,
-    imports: [CollectionFilterComponent, SkeletonCollectionSidebarComponent, NgbAccordionDirective, NgbAccordionItem, NgbAccordionHeader, NgbAccordionToggle, NgbAccordionButton, NgbCollapse, NgbAccordionCollapse, NgbAccordionBody, CollectionCategoryFilterComponent, CollectionAttributesComponent, CollectionPriceFilterComponent, AsyncPipe, TranslateModule]
+    imports: [CollectionFilterComponent, SkeletonCollectionSidebarComponent, SubcategorieFilterComponent,
+               NgbAccordionDirective, NgbAccordionItem, NgbAccordionHeader, NgbAccordionToggle, NgbAccordionButton, NgbCollapse, NgbAccordionCollapse, NgbAccordionBody, CollectionCategoryFilterComponent, CollectionAttributesComponent, AsyncPipe, TranslateModule]
 })
 export class CollectionSidebarComponent {
 

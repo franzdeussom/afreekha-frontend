@@ -22,7 +22,7 @@ import { isPlatformBrowser } from '@angular/common';
     templateUrl: './product-thumbnail.component.html',
     styleUrls: ['./product-thumbnail.component.scss'],
     standalone: true,
-    imports: [CarouselModule, NgxImageZoomModule, ProductContainComponent, ProductActionComponent, ProductInformationComponent, ProductDeliveryInformationComponent, PaymentOptionComponent, ProductSocialShareComponent, ProductBundleComponent, ProductDetailsTabsComponent, ProductSidebarComponent, TranslateModule]
+    imports: [CarouselModule, NgxImageZoomModule, ProductContainComponent, ProductActionComponent, ProductInformationComponent, PaymentOptionComponent, ProductSocialShareComponent, ProductBundleComponent, ProductDetailsTabsComponent, ProductSidebarComponent, TranslateModule]
 })
 export class ProductThumbnailComponent {
 

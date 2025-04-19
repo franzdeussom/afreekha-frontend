@@ -20,7 +20,7 @@
                   </div>
                   <div class="checkout-detail">
                     <app-address-block
-                      [addresses]="(user$ | async)?.address"
+                      [addresses]="(user$ | async)?.adresses"
                       [type]="'shipping'"
                       (selectAddress)="selectShippingAddress($event)">
                     </app-address-block>
@@ -36,7 +36,7 @@
                   <div class="checkout-title">
                     <h4>{{ 'payment_options' | translate }}</h4>
                   </div>
-                  @if (!(user$ | async)) {
+                  @if (!(setting$ | async)) {
                     <div class="empty-box">
                       <h2>{{ 'no_payment_options_found' | translate }}</h2>
                     </div>
@@ -78,7 +78,7 @@
                         <div class="cart-content">
                           <h4>{{ item?.variation ? item?.variation?.nom_article : item?.product?.nom_article }}</h4>
                           <h5 class="text-theme">
-                            {{ (item.product.promo ? item.product.prix-((item.product.prix*item.product.pourcentage_promo)/100 ): item.sub_total) | currencySymbol }} X {{ item.quantity }}
+                            {{ (item.product.promo ? item.product.prix-((item.product.prix*item.product.pourcentage_promo)/100 ): item.product.prix) | currencySymbol }} X {{ item.quantity }}
                           </h5>
                           <h5 class="price">
                             {{ item.sub_total | currencySymbol }}

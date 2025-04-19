@@ -12,13 +12,15 @@ import { TitleCasePipe } from '../../../shared/pipe/title-case.pipe';
 import { NoDataComponent } from '../../../shared/components/widgets/no-data/no-data.component';
 import { AsyncPipe } from '@angular/common';
 import { ButtonComponent } from '../../../shared/components/widgets/button/button.component';
+import { CountryPipe } from 'src/app/shared/pipe/country.pipe';
+import { StatePipe } from 'src/app/shared/pipe/state.pipe';
 
 @Component({
     selector: 'app-adresses',
     templateUrl: './adresses.component.html',
     styleUrls: ['./adresses.component.scss'],
     standalone: true,
-    imports: [ButtonComponent, NoDataComponent, AddressModalComponent, DeleteModalComponent, AsyncPipe, TitleCasePipe, TranslateModule]
+    imports: [ButtonComponent, NoDataComponent, AddressModalComponent, DeleteModalComponent, AsyncPipe, TitleCasePipe, TranslateModule, CountryPipe, StatePipe]
 })
 export class AdressesComponent {
 
@@ -34,5 +36,6 @@ export class AdressesComponent {
     if(action == 'delete')
       this.store.dispatch(new DeleteAddress(data.idAdresse));
   }
+  
 
 }

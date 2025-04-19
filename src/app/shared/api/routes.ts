@@ -1,14 +1,14 @@
 export const ROUTES_API = {
     ARTICLE: {
-        GET: '/articles',
-        GET_BY_ID: (id: string) => `/articles/${id}`,
+        GET: (id: string) => `/article/${id}`,
+        GET_BY_ID: (id: string) => `/article-single/${id}`,
         CREATE: '/articles',
-        UPDATE: (id: string) => `/admin/articles/${id}`,
-        DELETE: (id: string) => `/admin/articles/${id}`
+        UPDATE: (id: string) => `/admin/article/${id}`,
+        DELETE: (id: string) => `/admin/article/${id}`
     },
 
     CATEGORIE: {
-        GET: '/allCategorie',
+        GET: '/categorieAndSousCategorie',
         GET_BY_ID: (id: string) => `/categories/${id}`,
         CREATE: '/categories',
         UPDATE: (id: string) => `/admin/categories/${id}`,
@@ -21,8 +21,10 @@ export const ROUTES_API = {
         //post
         AUTH_LOGIN: "/auth",
         REGISTER: "/users",
-        UPDATE: (id: string)=> `/users/${id}`, //{nom, prenom, numero_telephone}
-        UPDATE_PASSWORD: (id: string)=> `/users/update-password/${id}`, //{current_password, new_password}
+        RESET_PASSWORD: "/users/reset-password",
+        SEND_CODE: "/users/recovery-password",
+        UPDATE: (id: string)=> `/admin/users/${id}`, //{nom, prenom, numero_telephone}
+        UPDATE_PASSWORD: (id: string)=> `/password/${id}`, //{current_password, new_password}
     },
 
     ADRESSE: {
@@ -34,6 +36,7 @@ export const ROUTES_API = {
         GET_BY_ID: (id: string, offset: string) => `/my-facture/${offset}/1`,
         CREATE: "/order",
         UPDATE: (id: string) => `/order/${id}`,
-        DELETE: (id: string) => `/order/${id}`
+        DELETE: (id: string) => `/order/${id}`,
+        POST: "/commande"
     }
   };

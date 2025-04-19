@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Params } from '../../../../../../shared/interface/core.interface';
 import { Attribute } from '../../../../../../shared/interface/attribute.interface';
 import { NgStyle } from '@angular/common';
+import { ProductState } from 'src/app/shared/state/product.state';
 
 @Component({
     selector: 'app-collection-attributes-filter',
@@ -28,6 +29,7 @@ export class CollectionAttributesComponent {
 
   applyFilter(event: Event) {
     const index = this.selectedAttributes.indexOf((<HTMLInputElement>event?.target)?.value);  // checked and unchecked value
+  
 
     if ((<HTMLInputElement>event?.target)?.checked)
       this.selectedAttributes.push((<HTMLInputElement>event?.target)?.value); // push in array cheked value

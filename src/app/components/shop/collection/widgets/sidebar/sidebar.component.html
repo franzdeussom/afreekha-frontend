@@ -26,6 +26,21 @@
           <div class="accordion-body" ngbAccordionBody>
             <app-collection-category-filter [filter]="filter"></app-collection-category-filter>
           </div>
+          
+        </div>
+      </div>
+
+      <div class="accordion-item" ngbAccordionItem [collapsed]="false">
+        <h2 class="accordion-header" ngbAccordionHeader>
+          <button class="accordion-button" type="button" ngbAccordionButton>
+            <span>{{ 'sous-categories' | translate }}</span>
+          </button>
+        </h2>
+        <div class="accordion-collapse collapse" ngbAccordionCollapse>
+          <div class="accordion-body" ngbAccordionBody>
+            <app-subcategorie-filter [filter]="filter"></app-subcategorie-filter>
+          </div>
+          
         </div>
       </div>
       @if (!filter['store_slug']) {
@@ -48,7 +63,7 @@
           }
         }
       }
-      <div class="accordion-item" ngbAccordionItem [collapsed]="false">
+      <!--<div class="accordion-item" ngbAccordionItem [collapsed]="false">
         <h2 class="accordion-header" ngbAccordionHeader>
           <button class="accordion-button" ngbAccordionButton>
             <span>{{ 'price' | translate }}</span>
@@ -59,7 +74,7 @@
             <app-collection-price-filter [filter]="filter"></app-collection-price-filter>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   }
 </div>

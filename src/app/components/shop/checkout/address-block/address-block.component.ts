@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { UserAddress } from '../../../../shared/interface/user.interface';
 import { TranslateModule } from '@ngx-translate/core';
+import { StatePipe } from 'src/app/shared/pipe/state.pipe';
+import { CountryPipe } from 'src/app/shared/pipe/country.pipe';
 
 
 @Component({
@@ -8,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
     templateUrl: './address-block.component.html',
     styleUrls: ['./address-block.component.scss'],
     standalone: true,
-    imports: [TranslateModule]
+    imports: [TranslateModule, StatePipe, CountryPipe]
 })
 export class AddressBlockComponent {
 

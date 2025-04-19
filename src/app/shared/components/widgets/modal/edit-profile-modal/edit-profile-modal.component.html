@@ -15,7 +15,7 @@
         <div class="row g-4">
           <div class="col-xxl-12">
             <div class="">
-              <label class="form-label" for="name">{{ 'full_name' | translate }}</label>
+              <label class="form-label" for="name">{{ 'name' | translate }}</label>
               <input class="form-control" id="name" type="text" placeholder="{{ 'enter_name' | translate }}" formControlName="nom" />
               @if (form.controls['nom'].touched && form.controls['nom'].errors?.['required']) {
                 <div class="invalid-feedback">
@@ -69,13 +69,13 @@
                     </div>
                   </ng-template>
                 </select2>
-                <input type="number" class="form-control intl-input-padding" formControlName="numero_telephone" placeholder="{{ 'enter_phone' | translate }}" name="phone">
-                @if (form.controls['numero_telephone'].touched && form.controls['numero_telephone'].errors?.['required']) {
+                <input type="number" class="form-control intl-input-padding" formControlName="tel" placeholder="{{ 'enter_phone' | translate }}" name="phone">
+                @if (form.controls['tel'].touched && form.controls['tel'].errors?.['required']) {
                   <div class="invalid-feedback">
                     {{ 'phone_number_is_required' | translate }}
                   </div>
                 }
-                @if (form.controls['numero_telephone'].touched && form.controls['numero_telephone'].errors?.['pattern']) {
+                @if (form.controls['tel'].touched && form.controls['tel'].errors?.['pattern']) {
                   <div class="invalid-feedback">
                     {{ 'phone_number_is_invalid' | translate }}
                   </div>

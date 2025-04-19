@@ -5,23 +5,11 @@
             <ng-template ngbNavContent>
                 <div class="product-description">
                     <div class="nav-desh ckeditor-content"
-                        [innerHTML]="product?.description">
+                        [innerHTML]="product?.caracteristiques">
                     </div>
                 </div>
             </ng-template>
         </li>
-        <li ngbNavItem="review">
-            <a ngbNavLink>{{ 'review' | translate }}</a>
-            <ng-template ngbNavContent>
-                <app-product-review [product]="product" [reviews]="(review$ | async)?.data || []"></app-product-review>
-            </ng-template>
-        </li>
-        <li ngbNavItem="questions_answers">
-          <a ngbNavLink>{{ 'q_a' | translate }}</a>
-          <ng-template ngbNavContent>
-              <app-questions-answers [product]="product!" [questionAnswers]="(question$ | async)?.data || []"></app-questions-answers>
-          </ng-template>
-      </li>
     </ul>
   <div [ngbNavOutlet]="nav" class="custom-tab"></div>
 </div>

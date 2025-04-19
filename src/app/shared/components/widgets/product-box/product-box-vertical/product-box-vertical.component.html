@@ -1,10 +1,10 @@
 <div class="offer-product">
-  <a [routerLink]="['/product/', product.nom_article, product.idArticle]" class="offer-image">
+  <a [routerLink]="['/product/', product.idArticle]" class="offer-image">
         <img [src]="product.Images ? (product.Images[0].lien ? product.Images[0].lien : product.lien) : 'assets/images/product.png'" alt="product">
     </a>
     <div class="offer-detail">
       <div>
-        <a [routerLink]="['/product/', product.nom_article]" class="text-title">
+        <a [routerLink]="['/product/', product.idArticle]" class="text-title">
           <h6 class="name">{{ product.nom_article }}</h6>
         </a>
         @if (product.prix) {

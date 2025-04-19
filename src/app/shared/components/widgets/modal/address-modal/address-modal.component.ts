@@ -51,6 +51,7 @@ export class AddressModalComponent {
       pays: new FormControl('', [Validators.required]),
       adresse: new FormControl('', [Validators.required]),
       idUser: new FormControl(''),
+      idAdresse: new FormControl('') 
     })
   }
 
@@ -65,9 +66,9 @@ export class AddressModalComponent {
       this.countries$.subscribe((country)=>{
           index = country.findIndex((pays: any)=> pays.value == data?.value);
         pays = country[index]
-        this.form?.controls?.["pays"].setValue(country[index].label)
-
       });
+      //this.form?.controls?.["pays"].setValue(country[index].label)
+
     } 
   }
 
@@ -78,10 +79,12 @@ export class AddressModalComponent {
        this.states$.subscribe((state)=>{
            index = state.findIndex((st: any)=> st.value == data?.value);
            value = state[index];
+
        });
 
-       console.log('etat value', value.label);
-      this.form?.controls?.["etat"].setValue(value.label);
+      //console.log('etat value', value.label);
+     // this.form?.controls?.["etat"].setValue(value.label);
+
     }
   }
 
@@ -113,15 +116,19 @@ export class AddressModalComponent {
   }
 
   patchForm(value?: UserAddress) {
+    console.log('value ', value);
     if(value) {
       this.address = value;
       this.form.patchValue({
         idUser: value?.idUser,
         titre: value?.titre,
-        country_id: value?.country_id,
-        state_id: value?.state_id,
+        country_id: value?.pays,
+        state_id: value?.etat,
         ville: value?.ville,
-        country_code: value?.country_code,
+        adresse: value?.adresse,
+        pays: value?.pays,
+        country_code: "237",
+        idAdresse: value?.idAdresse,
         numero_telephone: value?.numero_telephone
       });
     } else {
@@ -132,16 +139,16 @@ export class AddressModalComponent {
   }
 
   submit(){
-
+   
     this.user$.subscribe((user) => {
-    
-      this.form?.controls?.['idUser'].setValue(user.idUser);
+      this.form?.controls?.['idUser'].setValue(user.user.id);
     });
-
-    let action = new CreateAddress(this.form.value);
-
-    if(this.address) {
-      action = new UpdateAddress(this.form.value, this.address.idAdresse);
+    
+    let action: any;
+    if(!this.address){
+      action = new CreateAddress(this.form.value);
+    }else{
+     action = new UpdateAddress(this.form.value, this.address.idAdresse);
     }
 
     if(this.form.valid) {

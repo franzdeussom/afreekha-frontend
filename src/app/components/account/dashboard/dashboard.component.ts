@@ -32,7 +32,6 @@ export class DashboardComponent {
     this.user$.subscribe(user => {
       if(user) {
        // this.address = user?.address?.length ? user?.address?.[0] : null;
-       console.log('user address', user);
        this.address = user.adresses ? user.adresses[0] : null;
       }
     });

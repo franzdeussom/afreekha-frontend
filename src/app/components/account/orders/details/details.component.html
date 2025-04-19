@@ -3,7 +3,7 @@
     <div class="table-responsive">
       <table>
         <thead>
-            <h4>{{"nbrArticle" | translate}}: {{ order.Article.length }} </h4>
+            <h4>{{"nbrArticle" | translate}}: {{ order.articles.length }} </h4>
             <p>
                {{"totalInvoice" | translate}} : {{ order.Montant_total }} 
             </p>
@@ -18,7 +18,7 @@
             <th>{{"quantity" | translate }}</th>
             <th>Total</th>
           </tr>
-          @for (article of order.Article; track order ; let i = $index) {
+          @for (article of order.articles; track order ; let i = $index) {
             <tr>
               <td>{{ i + 1 }}</td>
               <td> 

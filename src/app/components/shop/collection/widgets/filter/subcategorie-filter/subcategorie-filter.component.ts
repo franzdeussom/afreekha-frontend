@@ -9,24 +9,31 @@ import { ProductState } from 'src/app/shared/state/product.state';
 
 
 @Component({
-    selector: 'app-collection-category-filter',
-    templateUrl: './collection-category-filter.component.html',
-    styleUrls: ['./collection-category-filter.component.scss'],
-    standalone: true,
-    imports: []
+  selector: 'app-subcategorie-filter',
+  standalone: true,
+  imports: [],
+  templateUrl: './subcategorie-filter.component.html',
+  styleUrl: './subcategorie-filter.component.scss'
 })
-export class CollectionCategoryFilterComponent {
+export class SubcategorieFilterComponent {
 
   category$: Observable<CategoryModel> = inject(Store).select(CategoryState.category);
 
   @Input() filter: Params;
 
-  public categories: Category[];
+  public categories: any[] = [];
   public selectedCategories: string[] = [];
 
   constructor(private route: ActivatedRoute, private productState: ProductState,
     private router: Router){
-    this.category$.subscribe(res => this.categories = res?.data);
+    this.category$.subscribe((res) =>{
+        if(res?.data.length){
+            res?.data.forEach((val)=> {
+              this.categories.push(...val.SousCategories);
+            });
+
+        }
+    } );
   }
 
   ngOnChanges() {
@@ -34,14 +41,11 @@ export class CollectionCategoryFilterComponent {
   }
 
   applyFilter(event: Event) {
-    const index = this.selectedCategories.indexOf((<HTMLInputElement>event?.target)?.value);  // checked and unchecked value
-    this.productState.isUniqueFilter = false;
+    this.selectedCategories = [];  // checked and unchecked value
+    this.productState.isUniqueFilter = true;
     
     if ((<HTMLInputElement>event?.target)?.checked)
       this.selectedCategories.push((<HTMLInputElement>event?.target)?.value); // push in array cheked value
-    else
-      this.selectedCategories.splice(index,1);  // removed in array unchecked value
-
     
     this.router.navigate([], {
       relativeTo: this.route,

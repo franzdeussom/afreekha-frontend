@@ -48,8 +48,8 @@ export interface AccountUser {
 
 export interface AccountUserUpdatePassword {
     current_password: string;
-    new_password: string;
-    confirm_password: string;
+    password: string;
+    password_confirmation: string;
 }
 
 export interface HomeData {

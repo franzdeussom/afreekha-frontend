@@ -21,6 +21,7 @@ import { CollectionComponent } from './collection/collection.component';
 // Checkout
 import { ScrollPositionGuard } from '../../shared/guard/scroll.guard';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AuthGuard } from 'src/app/core/guard/auth.guard';
 
 export default [
   {
@@ -39,7 +40,7 @@ export default [
     canActivate: [ScrollPositionGuard],
   },
   {
-    path: 'product/:slug/id',
+    path: 'product/:id',
     component: ProductComponent,
     resolve: {
       data: ProductResolver
@@ -68,7 +69,8 @@ export default [
   },
   {
     path: 'checkout',
-    component: CheckoutComponent
+    component: CheckoutComponent,
+    canActivate: [AuthGuard]
   }
 ] as Routes;
 

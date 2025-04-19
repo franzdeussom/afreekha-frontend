@@ -68,7 +68,6 @@ export class CartState {
               item.variation.selected_variation = item?.variation?.attribute_values?.map(values => values?.value).join('/');
             }
           });
-          console.log("cart loaded", result);
           ctx.patchState(result);
         },
         error: err => {
@@ -81,8 +80,10 @@ export class CartState {
   @Action(AddToCart)
   add(ctx: StateContext<CartStateModel>, action: AddToCart) {
     if (action.payload.id) {
+      console.log('cart ID set update process')
       return this.store.dispatch(new UpdateCart(action.payload));
     }
+    console.log('new cart');
     return this.store.dispatch(new AddToCartLocalStorage(action.payload));
   }
 
@@ -149,8 +150,9 @@ export class CartState {
     }
 
     const productQty = cart[index]?.variation ? cart[index]?.variation?.quantite : cart[index]?.product?.quantite;
-
     if (productQty < cart[index]?.quantity + action?.payload.quantity) {
+      console.log('product updating', cart[index])
+      
       this.notificationService.showError(`You can not add more items than available. In stock ${productQty} items.`);
       return false;
     }
@@ -189,7 +191,6 @@ export class CartState {
     const state = ctx.getState();
     const cart = [...state.items];
     const index = cart.findIndex(item => Number(item.id) === Number(action.payload.id));
-
     // Update Cart If cart id same but variant id is different
     if(cart[index]?.variation && action.payload.variation_id && 
       Number(cart[index].id) === Number(action.payload.id) &&
@@ -201,7 +202,7 @@ export class CartState {
 
     cart[index].quantity = 0;
     
-    const productQty = cart[index]?.variation ? cart[index]?.variation?.quantity : cart[index]?.product?.quantity;
+    const productQty = cart[index]?.variation ? cart[index]?.variation?.quantite : cart[index]?.product?.quantite;
 
     if (productQty < cart[index]?.quantity + action?.payload.quantity) {
       this.notificationService.showError(`You can not add more items than available. In stock ${productQty} items.`);

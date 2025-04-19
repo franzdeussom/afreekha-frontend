@@ -60,10 +60,12 @@ export class AccountState {
   @Action(UpdateUserProfile)
   updateProfile(ctx: StateContext<AccountStateModel>, { payload }: UpdateUserProfile) {
     // Update Profile Logic Here
-    const user = this.store.selectSnapshot(AccountState.user);
+    const user = this.store.selectSnapshot(AccountState.user) as any;
     console.log('payload update:', payload, user?.id);
-
-    this.accountService.updateUserProfile(payload, String(user?.id)).subscribe((resp: any)=>{
+    const data = {
+        data: this.crypto.encryptData(payload),
+    }
+    this.accountService.updateUserProfile(data, String(user?.user?.id)).subscribe((resp: any)=>{
       this.notificationService.showSuccess("Profile updated successfully");
       ctx.patchState({
         user: { ...ctx.getState().user, ...payload }
@@ -79,14 +81,18 @@ export class AccountState {
   @Action(UpdateUserPassword)
   updatePassword(ctx: StateContext<AccountUserUpdatePassword>, { payload }: UpdateUserPassword) {
     // Update Password Logic Here
-    const userID = this.store.selectSnapshot(AccountState.user)?.idUser;
+    const user = this.store.selectSnapshot(AccountState.user) as any;
+    const data = {
+        password: payload.current_password,
+        newPassword: payload.password
+    }
 
-    this.accountService.updateUserPassword(payload, String(userID)).subscribe((resp: any)=>{
+    this.accountService.updateUserPassword({data: this.crypto.encryptData(data)}, String(user?.user?.id)).subscribe((resp: any)=>{
       this.notificationService.showSuccess("Password updated successfully");
       
     }, (error: HttpErrorResponse)=> {
       if(error.status == 400){
-        this.notificationService.showError(error.error[0].message);
+        this.notificationService.showError(error.error.message);
       }
     });
   }
@@ -94,12 +100,23 @@ export class AccountState {
   @Action(CreateAddress)
   createAddress(ctx: StateContext<AccountStateModel>, action: CreateAddress) {
     // Create Address Logic Here
-    console.log('payload create:', action.payload);
-    this.accountService.createAdresse(action.payload).subscribe((resp: any)=>{
+    const data = {
+      data: this.crypto.encryptData(action.payload)
+    }
+
+    this.accountService.createAdresse(data).subscribe((resp: any)=>{
       this.notificationService.showSuccess("Adresse created successfully");
+      let user = this.store.selectSnapshot(AccountState.user);
+      
+      if (user && user.adresses) {
+        user.adresses = [...user.adresses, this.crypto.decryptData(resp[0].data)];
+      }
+
       ctx.patchState({
+        user: user,
         adresse: [...ctx.getState().adresse, this.crypto.decryptData(resp[0].data)]
       });
+
     }, (error: HttpErrorResponse)=> {
       
        if(error.status == 400){
@@ -110,12 +127,24 @@ export class AccountState {
 
   @Action(UpdateAddress)
   updateAddress(ctx: StateContext<AccountStateModel>, action: UpdateAddress) {
-    // Update Address Logic Here
-    this.accountService.updateAdresse(action.payload).subscribe((resp: any)=>{
+    // Update Address Logic Here 
+    const data = {
+      data: this.crypto.encryptData(action.payload)
+    }
+   
+    this.accountService.updateAdresse(data).subscribe((resp: any)=>{
       this.notificationService.showSuccess("Adresse updated successfully");
+      let user = this.store.selectSnapshot(AccountState.user);
+
+      if(user && user.adresses){
+        user.adresses = user.adresses.map((addr) => addr.idAdresse === action.payload.idAdresse ? action.payload : addr)
+      }
+
       ctx.patchState({
-        adresse: ctx.getState().adresse.map((addr) => addr.idAdresse === action.payload.idAdresse ? action.payload : addr)
+        user: user,
+        adresse: user?.adresses 
       });
+
     }, (error: HttpErrorResponse)=> {
       
        if(error.status == 400){
@@ -130,7 +159,12 @@ export class AccountState {
     this.accountService.deleteAdresse(action.id).subscribe((resp: any)=>{
       if(Object.keys(resp).length != 0){
         this.notificationService.showSuccess("Adresse deleted successfully");
+        let user = this.store.selectSnapshot(AccountState.user);
+        if (user && user.adresses) {
+          user.adresses = user.adresses.filter((addr) => addr.idAdresse !== action.id);
+        }
         ctx.patchState({
+          user: user,
           adresse: ctx.getState().adresse.filter((addr) => addr.idAdresse !== action.id)
         });
       }

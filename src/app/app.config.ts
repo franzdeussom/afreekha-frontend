@@ -47,6 +47,8 @@ import { WalletState } from './shared/state/wallet.state';
 import { WishlistState } from './shared/state/wishlist.state';
 import { GlobalErrorHandlerInterceptor } from './core/interceptors/global-error-handler.interceptor';
 import { HomeState } from './shared/state/home.state';
+import { CountryPipe } from './shared/pipe/country.pipe';
+import { StatePipe } from './shared/pipe/state.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -55,6 +57,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 export const appConfig: ApplicationConfig = {
   providers: [
     CurrencyPipe,
+    CountryPipe,
+    StatePipe,
     ErrorService,
     NotificationService,
     provideRouter(routes, withInMemoryScrolling({

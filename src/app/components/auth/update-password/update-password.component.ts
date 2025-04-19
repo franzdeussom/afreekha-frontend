@@ -56,13 +56,7 @@ export class UpdatePasswordComponent {
             password: this.form.value.newPassword,
             password_confirmation: this.form.value.confirmPassword,
           })
-      ).subscribe(
-        {
-          complete: () => { 
-            this.router.navigateByUrl('/auth/login'); 
-          }     
-        }
-      );
+      )
     }
   }
 

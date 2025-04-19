@@ -40,27 +40,10 @@ export class CategoryState {
           total: result?.total ? result?.total : result?.data?.length
         }
       });
-      console.log("categorie load", result);
       return;
     });
 
     return;
-
-    /*this.categoryService.getCategories(action.payload).pipe(
-      tap({
-        next: result => { 
-          ctx.patchState({
-            category: {
-              data: result.data,
-              total: result?.total ? result?.total : result?.data?.length
-            }
-          });
-        },
-        error: err => { 
-          throw new Error(err?.error?.message);
-        }
-      })
-    );*/
   }
 
 }

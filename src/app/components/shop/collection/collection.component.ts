@@ -59,7 +59,7 @@ export class CollectionComponent {
 
   public totalItems: number = 0;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private productState: ProductState,
     private store: Store) {
 
     // Get Query params..
@@ -70,15 +70,17 @@ export class CollectionComponent {
         'status': 1,
         'field': params['field'] ? params['field'] : this.filter['field'],
         'price': params['price'] ? params['price'] : '',
-        'category': params['category'] ? params['category'] : '',
+        'category': params['category'] ? params['category'] : null,
         'tag': params['tag'] ? params['tag'] : '',
         'sort': params['sort'] ? params['sort'] : '',
         'sortBy': params['sortBy'] ? params['sortBy'] : this.filter['sortBy'],
-        'rating': params['rating'] ? params['rating'] : '',
-        'attribute': params['attribute'] ? params['attribute'] : '',
+        'attribute': params['attribute'] ? params['attribute'] : null,
       }
 
-      this.store.dispatch(new GetProducts(this.filter));
+      this.productState.allLoaded = false;
+       this.productState.offset = 0;
+       this.productState.offsetReset = true;
+      this.store.dispatch(new GetProducts(this.filter, true));
 
       // Params For Demo Purpose only
       if(params && params['layout']) {

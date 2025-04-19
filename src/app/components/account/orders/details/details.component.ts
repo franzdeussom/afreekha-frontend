@@ -21,8 +21,7 @@ import { NgClass, AsyncPipe, UpperCasePipe, TitleCasePipe, DatePipe } from '@ang
     styleUrls: ['./details.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [NgClass, RouterLink, RefundModalComponent, PayModalComponent, 
-      AsyncPipe, UpperCasePipe, TitleCasePipe, DatePipe, CurrencySymbolPipe, TranslateModule]
+    imports: [ RefundModalComponent, PayModalComponent, CurrencySymbolPipe, TranslateModule]
 })
 export class OrderDetailsComponent {
 
@@ -54,7 +53,6 @@ export class OrderDetailsComponent {
       )
       .subscribe(order => {
         this.order = order!
-        console.log("order articles", order?.Article);
       });
   }
 

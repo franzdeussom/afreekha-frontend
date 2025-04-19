@@ -1,14 +1,6 @@
 <div class="right-sidebar-box">
-  @if (product.store) {
-    <app-store-information [store]="product.store"></app-store-information>
-  }
-  @if ((themeOptions$ | async)?.product?.is_trending_product) {
+  @if (product.featured) {
+    <em>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quas tempora cumque nobis illo ad iste, doloremque explicabo dicta dolorum ipsa eius commodi alias eum, iusto libero. Facilis, voluptatum perspiciatis.</em>
     <app-trending-products></app-trending-products>
-  }
-  @if ((themeOptions$ | async)?.product?.banner_enable && (themeOptions$ | async)?.product?.banner_image_url) {
-    <app-product-banner
-      [image]="(themeOptions$ | async)?.product?.banner_image_url!"
-      >
-    </app-product-banner>
   }
 </div>

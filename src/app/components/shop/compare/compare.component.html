@@ -73,6 +73,7 @@
                   <h5 class="text-title">{{ product.nom_article }}</h5>
                 </a>
               </div>
+             
               <div class="detail-part">
                 <div class="title-detail">
                   <h5>{{ 'discount' | translate }}</h5>
@@ -105,6 +106,25 @@
                   <p>{{product.garantie ? product.garantie: '-'}}</p>
                 </div>
               </div>
+
+              <div class="detail-part">
+                <div class="title-detail">
+                  <h5>{{ 'color' | translate }}</h5>
+                </div>
+                <div class="inner-detail">
+                  <p> {{ (product.couleur ? product.taille : '-') }}</p>
+                </div>
+              </div>
+
+              <div class="detail-part">
+                <div class="title-detail">
+                  <h5>{{ 'size' | translate }}</h5>
+                </div>
+                <div class="inner-detail">
+                  <p>{{ (product.taille ? product.taille : '-') | titleCase}}</p>
+                </div>
+              </div>
+
               <div class="detail-part">
                 <div class="title-detail">
                   <h5>{{ 'availability' | translate }}</h5>

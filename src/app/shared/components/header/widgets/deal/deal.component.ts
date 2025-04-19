@@ -35,12 +35,8 @@ export class DealComponent {
   }
 
   ngOnInit(){
-    if(Array.isArray(this.ids)){
-      this.store.dispatch(new GetDealProducts({ids: this.ids.join()})).subscribe({
-        next: (val:any) => {
-           this.dealProducts = val?.product?.dealProducts;
-          }
-      });
-    }
+    this.dealProducts$.subscribe((val)=>{
+        this.dealProducts = this.store.selectSnapshot(ProductState.dealProducts) as Product[];
+    })
   }
 }

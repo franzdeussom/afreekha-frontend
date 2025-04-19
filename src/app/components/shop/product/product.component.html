@@ -1,6 +1,6 @@
 <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
 <!-- Product Details Layout -->
-<section class="product-section" [class.section-b-space]="product && !product.related_products.length">
+<section class="product-section" [class.section-b-space]="product">
   @if (layout == 'product_thumbnail') {
     <app-product-thumbnail [product]="product" [option]="themeOptions$ | async"></app-product-thumbnail>
   }
@@ -17,13 +17,13 @@
     <app-product-accordion [product]="product" [option]="themeOptions$ | async"></app-product-accordion>
   }
 </section>
-<!-- Related Products -->
-@if (product && product.related_products.length) {
+<!-- Related Products
+@if (product) {
   <section class="product-list-section section-b-space"
     >
     <app-related-products [product]="product$ | async"></app-related-products>
   </section>
-}
+} -->
 
 <!-- Sticky Cart Box Start -->
 <app-sticky-checkout [product]="product"></app-sticky-checkout>

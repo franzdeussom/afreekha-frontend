@@ -34,23 +34,23 @@ export class AccountService {
     return this.http.get<HomeData>(`${environment.URL_API}/api${ROUTES_API.HOME.GET}`);
   }
 
-  updateUserProfile(payload: AccountUser, id: string): Observable<AccountUser> {
+  updateUserProfile(payload: any, id: string): Observable<AccountUser> {
     return this.http.patch<AccountUser>(`${environment.URL_API}/api${ROUTES_API.USERS.UPDATE(String(id))}`, payload);
   }
 
   updateUserPassword(payload: any, id: string): Observable<any>{
-    return this.http.patch<any>(`${environment.URL_API}/api${ROUTES_API.USERS.UPDATE_PASSWORD(id)}`, payload);
+    return this.http.put<any>(`${environment.URL_API}/api${ROUTES_API.USERS.UPDATE_PASSWORD(id)}`, payload);
   }
 
-  createAdresse(payload: UserAddress): Observable<UserAddress>{
+  createAdresse(payload: any): Observable<UserAddress>{
     return this.http.post<UserAddress>(`${environment.URL_API}/api${ROUTES_API.ADRESSE.POST_GET_PUT}`, payload )
   }
 
-  updateAdresse(payload: UserAddress): Observable<UserAddress>{
+  updateAdresse(payload: any): Observable<UserAddress>{
     return this.http.put<UserAddress>(`${environment.URL_API}/api${ROUTES_API.ADRESSE.POST_GET_PUT}`, payload )
   }
 
   deleteAdresse(id: number): Observable<UserAddress>{
-    return this.http.delete<UserAddress>(`${environment.URL_API}/api${ROUTES_API.ADRESSE.DELETE}/${id}` );
+    return this.http.delete<UserAddress>(`${environment.URL_API}/api${ROUTES_API.ADRESSE.DELETE}${id}` );
   }
 }

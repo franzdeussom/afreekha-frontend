@@ -13,7 +13,7 @@
       }
     </ng-template>
     <div class="product-image">
-      <a [routerLink]="['/product/', product.nom_article, product.idArticle]">
+      <a [routerLink]="['/product/', product.idArticle]">
               <img [src]="product.Images ? (product.Images[0].lien ? product.Images[0].lien : product.lien) : 'assets/images/product.png'" class="img-fluid" [alt]="'product'">
         </a>
         @if (close) {
@@ -48,7 +48,7 @@
       }
     </div>
     <div class="product-detail">
-      <a [routerLink]="['/product/', product.nom_article, product.idArticle]">
+      <a [routerLink]="['/product/', product.idArticle]">
         <h6 class="name">{{ product.nom_article }}</h6>
       </a>
       <p>{{ product.description }}</p>

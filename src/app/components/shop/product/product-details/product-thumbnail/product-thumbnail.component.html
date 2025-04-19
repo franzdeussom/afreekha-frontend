@@ -10,28 +10,28 @@
                   <div class="col-12">
                     <div class="product-main-1 no-arrow">
                       <div class="product-label-group">
-                        @if (product.is_sale_enable) {
+                        @if (true) {
                           <div class="product-label-tag"><span>{{ 'sale' | translate }}</span></div>
                         } @else {
-                          @if (product.is_featured) {
+                          @if (product.featured) {
                             <div class="product-label-tag warning-label-tag"><span>{{ 'featured' | translate }}</span></div>
                           }
                         }
                         <ng-template #featured>
-                          @if (product.is_featured) {
+                          @if (product.featured) {
                             <div class="product-label-tag warning-label-tag"><span>{{ 'featured' | translate }}</span></div>
                           }
                         </ng-template>
                       </div>
                       <owl-carousel-o [options]="productMainThumbSlider" #owlCar>
-                        @for (image of product.product_galleries; track image; let i = $index) {
-                          <ng-template carouselSlide [id]="image.id.toString()">
+                        @for (image of product.Images; track image; let i = $index) {
+                          <ng-template carouselSlide [id]="image.idImage.toString()">
                             <div>
                               <div class="slider-image">
                                 <lib-ngx-image-zoom
                                   [zoomMode]="'click'"
-                                  [thumbImage]=image.original_url
-                                  [fullImage]=image.original_url
+                                  [thumbImage]=image.lien
+                                  [fullImage]=image.lien
                                   [magnification]="3"
                                   [enableScrollZoom]="true"
                                   [enableLens]="true"
@@ -42,13 +42,13 @@
                             </div>
                           </ng-template>
                         }
-                        @if (!product.product_galleries?.length) {
+                        @if (!product.Images.length) {
                           <ng-template carouselSlide [id]="'1'">
                             <div>
                               <div class="slider-image">
-                                                            <img [src]="product && product.product_thumbnail ?
-                                                                    product.product_thumbnail.original_url :
-                                                                    'assets/images/product.png'" class="img-fluid" alt="{{ product.name }}">
+                                                            <img [src]="product && product.Images ?
+                                                                    product.Images[0].lien :
+                                                                    'assets/images/product.png'" class="img-fluid" alt="{{ product.nom_article }}">
                                 </div>
                               </div>
                             </ng-template>
@@ -56,17 +56,17 @@
                         </owl-carousel-o>
                       </div>
                     </div>
-                    @if (product.product_galleries?.length) {
+                    @if (product.Images.length) {
                       <div class="col-12">
                         <div class="bottom-slider-image left-slider no-arrow slick-top">
                           <owl-carousel-o [options]="productThumbSlider">
-                            @for (image of product.product_galleries; track image) {
-                              <ng-template carouselSlide [id]="image.id.toString()">
+                            @for (image of product.Images; track image) {
+                              <ng-template carouselSlide [id]="image.idImage.toString()">
                                 <div>
-                                  <div class="slider-image" [class.active]="image.id.toString() == activeSlide.toString()">
-                                                            <img [src]="image ? image.original_url
-                                                                    : 'assets/images/product.png'" class="img-fluid" alt="{{ product.name }}"
-                                      (click)="owlCar.to(activeSlide = image.id.toString())">
+                                  <div class="slider-image" [class.active]="image.idImage.toString() == activeSlide.toString()">
+                                                            <img [src]="image ? image.lien
+                                                                    : 'assets/images/product.png'" class="img-fluid" alt="{{ product.nom_article }}"
+                                      (click)="owlCar.to(activeSlide = image.idImage.toString())">
                                   </div>
                                 </div>
                               </ng-template>
@@ -83,7 +83,6 @@
                   <app-product-contain [product]="product" [option]="option" [owlCar]="owlCar"></app-product-contain>
                   <app-product-action [product]="product"></app-product-action>
                   <app-product-information [product]="product"></app-product-information>
-                  <app-product-delivery-information [product]="product"></app-product-delivery-information>
                   <app-payment-option [product]="product" [option]="option"></app-payment-option>
                   <app-product-social-share [product]="product" [option]="option"></app-product-social-share>
                 </div>

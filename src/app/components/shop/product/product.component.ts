@@ -23,7 +23,7 @@ import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcru
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.scss'],
     standalone: true,
-    imports: [BreadcrumbComponent, ProductThumbnailComponent, ProductImagesComponent, ProductSliderComponent, ProductStickyComponent, ProductAccordionComponent, RelatedProductsComponent, StickyCheckoutComponent, AsyncPipe]
+    imports: [BreadcrumbComponent, ProductThumbnailComponent, ProductImagesComponent, ProductSliderComponent, ProductStickyComponent, ProductAccordionComponent, StickyCheckoutComponent, AsyncPipe]
 })
 export class ProductComponent {
 
@@ -44,16 +44,12 @@ export class ProductComponent {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.product$.subscribe(product => {
       if(product) {
+        console.log('product, load', product)
         this.breadcrumb.items = [];
-        this.breadcrumb.title = product.name;
-        this.breadcrumb.items.push({ label: 'Product', active: true }, { label: product.name, active: false });
+        this.breadcrumb.title = product.nom_article;
+        this.breadcrumb.items.push({ label: 'Product', active: true }, { label: product.nom_article, active: false });
         this.product = product;
-        product?.meta_title && this.meta.updateTag({property: 'og:title', content: product?.meta_title});
-        product?.meta_description && this.meta.updateTag({property: 'og:description', content: product?.meta_description});
-        product?.product_meta_image && this.meta.updateTag({property: 'og:image', content: product?.product_meta_image.original_url});
-        product?.product_meta_image && this.meta.updateTag({property: 'og:image:width', content: '500'});
-        product?.product_meta_image && this.meta.updateTag({property: 'og:image:height', content: '500'});
-      }
+       }
     });
 
     // For Demo Purpose only
