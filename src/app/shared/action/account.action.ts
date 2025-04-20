@@ -11,6 +11,11 @@ export class UpdateUserProfile {
   constructor(public payload: AccountUser) {}
 }
 
+export class UpdateUserDashboard{
+  static readonly type = "[Account] User Dashboad";
+  constructor(public payload : {montantTotalCommandeImpaye: number, montantTotalCommandePaye: number, nbrTotalCommande: number, isPay: boolean}){}
+}
+
 export class UpdateUserPassword {
   static readonly type = "[Account] User Update Password";
   constructor(public payload: AccountUserUpdatePassword) {}

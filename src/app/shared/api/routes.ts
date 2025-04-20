@@ -33,7 +33,7 @@ export const ROUTES_API = {
     },
     ORDER: {
         GET: "/order",
-        GET_BY_ID: (id: string, offset: string) => `/my-facture/${offset}/1`,
+        GET_BY_ID: (id: string, offset: string) => `/my-facture/${offset}/${id}`,
         CREATE: "/order",
         UPDATE: (id: string) => `/order/${id}`,
         DELETE: (id: string) => `/order/${id}`,

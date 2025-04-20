@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { Store, Action, Selector, State, StateContext } from "@ngxs/store";
 import { of, tap } from "rxjs";
 import { GetUserDetails, UpdateUserProfile, UpdateUserPassword, 
-         CreateAddress, UpdateAddress, DeleteAddress, AccountClear } from "../action/account.action";
+         CreateAddress, UpdateAddress, DeleteAddress, AccountClear, 
+         UpdateUserDashboard} from "../action/account.action";
 import { AccountUser, AccountUserUpdatePassword } from "./../interface/account.interface";
 import { AccountService } from "../services/account.service";
 import { NotificationService } from "../services/notification.service";
@@ -70,6 +71,7 @@ export class AccountState {
       ctx.patchState({
         user: { ...ctx.getState().user, ...payload }
       });
+      localStorage.setItem('UserDetails', JSON.stringify(ctx.getState().user));
     }, (error: HttpErrorResponse)=> {
       if(error.status == 400){
         this.notificationService.showError(error.error[0].message);
@@ -105,7 +107,7 @@ export class AccountState {
     }
 
     this.accountService.createAdresse(data).subscribe((resp: any)=>{
-      this.notificationService.showSuccess("Adresse created successfully");
+      this.notificationService.showSuccess("Address created successfully");
       let user = this.store.selectSnapshot(AccountState.user);
       
       if (user && user.adresses) {
@@ -116,6 +118,7 @@ export class AccountState {
         user: user,
         adresse: [...ctx.getState().adresse, this.crypto.decryptData(resp[0].data)]
       });
+      localStorage.setItem('UserDetails', JSON.stringify(ctx.getState().user));
 
     }, (error: HttpErrorResponse)=> {
       
@@ -144,6 +147,7 @@ export class AccountState {
         user: user,
         adresse: user?.adresses 
       });
+      localStorage.setItem('UserDetails', JSON.stringify(ctx.getState().user));
 
     }, (error: HttpErrorResponse)=> {
       
@@ -168,13 +172,35 @@ export class AccountState {
           adresse: ctx.getState().adresse.filter((addr) => addr.idAdresse !== action.id)
         });
       }
-      
+      localStorage.setItem('UserDetails', JSON.stringify(ctx.getState().user));
+
     }, (error: HttpErrorResponse)=> {
       
        if(error.status == 400){
         this.notificationService.showError(error.error[0].message);
        }
     })
+  }
+
+  @Action(UpdateUserDashboard)
+  updateDashboard(ctx: StateContext<AccountStateModel>, action: UpdateUserDashboard){
+    const user = ctx.getState().user as any;
+    if(user){
+      if(action.payload.isPay){
+        user.montantTotalCommandePaye =  user.montantTotalCommandePaye ?(user.montantTotalCommandePaye += action.payload.montantTotalCommandePaye):action.payload.montantTotalCommandePaye 
+      }else{
+        user.montantTotalCommandeImpaye = user.montantTotalCommandeImpaye ? (user.montantTotalCommandeImpaye += action.payload.montantTotalCommandeImpaye):action.payload.montantTotalCommandeImpaye
+
+      }
+      user.nbreTotalCommande =  user.nbreTotalCommande ? (user.nbreTotalCommande += 1): 1;
+      ctx.patchState({
+        user: user
+      });
+      localStorage.setItem('UserDetails', JSON.stringify(ctx.getState().user));
+
+      return;
+    }
+    return;
   }
 
   @Action(AccountClear)

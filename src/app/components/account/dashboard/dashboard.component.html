@@ -63,7 +63,7 @@
               <tbody>
                 <tr>
                   <td>{{ 'name'| translate}}:</td>
-                  <td>{{ (user$ | async)?.user?.nom | titleCase }}</td>
+                  <td>{{ (user$ | async)?.user?.prenom | titleCase }} {{ (user$ | async)?.user?.nom | titleCase }}</td>
                 </tr>
                 <tr>
                   <td>{{ 'phone'| translate}}:</td>

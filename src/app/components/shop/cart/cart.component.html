@@ -12,7 +12,7 @@
                     <tr class="product-box-contain">
                       <td class="product-detail">
                         <div class="product border-0">
-                          <a [routerLink]="['/product/', item.product.slug]" class="product-image">
+                          <a [routerLink]="['/product/', item.product.idArticle]" class="product-image">
                                                 <img [src]="item.product.Images.length ?  item.product.Images[0].lien : 'assets/images/product.png'" class="img-fluid" alt="product">
                             </a>
                             <div class="product-detail">

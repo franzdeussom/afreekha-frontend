@@ -42,7 +42,7 @@ export class OrdersComponent {
 
   setPaginate(page: number) {
     this.filter['page'] = page;
-    this.store.dispatch(new GetOrders(this.user.idUser));
+    this.store.dispatch(new GetOrders(this.user.user.id));
   }
 
 }

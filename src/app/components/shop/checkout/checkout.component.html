@@ -12,10 +12,11 @@
                 </div>
                 <div class="checkout-box">
                   <div href="javascript:void(0)" class="checkout-title">
-                    <h4>{{ 'shipping_address' | translate }}</h4>
+                    <h4>{{ 'shipping_address' | translate }} <sub> <h6>{{"where_to_shipping" | translate }}</h6>  </sub> </h4>
+                    
                     <a href="javascript:void(0)" class="d-flex align-items-center fw-bold"
                       (click)="AddressModal.openModal()">
-                      <i class="ri-add-line me-1"></i> {{ 'add_new' | translate }}
+                      <i class="ri-add-line me-1"></i> {{ 'add_new_add' | translate }}
                     </a>
                   </div>
                   <div class="checkout-detail">

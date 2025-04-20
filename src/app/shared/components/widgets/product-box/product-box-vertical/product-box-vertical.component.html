@@ -1,6 +1,6 @@
 <div class="offer-product">
   <a [routerLink]="['/product/', product.idArticle]" class="offer-image">
-        <img [src]="product.Images ? (product.Images[0].lien ? product.Images[0].lien : product.lien) : 'assets/images/product.png'" alt="product">
+        <img [src]="product.Images ? (product.Images[0].lien ? product.Images[0].lien : product.lien) : (product.lien ? product.lien: 'assets/images/product.png')" alt="product">
     </a>
     <div class="offer-detail">
       <div>

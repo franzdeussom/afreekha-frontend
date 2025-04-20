@@ -9,6 +9,8 @@ import { ClearCart } from "../action/cart.action";
 import { NotificationService } from "../services/notification.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { AccountState } from "./account.state";
+import { UpdateUserDashboard } from "../action/account.action";
+import { CryptoJsService } from "../services/crypto-js.service";
 
 export class OrderStateModel {
   order = {
@@ -35,6 +37,7 @@ export class OrderState {
 
   constructor(private store: Store,
     private notif: NotificationService,
+    private crypt: CryptoJsService,
     private router: Router,
     private orderService: OrderService) {}
 
@@ -58,7 +61,6 @@ export class OrderState {
      this.orderService.getOrder(action.id).subscribe((resp: any)=>{
      
        if(Object.keys(resp).length > 0){
-        console.log("response", resp[0].data);
          ctx.patchState({
            order: {
              data: resp[0].data,
@@ -79,31 +81,11 @@ export class OrderState {
       ...ctx.getState(),
       selectedOrder: order
     });
-    console.log("order find", order);
     if (order) {
       this.orderService.skeletonLoader = false;
       return;
     }
-
-    /*return this.orderService.getOrders().pipe(
-      tap({
-        next: result => {
-          const state = ctx.getState();
-          const order = result.data.find(order => order.idCommande == id);
-
-          ctx.patchState({
-            ...state,
-            selectedOrder: order
-          });
-        },
-        error: err => {
-          throw new Error(err?.error?.message);
-        },
-        complete: () => {
-          this.orderService.skeletonLoader = false;
-        }
-      })
-    );*/
+    return;
   }
 
   @Action(Checkout)
@@ -147,23 +129,40 @@ export class OrderState {
     
     const data = {
       idUser: userData ? userData.user.id: null,
-      statut: paymentDone ? "payé": "En cours",
-      products: action.payload.products,
+      statut: paymentDone ? "payé": "en cours",
+      article: action.payload.products,
       idAdresse: action.payload.shipping_address_id
     }
-    console.log('order detai', action.payload);
-    this.orderService.placeOrder(data).subscribe((reslt: any)=>{
+   
+    this.orderService.placeOrder({data: this.crypt.encryptData(data)}).subscribe((reslt: any)=>{
         if(Object.keys(reslt).length != 0){
           this.store.dispatch(new ClearCart).subscribe({
             complete: ()=>{
-                this.notif.showSuccess(reslt[0].message);
+                this.store.dispatch(new UpdateUserDashboard({
+                  montantTotalCommandeImpaye: userData.user.montantTotalCommandeImpaye,
+                  montantTotalCommandePaye : userData.user.montantTotalCommandePaye,
+                  nbrTotalCommande : userData.user.nbrTotalCommande,
+                  isPay: paymentDone
+                })).subscribe({
+                  complete: ()=>{
+                    this.notif.showSuccess(reslt[0].message);
+
+                     this.router.navigateByUrl(`/account/order`);
+                  }
+                });
                 this.router.navigateByUrl(`/account/order`);
+                
             },
           });
         }
     }, (error: HttpErrorResponse)=>{
         if(error.status == 400){
-
+            this.notif.showError(error.error[0].message);
+        }else if(error.status == 401) {
+            this.notif.showError(error.error.errorMessage);
+            this.router.navigateByUrl('/auth/login')
+        }else if(error.status == 403){
+            this.notif.showError(error.error.errorMessage);
         }
     })
   }

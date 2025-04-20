@@ -267,8 +267,6 @@ export class ProductState {
           ...homeProduct.fourth_section.article
         ];
           let product = products.find((value)=> value.idArticle == Number.parseInt(slug));
-            console.log('product searhc', products);
-            console.log('product home', homeProduct.firt_section.article);
         
             ctx.patchState({
               selectedProduct : product 
