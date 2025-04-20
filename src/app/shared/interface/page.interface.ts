@@ -42,6 +42,6 @@ export interface ContactUsModel {
   name : string;
   email: string;
   phone: number;
-  subject: string;
-  message: string;
+  contenus: string;
+  idUser: number;
 }

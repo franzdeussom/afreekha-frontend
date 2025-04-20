@@ -11,6 +11,7 @@ import { Permission } from "../interface/role.interface";
 import { UserAddress } from "../interface/user.interface";
 import { HttpErrorResponse } from "@angular/common/http";
 import { CryptoJsService } from "../services/crypto-js.service";
+import { Router } from "@angular/router";
 
 export class AccountStateModel {
   user: AccountUser | null;
@@ -33,6 +34,7 @@ export class AccountState {
               private notificationService: NotificationService,
               private crypto: CryptoJsService,
               private store: Store,
+              private router: Router
             ) {}
 
   @Selector()
@@ -75,6 +77,9 @@ export class AccountState {
     }, (error: HttpErrorResponse)=> {
       if(error.status == 400){
         this.notificationService.showError(error.error[0].message);
+      }else if(error.status == 403){
+        this.notificationService.showError("Clé d'authentification expiré veuillez vous reconnecter");
+        this.router.navigateByUrl("/auth/login")
       }
     });
 
@@ -95,6 +100,9 @@ export class AccountState {
     }, (error: HttpErrorResponse)=> {
       if(error.status == 400){
         this.notificationService.showError(error.error.message);
+      }else if(error.status == 403){
+        this.notificationService.showError("Clé d'authentification expiré veuillez vous reconnecter");
+        this.router.navigateByUrl("/auth/login")
       }
     });
   }
@@ -124,7 +132,10 @@ export class AccountState {
       
        if(error.status == 400){
         this.notificationService.showError(error.error[0].message);
-       }
+       }else if(error.status == 403){
+        this.notificationService.showError("Clé d'authentification expiré veuillez vous reconnecter");
+        this.router.navigateByUrl("/auth/login")
+      }
     }) 
   }
 
@@ -153,7 +164,10 @@ export class AccountState {
       
        if(error.status == 400){
         this.notificationService.showError(error.error[0].message);
-       }
+       }else if(error.status == 403){
+        this.notificationService.showError("Clé d'authentification expiré veuillez vous reconnecter");
+        this.router.navigateByUrl("/auth/login")
+      }
     })
   }
 
@@ -178,7 +192,10 @@ export class AccountState {
       
        if(error.status == 400){
         this.notificationService.showError(error.error[0].message);
-       }
+       }else if(error.status == 403){
+        this.notificationService.showError("Clé d'authentification expiré veuillez vous reconnecter");
+        this.router.navigateByUrl("/auth/login")
+      }
     })
   }
 

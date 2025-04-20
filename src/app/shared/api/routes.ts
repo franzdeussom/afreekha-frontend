@@ -38,5 +38,8 @@ export const ROUTES_API = {
         UPDATE: (id: string) => `/order/${id}`,
         DELETE: (id: string) => `/order/${id}`,
         POST: "/commande"
+    },
+    MESSAGE: {
+        POST: "/message"
     }
   };

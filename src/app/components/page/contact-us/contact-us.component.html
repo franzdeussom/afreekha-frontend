@@ -73,24 +73,6 @@
                                             </div>
                                         </div>
                                         }
-                                        @if (contactData.detail_4.text) {
-                                        <div class="col-xxl-6 col-lg-12 col-sm-6">
-                                            <div class="contact-detail-box">
-                                                @if (contactData.detail_4.icon) {
-                                                <div class="contact-icon">
-                                                    <i [class]="contactData.detail_4.icon"></i>
-                                                </div>
-                                                }
-                                                <div class="contact-detail-title">
-                                                    <h4>{{ contactData.detail_4.label }}</h4>
-                                                </div>
-    
-                                                <div class="contact-detail-contain">
-                                                    <p>{{ contactData.detail_4.text }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        }
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +91,7 @@
                                 <label for="fullname" class="form-label">{{ 'full_name' | translate }}</label>
                                 <div class="custom-input">
                                     <input type="text" class="form-control" id="fullname"
-                                        placeholder="{{ 'enter_full_name' | translate }}" formControlName="name">
+                                        placeholder="{{ 'enter_full_name' | translate }}" [disabled]="true" formControlName="name">
                                     <i class="ri-user-3-fill"></i>
                                     @if (form.controls['name'].touched && form.controls['name'].errors?.['required']) {
                                     <div class="invalid-feedback">
@@ -125,7 +107,7 @@
                                 <label for="email" class="form-label">{{ 'email_address' | translate }}</label>
                                 <div class="custom-input">
                                     <input type="email" class="form-control" id="email"
-                                        placeholder="{{ 'enter_email_address' | translate }}" formControlName="email">
+                                        placeholder="{{ 'enter_email_address' | translate }}" [disabled]="true" formControlName="email">
                                     <i class="ri-mail-fill"></i>
                                     @if (form.controls['email'].touched && form.controls['email'].errors?.['required'])
                                     {
@@ -157,32 +139,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="mb-md-4 mb-3 custom-form">
-                                <label for="exampleFormControlInput" class="form-label">{{ 'subject' | translate
-                                    }}</label>
-                                <div class="custom-input">
-                                    <input type="text" class="form-control" id="subject"
-                                        placeholder="{{ 'enter_subject' | translate }}" formControlName="subject">
-                                    <i class="ri-user-3-fill"></i>
-                                    @if (form.controls['subject'].touched &&
-                                    form.controls['subject'].errors?.['required']) {
-                                    <div class="invalid-feedback">
-                                        {{ 'subject_is_required' | translate }}
-                                    </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="col-12">
                             <div class="mb-md-4 mb-3 custom-form">
                                 <label for="message" class="form-label">{{ 'message' | translate }}</label>
                                 <div class="custom-textarea">
                                     <textarea class="form-control" id="message"
                                         placeholder="{{ 'enter_your_message' | translate }}" rows="6"
-                                        formControlName="message"></textarea>
+                                        formControlName="contenus"></textarea>
                                     <i class="ri-chat-2-fill"></i>
-                                    @if (form.controls['message'].touched && form.controls['message'].errors?.['required']) {
+                                    @if (form.controls['contenus'].touched && form.controls['contenus'].errors?.['required']) {
                                         <div class="invalid-feedback">
                                             {{ 'message_is_required' | translate }}
                                         </div>

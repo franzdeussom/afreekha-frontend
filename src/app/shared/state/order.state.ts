@@ -69,6 +69,11 @@ export class OrderState {
          });
         }
 
+     }, (error: HttpErrorResponse)=>{
+        if(error.status == 403){
+          this.notif.showError("Clé d'authentification expiré veuillez vous reconnecter");
+          this.router.navigateByUrl("/auth/login")
+        }
      });
   }
 
@@ -163,6 +168,9 @@ export class OrderState {
             this.router.navigateByUrl('/auth/login')
         }else if(error.status == 403){
             this.notif.showError(error.error.errorMessage);
+            this.router.navigateByUrl('/auth/login')
+        }else{
+          this.notif.showError(error.error.errorMessage);
         }
     })
   }

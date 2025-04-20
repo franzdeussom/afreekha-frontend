@@ -9,7 +9,7 @@
 
   <!-- Banner Section Start -->
   <section class="banner-section ratio_60">
-    <app-theme-banner [style]="'horizontal'" [banners]="data?.v_img"></app-theme-banner>
+    <app-theme-banner [style]="'horizontal'" [banners]="data?.temp?.slider"></app-theme-banner>
   </section>
   <!-- Banner Section End -->
 
@@ -32,12 +32,12 @@
               <app-theme-banner
                 [class]="'ratio_156 section-t-space'"
                 [style]="'vertical'"
-                [banners]="data?.v_img">
+                [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[1]: null">
               </app-theme-banner>
               <!-- Sidebar Vertical Banner -->
               <app-theme-banner
                 [class]="'ratio_medium section-t-space'" [style]="'vertical'"
-                [banners]="data?.v_img">
+                [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[1]: null">
               </app-theme-banner>
               <!-- Products -->
               @if (data?.firt_section?.article?.length || 0 >= 1) {
@@ -98,14 +98,14 @@
               <div class="row g-md-4 g-3">
                 <div class="col-md-6">
                   <div class="banner-contain hover-effect">
-                    <app-image-link [image]="data?.v_img?.[1]"
+                    <app-image-link [image]="data?.temp?.main_two_pic?.[1]"
                       [bgImage]="false">
                     </app-image-link>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="banner-contain hover-effect">
-                    <app-image-link [image]="data?.v_img?.[1]"
+                    <app-image-link [image]="data?.temp?.main_two_pic?.[0]"
                       [bgImage]="false">
                     </app-image-link>
                   </div>
@@ -136,7 +136,7 @@
             <div class="section-b-space ratio_12">
               <app-theme-banner
                 class="sale-banner"
-                [banners]="data?.v_img"
+                [banners]="data?.temp?.main_banner?.[0] ? data?.temp?.main_banner?.[0]: null"
                 [style]="'full_width'">
               </app-theme-banner>
             </div>
@@ -144,29 +144,7 @@
           <!-- Coupons Banner Section End -->
 
           <!-- Two Column Banner Section Start -->
-          @if (true) {
-            @if (true) {
-              <div class="section-b-space">
-                <div class="row g-md-4 g-3">
-                  <div class="col-xxl-8 col-xl-12 col-md-7">
-                    <div class="banner-contain hover-effect">
-                      <app-image-link
-                        [image]="data?.v_img?.[2]"
-                        [bgImage]="false">
-                      </app-image-link>
-                    </div>
-                  </div>
-                  <div class="col-xxl-4 col-xl-12 col-md-5">
-                    <div class="banner-contain hover-effect">
-                      <app-image-link [image]="data?.v_img?.[2]"
-                        [bgImage]="false">
-                      </app-image-link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            }
-          }
+         
           <!-- Two Column Banner Section End -->
 
           <!-- Our Best Seller Section Start -->
@@ -181,21 +159,6 @@
             </app-theme-product>
           }
           <!-- Our Best Seller Section End -->
-
-          <!-- Full Width Banner Section Start -->
-          @if (true) {
-            <div class="section-b-space section-t-space">
-              <div class="banner-contain hover-effect">
-                <app-image-link [image]="data?.v_img?.[2]" [bgImage]="false">
-                </app-image-link>
-              </div>
-            </div>
-          }
-          <!-- Full Width Banner Section End -->
-
-          <!-- Blogs Section Start -->
-
-          <!-- Blogs Section End -->
         </div>
         <!-- Right Content End -->
       </div>

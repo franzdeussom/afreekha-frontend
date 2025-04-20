@@ -9,6 +9,7 @@ import { ButtonComponent } from '../../../shared/components/widgets/button/butto
 import { Breadcrumb } from '../../../shared/interface/breadcrumb';
 import { Contact, Option } from '../../../shared/interface/theme-option.interface';
 import { ThemeOptionState } from '../../../shared/state/theme-option.state';
+import { AccountState } from 'src/app/shared/state/account.state';
 
 @Component({
     selector: 'app-contact-us',
@@ -20,6 +21,7 @@ import { ThemeOptionState } from '../../../shared/state/theme-option.state';
 export class ContactUsComponent {
 
   themeOption$: Observable<Option> = inject(Store).select(ThemeOptionState.themeOptions) as Observable<Option>;
+  user$: Observable<any> = inject(Store).select(AccountState.user) as Observable<any>;
 
   public breadcrumb: Breadcrumb = {
     title: "Contact Us",
@@ -35,11 +37,20 @@ export class ContactUsComponent {
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required]),
-      subject: new FormControl('', [Validators.required]),
-      message: new FormControl('', [Validators.required]),
+      contenus: new FormControl('', [Validators.required]),
+      idUser: new FormControl(''),
     })
 
     this.themeOption$.subscribe(data=> this.contactData = data?.contact_us)
+
+    this.user$.subscribe((user)=>{
+      this.form.patchValue({
+        idUser: user.user.id,
+        email: user.user.email,
+        phone: user.user.tel,
+        name: user.user.prenom + ' ' + user.user.nom 
+      })
+    })
   }
 
   submit(){
@@ -47,7 +58,9 @@ export class ContactUsComponent {
     if (this.form.valid) {
       this.store.dispatch(new ContactUs(this.form.value)).subscribe({
         complete: ()=>{
-          this.form.reset();
+          this.form.patchValue({
+            contenus: ''
+          });
         }
       })
     }

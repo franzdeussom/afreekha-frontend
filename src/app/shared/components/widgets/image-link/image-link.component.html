@@ -1,6 +1,6 @@
 
   @if ("collection" === 'collection') {
-    <a [routerLink]="['/collections']" [queryParams]="{ category: image?.lien }" >
+    <a [routerLink]="['/collections']" [queryParams]="{ category: image?.collection }" >
       @if (bgImage) {
         <div class="h-100 bg-size" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }

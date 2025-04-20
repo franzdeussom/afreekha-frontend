@@ -126,6 +126,8 @@ export class AuthState {
     (error: HttpErrorResponse)=> {
       if(error.status == 400){
          this.notificationService.showError(error.error.message)
+      }else{
+        this.notificationService.showError(error.error.message);
       }
      });
   

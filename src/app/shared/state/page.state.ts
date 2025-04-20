@@ -4,6 +4,10 @@ import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { PageService } from "../services/page.service";
 import { ContactUs, GetFaqs } from "../action/page.action";
 import { ContactUsModel, Faq, Page } from "../interface/page.interface";
+import { CryptoJsService } from "../services/crypto-js.service";
+import { NotificationService } from "../services/notification.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 export class PageStateModel {
   page = {
@@ -34,7 +38,9 @@ export class PageStateModel {
 @Injectable()
 export class PageState {
 
-  constructor(private pageService: PageService ) {}
+  constructor(private pageService: PageService, private crypt: CryptoJsService, private notification: NotificationService ,
+              private router: Router
+  ) {}
 
   @Selector()
   static faq(state: PageStateModel) {
@@ -67,6 +73,24 @@ export class PageState {
   @Action(ContactUs)
   contactUs(ctx: StateContext<ContactUsModel>, { payload }: ContactUs) {
     // contact api logic here
+    const data = {
+      idUser: payload.idUser,
+      contenus: payload.contenus 
+    }
+    this.pageService.sendMessage({data: this.crypt.encryptData(data)}).subscribe((resp: any)=>{
+        if(Object.keys(resp).length !=0 ){
+          this.notification.showSuccess(resp.message)
+        }
+        return;
+    }, (error: HttpErrorResponse)=> {
+        if(error.status == 500){
+          this.notification.showError(error.error.message);
+        }else if(error.status == 403){
+              this.notification.showError("Clé d'authentification expiré veuillez vous reconnecter");
+              this.router.navigateByUrl("/auth/login")
+        }
+    });
+    return;
   }
 
 }

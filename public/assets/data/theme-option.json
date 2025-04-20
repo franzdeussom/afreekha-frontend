@@ -228,7 +228,7 @@
         "detail_1": {
           "label": "Phone",
           "icon": "ri-phone-line",
-          "text": "(+1) 618 190 496"
+          "text": "(+237) 6984023201"
         },
         "detail_2": {
           "label": "Email",
@@ -236,14 +236,9 @@
           "text": "support@afreekha.com"
         },
         "detail_3": {
-          "label": "London Office",
+          "label": "Douala, Makepe",
           "icon": "ri-map-pin-line",
-          "text": "Cruce Casa de Postas 29"
-        },
-        "detail_4": {
-          "label": "Bournemouth Office",
-          "icon": "ri-building-line",
-          "text": "Visitación de la Encina 22"
+          "text": "7j/7 8h-18h"
         }
       },
       "error_page": {

@@ -80,5 +80,6 @@ export interface HomeData {
     v_img : {idImage: number, lien: string, type: "collections"}[],
 
     list_categories: Category[],
+    temp: {main_banner: any[], side: any[], main_two_pic: any[], slider: any[]}
     
 }

@@ -19,7 +19,7 @@
           "deleted_at": null
         },
         "min_order_amount": 0,
-        "min_order_free_shipping": 50
+        "min_order_free_shipping": 11000
       },
       "wallet_points": {
         "point_currency_ratio": 30

@@ -154,7 +154,7 @@ export class ProductState {
       }
 
       if(action?.payload?.['search']) {
-        products = products.filter(product => product.nom_article.toLowerCase().includes(action?.payload?.['search'].toLowerCase()))
+        products = products.filter(product => product.nom_article.substring(0, action?.payload?.['search'].length).toLowerCase() === action?.payload?.['search'].toLowerCase())
       }
       ctx.patchState({
         product: {
