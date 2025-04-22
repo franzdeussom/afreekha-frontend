@@ -9,6 +9,7 @@ import { ButtonComponent } from '../../../shared/components/widgets/button/butto
 
 import { AlertComponent } from '../../../shared/components/widgets/alert/alert.component';
 import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcrumb/breadcrumb.component';
+import { CustomValidators } from 'src/app/shared/validator/password-match';
 
 @Component({
     selector: 'app-update-password',
@@ -43,7 +44,7 @@ export class UpdatePasswordComponent {
     this.form = this.formBuilder.group({
       newPassword: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required]),
-    });
+    },{validator : CustomValidators.MatchValidator('newPassword', 'confirmPassword')});
   }
 
   submit() {

@@ -34,8 +34,8 @@ export class AccountService {
     return this.http.get<HomeData>(`${environment.URL_API}/api${ROUTES_API.HOME.GET}`);
   }
 
-  updateUserProfile(payload: any, id: string): Observable<AccountUser> {
-    return this.http.patch<AccountUser>(`${environment.URL_API}/api${ROUTES_API.USERS.UPDATE(String(id))}`, payload);
+  updateUserProfile(payload: any): Observable<AccountUser> {
+    return this.http.put<AccountUser>(`${environment.URL_API}/api${ROUTES_API.USERS.UPDATE}`, payload);
   }
 
   updateUserPassword(payload: any, id: string): Observable<any>{

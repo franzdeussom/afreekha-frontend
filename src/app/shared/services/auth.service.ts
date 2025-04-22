@@ -37,8 +37,8 @@ export class AuthService {
       return this.http.post<User>(`${environment.URL_API}/api${ROUTES_API.USERS.REGISTER}`, {data: this.crypt.encryptData(payload)});
   }
 
-  fortgotPassword(email: string): Observable<{message: string, done: boolean}>{
-    return this.http.post<{message: string, done: boolean}>(`${environment.URL_API}/api${ROUTES_API.USERS.SEND_CODE}`, email)
+  fortgotPassword(payload: any): Observable<{message: string, done: boolean}>{
+    return this.http.post<{message: string, done: boolean}>(`${environment.URL_API}/api${ROUTES_API.USERS.SEND_CODE}`, payload)
   }
 
   resetPassword(payload: any): Observable<{message: string, done: boolean}>{

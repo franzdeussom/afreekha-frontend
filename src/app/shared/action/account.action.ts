@@ -13,7 +13,7 @@ export class UpdateUserProfile {
 
 export class UpdateUserDashboard{
   static readonly type = "[Account] User Dashboad";
-  constructor(public payload : {montantTotalCommandeImpaye: number, montantTotalCommandePaye: number, nbrTotalCommande: number, isPay: boolean}){}
+  constructor(public payload : {montantTotalCommandeImpaye: number, montantTotalCommandePaye: number, nbreTotalCommande: number, isPay: boolean}){}
 }
 
 export class UpdateUserPassword {

@@ -12,6 +12,7 @@ import { UserAddress } from "../interface/user.interface";
 import { HttpErrorResponse } from "@angular/common/http";
 import { CryptoJsService } from "../services/crypto-js.service";
 import { Router } from "@angular/router";
+import { UpdateEmail } from "../action/auth.action";
 
 export class AccountStateModel {
   user: AccountUser | null;
@@ -64,19 +65,27 @@ export class AccountState {
   updateProfile(ctx: StateContext<AccountStateModel>, { payload }: UpdateUserProfile) {
     // Update Profile Logic Here
     const user = this.store.selectSnapshot(AccountState.user) as any;
-    console.log('payload update:', payload, user?.id);
+    
     const data = {
         data: this.crypto.encryptData(payload),
     }
-    this.accountService.updateUserProfile(data, String(user?.user?.id)).subscribe((resp: any)=>{
-      this.notificationService.showSuccess("Profile updated successfully");
+    this.accountService.updateUserProfile(data).subscribe((resp: any)=>{
+     user.user.nom = payload.nom;
+     user.user.prenom = payload.prenom;
+     user.user.email = payload.email.toLowerCase();
+     user.user.tel = payload.tel;
+
       ctx.patchState({
-        user: { ...ctx.getState().user, ...payload }
+        user: user
       });
+
+      this.store.dispatch(new UpdateEmail(payload.email));
+      this.notificationService.showSuccess("Profile updated successfully");
+
       localStorage.setItem('UserDetails', JSON.stringify(ctx.getState().user));
     }, (error: HttpErrorResponse)=> {
       if(error.status == 400){
-        this.notificationService.showError(error.error[0].message);
+        this.notificationService.showError(error.error.errorMessage);
       }else if(error.status == 403){
         this.notificationService.showError("Clé d'authentification expiré veuillez vous reconnecter");
         this.router.navigateByUrl("/auth/login")
@@ -205,7 +214,9 @@ export class AccountState {
     if(user){
       if(action.payload.isPay){
         user.montantTotalCommandePaye =  user.montantTotalCommandePaye ?(user.montantTotalCommandePaye += action.payload.montantTotalCommandePaye):action.payload.montantTotalCommandePaye 
+        user.montantTotalCommandeImpaye = user.montantTotalCommandeImpaye
       }else{
+        user.montantTotalCommandePaye =  user.montantTotalCommandePaye
         user.montantTotalCommandeImpaye = user.montantTotalCommandeImpaye ? (user.montantTotalCommandeImpaye += action.payload.montantTotalCommandeImpaye):action.payload.montantTotalCommandeImpaye
 
       }

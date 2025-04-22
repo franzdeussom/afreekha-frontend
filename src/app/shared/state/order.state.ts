@@ -130,7 +130,7 @@ export class OrderState {
     }
     //api payemnt logic here
 
-    let paymentDone = true; //<----- waiting payement api
+    let paymentDone = action.payload.payment_method?.toLowerCase() == "mobile"; //<----- waiting payement api
     
     const data = {
       idUser: userData ? userData.user.id: null,
@@ -144,9 +144,9 @@ export class OrderState {
           this.store.dispatch(new ClearCart).subscribe({
             complete: ()=>{
                 this.store.dispatch(new UpdateUserDashboard({
-                  montantTotalCommandeImpaye: userData.user.montantTotalCommandeImpaye,
-                  montantTotalCommandePaye : userData.user.montantTotalCommandePaye,
-                  nbrTotalCommande : userData.user.nbrTotalCommande,
+                  montantTotalCommandeImpaye: userData.montantTotalCommandeImpaye,
+                  montantTotalCommandePaye : userData.montantTotalCommandePaye,
+                  nbreTotalCommande : userData.nbreTotalCommande,
                   isPay: paymentDone
                 })).subscribe({
                   complete: ()=>{

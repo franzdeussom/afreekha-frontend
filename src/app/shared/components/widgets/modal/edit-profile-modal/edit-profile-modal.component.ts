@@ -46,7 +46,6 @@ export class EditProfileModalComponent {
           tel: new FormControl(user?.user?.tel, [Validators.required, Validators.pattern(/^[0-9]*$/)]),
           country_code: new FormControl("237"), 
         });
-        this.form?.controls?.['email'].disable();
         setTimeout( () => this.flicker = false, 200);
       });
   }

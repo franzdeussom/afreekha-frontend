@@ -44,7 +44,6 @@ export class ProductComponent {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.product$.subscribe(product => {
       if(product) {
-        console.log('product, load', product)
         this.breadcrumb.items = [];
         this.breadcrumb.title = product.nom_article;
         this.breadcrumb.items.push({ label: 'Product', active: true }, { label: product.nom_article, active: false });

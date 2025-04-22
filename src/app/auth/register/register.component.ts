@@ -61,12 +61,7 @@ export class RegisterComponent {
       return
     }
     if(this.form.valid) {
-      this.store.dispatch(new Register(this.form.value)).subscribe({
-          complete: () => {
-            this.router.navigateByUrl('/account/dashboard');
-          }
-        }
-      );
+      this.store.dispatch(new Register(this.form.value))
     }
   }
 }

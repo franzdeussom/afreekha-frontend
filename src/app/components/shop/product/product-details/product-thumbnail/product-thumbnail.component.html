@@ -42,13 +42,13 @@
                             </div>
                           </ng-template>
                         }
-                        @if (!product.Images.length) {
+                        @if (product.Images || product.lien ) {
                           <ng-template carouselSlide [id]="'1'">
                             <div>
                               <div class="slider-image">
                                                             <img [src]="product && product.Images ?
                                                                     product.Images[0].lien :
-                                                                    'assets/images/product.png'" class="img-fluid" alt="{{ product.nom_article }}">
+                                                                    (product.lien ? product.lien: 'assets/images/product.png')" class="img-fluid" alt="{{ product.nom_article }}">
                                 </div>
                               </div>
                             </ng-template>
@@ -56,7 +56,7 @@
                         </owl-carousel-o>
                       </div>
                     </div>
-                    @if (product.Images.length) {
+                    @if (product.Images && product.Images.length > 1) {
                       <div class="col-12">
                         <div class="bottom-slider-image left-slider no-arrow slick-top">
                           <owl-carousel-o [options]="productThumbSlider">

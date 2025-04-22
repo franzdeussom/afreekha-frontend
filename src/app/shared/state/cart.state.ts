@@ -59,22 +59,14 @@ export class CartState {
   @Action(GetCartItems)
   getCartItems(ctx: StateContext<CartStateModel>) {
    
-    return this.cartService.getCartItems().pipe(
-      tap({
-        next: result => {
-          // Set Selected Varaint
-          result?.items?.filter((item: Cart) => {
-            if(item?.variation) {
-              item.variation.selected_variation = item?.variation?.attribute_values?.map(values => values?.value).join('/');
-            }
-          });
-          ctx.patchState(result);
-        },
-        error: err => {
-          throw new Error(err?.error?.message);
-        }
-      })
-    );
+  const result = this.cartService.getCartItems() as any;
+
+  result?.items?.filter((item: Cart) => {
+    if(item?.variation) {
+      item.variation.selected_variation = item?.variation?.attribute_values?.map(values => values?.value).join('/');
+    }
+  });
+    return 0;
   }
 
   @Action(AddToCart)

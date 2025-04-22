@@ -20,10 +20,10 @@ export const ROUTES_API = {
     USERS: {
         //post
         AUTH_LOGIN: "/auth",
-        REGISTER: "/users",
+        REGISTER: "/registerByUser",
         RESET_PASSWORD: "/users/reset-password",
         SEND_CODE: "/users/recovery-password",
-        UPDATE: (id: string)=> `/admin/users/${id}`, //{nom, prenom, numero_telephone}
+        UPDATE: `/profile`, //{nom, prenom, numero_telephone}
         UPDATE_PASSWORD: (id: string)=> `/password/${id}`, //{current_password, new_password}
     },
 

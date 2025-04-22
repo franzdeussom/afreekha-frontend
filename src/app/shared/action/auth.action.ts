@@ -16,6 +16,11 @@ export class Login {
   constructor(public payload: AuthUserStateModel) {}
 }
 
+export class UpdateEmail {
+  static readonly type = "[Auth] UpdateEmail";
+  constructor(public payload: string) {}
+}
+
 export class ForgotPassWord {
   static readonly type = "[Auth] Forgot";
   constructor(public payload: AuthUserForgotModel) {}

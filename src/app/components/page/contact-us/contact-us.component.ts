@@ -10,6 +10,7 @@ import { Breadcrumb } from '../../../shared/interface/breadcrumb';
 import { Contact, Option } from '../../../shared/interface/theme-option.interface';
 import { ThemeOptionState } from '../../../shared/state/theme-option.state';
 import { AccountState } from 'src/app/shared/state/account.state';
+import { ImageLinkComponent } from 'src/app/shared/components/widgets/image-link/image-link.component';
 
 @Component({
     selector: 'app-contact-us',
@@ -43,12 +44,12 @@ export class ContactUsComponent {
 
     this.themeOption$.subscribe(data=> this.contactData = data?.contact_us)
 
-    this.user$.subscribe((user)=>{
+    this.user$.subscribe((user: any)=>{
       this.form.patchValue({
-        idUser: user.user.id,
-        email: user.user.email,
-        phone: user.user.tel,
-        name: user.user.prenom + ' ' + user.user.nom 
+        idUser: user?.user?.id,
+        email: user?.user?.email,
+        phone: user?.user?.tel,
+        name: user?.user?.prenom + ' ' + user?.user?.nom 
       })
     })
   }
@@ -64,5 +65,10 @@ export class ContactUsComponent {
         }
       })
     }
+  }
+
+  openWhatsapp(){
+    const url = "wa.link/re041t"
+    window.open("https://"+url, '_blank');
   }
 }

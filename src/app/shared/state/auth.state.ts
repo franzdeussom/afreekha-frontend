@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Store, State, Selector, Action, StateContext } from "@ngxs/store";
 import { Router } from '@angular/router';
 import { AccountClear, GetUserDetails } from "../action/account.action";
-import { Register, Login, ForgotPassWord, VerifyEmailOtp, UpdatePassword, Logout, AuthClear } from "../action/auth.action";
+import { Register, Login, ForgotPassWord, VerifyEmailOtp, UpdatePassword, Logout, AuthClear, UpdateEmail } from "../action/auth.action";
 import { NotificationService } from "../services/notification.service";
 import { AuthService } from "../services/auth.service";
 import { tap } from "rxjs";
@@ -10,12 +10,13 @@ import { CryptoJsService } from "../services/crypto-js.service";
 import { User } from "../interface/user.interface";
 import { error } from "console";
 import { HttpErrorResponse } from "@angular/common/http";
+import { Location } from "@angular/common";
 
 export interface AuthStateModel {
   email: String;
   token: String | Number;
   access_token: String | null;
-  code: number | string
+  code: Number | String
 }
 
 @State<AuthStateModel>({
@@ -33,6 +34,7 @@ export class AuthState {
   constructor(private store: Store, public router: Router,
     private authService: AuthService,
     private crypt: CryptoJsService,
+    private localtion: Location,
     private notificationService: NotificationService) {}
 
 
@@ -61,6 +63,11 @@ export class AuthState {
   }
 
   @Selector()
+  static code(state: AuthStateModel): Number | String {
+    return state.code;
+  }
+
+  @Selector()
   static token(state: AuthStateModel): String | Number {
     return state.token;
   }
@@ -70,15 +77,22 @@ export class AuthState {
     // Register Logic Here
     this.authService.register(action.payload).subscribe((result: any)=> {
       const data = this.crypt.decryptData(result.reps) as {user: User};
-      this.notificationService.showSuccess("Registration successful");
+      this.notificationService.showSuccess("Registration successful, please login");
       //save the retrieved data
       localStorage.setItem("UserDetails", JSON.stringify(result.reps));
       ctx.patchState({
-        email: data.user.email,
+        email: action.payload.email.toLowerCase(),
         token: result.accessToken,
         access_token: result.accessToken || ''
       });
+      this.authService.redirectUrl = undefined;
+      console.log('register done')
       this.router.navigateByUrl('/auth/login');
+      // Clear the stored redirect URL
+      console.log('ok');
+      
+      this.store.dispatch(new GetUserDetails());
+      return 0;
     }, (error: HttpErrorResponse)=>{
         if(error.status == 404){
           this.notificationService.showError(error.error.message);
@@ -86,6 +100,7 @@ export class AuthState {
           console.log("error", error);
         }
     });
+    return 0;
   }
 
   @Action(Login)
@@ -95,7 +110,7 @@ export class AuthState {
     let data: any; 
     if(isTel){
       data = {
-        tel: action.payload.email,
+        tel: action.payload.email.toLowerCase(),
         mot_de_passe: action.payload.password
       }
     }else{
@@ -136,13 +151,14 @@ export class AuthState {
   @Action(ForgotPassWord)
   forgotPassword(ctx: StateContext<AuthStateModel>, action: ForgotPassWord) {
     // Forgot Password Logic Here
-    this.authService.fortgotPassword(action.payload.email).subscribe((resp: any)=>{
+    this.authService.fortgotPassword({email: action.payload.email}).subscribe((resp: any)=>{
         if(Object.keys(resp).length != 0){
           if(resp.done){
-              ctx.dispatch({
-                code: resp.code
+              ctx.patchState({
+                email: action.payload.email,
+                code: Number.parseInt(this.crypt.decryptData(resp.code).code) 
               });
-              this.notificationService.showSuccess('Recovery code send to this address'+action.payload.email);
+              this.notificationService.showSuccess('Recovery code send to this address ' +action.payload.email);
               this.router.navigateByUrl('/auth/otp'); 
           }
         }else{
@@ -151,6 +167,8 @@ export class AuthState {
     }, (error: HttpErrorResponse)=>{
         if(error.status == 404){
           this.notificationService.showError(error.error.message);
+        } else if(error.status == 500){
+          this.notificationService.showError("No Internet connection");
         }
     });
   }
@@ -158,19 +176,27 @@ export class AuthState {
   @Action(VerifyEmailOtp)
   verifyEmail(ctx: StateContext<AuthStateModel>, action: VerifyEmailOtp) {
     // Verify Logic Here
-    const code = ctx.getState().code as number;
-    return Number.parseInt(action.payload.token) == code;
+    const code = this.store.selectSnapshot(AuthState.code);
+
+    if(Number.parseInt(action.payload.token) == code){
+      this.router.navigateByUrl('/auth/update-password'); 
+      return 0;
+    }else{
+      this.notificationService.showError('Code Incorrect !')
+    }
   }
 
   @Action(UpdatePassword)
   updatePassword(ctx: StateContext<AuthStateModel>, action: UpdatePassword) {
     // Update Password Logic Here
     const data = {
-       token: action.payload.token,
+       code: ctx.getState().code,
+       newPassword: action.payload.password,
+       email: action.payload.email
     }
-    console.log('value resting', action.payload);
-      this.authService.resetPassword(data).subscribe((resp: any)=>{
+      this.authService.resetPassword({data: this.crypt.encryptData(data)}).subscribe((resp: any)=>{
           if(Object.keys(resp).length != 0){
+              this.notificationService.showSuccess(resp.message);
               this.router.navigateByUrl('/auth/login'); 
           }
       }, (error: HttpErrorResponse)=>{
@@ -180,6 +206,14 @@ export class AuthState {
             this.notificationService.showError(error.error.message);
           }
       });
+  }
+
+  @Action(UpdateEmail)
+  updateEmail(ctx: StateContext<AuthStateModel>, action: UpdateEmail){
+    ctx.patchState({
+      email: action.payload
+    });
+    return 0;
   }
 
   @Action(Logout)

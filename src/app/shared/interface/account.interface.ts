@@ -15,7 +15,7 @@ export interface AccountUser {
     password?: string;
     tel?: number;
     adresses?: UserAddress[];
-    nbrTotalCommande?: number;
+    nbreTotalCommande?: number;
     montantTotalCommandeImpaye?: number;
     montantTotalCommandePaye?: number;
     createdAt?: string;

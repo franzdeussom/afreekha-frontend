@@ -48,13 +48,7 @@ export class OtpComponent {
       this.store.dispatch(new VerifyEmailOtp({ 
         email: this.email, 
         token: this.form.value.otp
-      })).subscribe(
-        {
-          complete: () => { 
-            this.router.navigateByUrl('/auth/update-password'); 
-          }
-        }
-      );
+      }))
     }
   }
 

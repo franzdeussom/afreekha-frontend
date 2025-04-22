@@ -37,8 +37,8 @@
           </div>
           <div class="col-12">
             <div class="">
-              <label class="form-label" for="email">{{ 'email_address' | translate }}</label>
-              <input class="form-control" id="email" type="text" placeholder="{{ 'enter_email_address' | translate }}" formControlName="email" readonly>
+              <label class="form-label" for="email">{{ "Email" }}</label>
+              <input class="form-control" id="email" type="text" placeholder="{{ 'enter_email_address' | translate }}" formControlName="email">
               @if (form.controls['email'].touched && form.controls['email'].errors?.['required']) {
                 <div class="invalid-feedback">
                   {{ 'email_address_is_required' | translate }}

@@ -31,7 +31,7 @@
                   }}</span></div>
             </td>
             <td>
-              {{ "Mobile" }}
+              {{ order.statut == 'en cours' ? "Cash" : "Mobile" }}
             </td>
             <td><a [routerLink]="['/account/order/details', order.idCommande]"><i class="ri-eye-line"></i></a></td>
           </tr>
