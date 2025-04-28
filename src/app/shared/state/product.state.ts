@@ -162,6 +162,7 @@ export class ProductState {
           total: total ? total : 0
         }
       });
+
       this.productService.skeletonLoader = false;
 
       return 0;
@@ -294,7 +295,7 @@ export class ProductState {
         //process to 3 ramdom on promoArticle
         const randomArticles = promoArticles
         .sort(() => 0.5 - Math.random()) // Mélange aléatoire des articles
-        .slice(0, (promoArticles.length >= 3 ? 3: promoArticles.length)); // Prendre les 3 premiers articles après mélange
+        .slice(0, (promoArticles.length >= 3 ? 3: promoArticles.length)); // Prendre les 3 premiers articles aprs mélange
         ctx.patchState({
           dealProducts : randomArticles 
         });

@@ -43,15 +43,16 @@
               <div class="right-sidebar-modal">
                 <h4 class="title-name">{{ selectedVariation ? selectedVariation.name : product.nom_article }}</h4>
                 <h4 class="price">
-                  <del>
-                    {{ product.prix | currencySymbol }}
-                  </del>
                   @if (product.promo) {
+                    <del>{{ product.prix | currencySymbol }} </del> 
+
                     {{ (product.prix-(product.prix*product.pourcentage_promo)/100) | currencySymbol }}
+                  }@else {
+                   <h4>{{ product.prix | currencySymbol }}</h4> 
                   }
                   @if (product.promo) {
                     <label class="modal-label">
-                      {{ product.pourcentage_promo }}%
+                      -{{  product.pourcentage_promo }}%
                     </label>
                   }
                 </h4>

@@ -194,6 +194,7 @@ export class AuthState {
        newPassword: action.payload.password,
        email: action.payload.email
     }
+    
       this.authService.resetPassword({data: this.crypt.encryptData(data)}).subscribe((resp: any)=>{
           if(Object.keys(resp).length != 0){
               this.notificationService.showSuccess(resp.message);

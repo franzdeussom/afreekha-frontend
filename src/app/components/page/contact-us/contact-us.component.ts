@@ -40,8 +40,11 @@ export class ContactUsComponent {
       phone: new FormControl('', [Validators.required]),
       contenus: new FormControl('', [Validators.required]),
       idUser: new FormControl(''),
-    })
+    });
 
+    this.form.get('email')?.disable();
+    this.form.get('name')?.disable();
+    
     this.themeOption$.subscribe(data=> this.contactData = data?.contact_us)
 
     this.user$.subscribe((user: any)=>{

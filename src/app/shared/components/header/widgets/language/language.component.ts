@@ -31,9 +31,9 @@ export class LanguageComponent {
   ]
 
   public selectedLanguage: any = {
-    language: 'English',
-    code: 'en',
-    icon: 'us'
+    language: 'Français',
+    code: 'fr',
+    icon: 'fr'
   }
 
   constructor(private translate: TranslateService, @Inject(PLATFORM_ID) private platformId: Object) {}

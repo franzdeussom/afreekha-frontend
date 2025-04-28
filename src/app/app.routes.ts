@@ -14,7 +14,7 @@ export const routes: Routes = [
         component: MaintenanceComponent
       },
       {
-        path: "",
+        path: '',
         component: LayoutComponent,
         children: content,
       }

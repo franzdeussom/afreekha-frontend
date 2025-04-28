@@ -62,7 +62,7 @@
          <del class="text-content" style="color: red;">{{  product.prix | currencySymbol }}</del>
        }
         @if (product.promo && product.pourcentage_promo) {
-          <span class="theme-color">({{ product.pourcentage_promo }}%)</span>
+          <span class="theme-color">( -{{ product.pourcentage_promo }}%)</span>
         }
       </h5>
       <div class="product-rating">

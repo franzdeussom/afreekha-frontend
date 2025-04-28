@@ -1,9 +1,5 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
-  LoadingBarModule,
-  LoadingBarService
-} from "./chunk-QVOH4NQB.js";
-import {
   NavigationCancel,
   NavigationEnd,
   NavigationError,
@@ -13,6 +9,10 @@ import {
 } from "./chunk-V4BO7I2I.js";
 import "./chunk-VED7U6UB.js";
 import "./chunk-IXNWETZX.js";
+import {
+  LoadingBarModule,
+  LoadingBarService
+} from "./chunk-QVOH4NQB.js";
 import "./chunk-OIIWII42.js";
 import {
   NgModule,

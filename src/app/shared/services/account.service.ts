@@ -20,7 +20,7 @@ export class AccountService {
      //return 
      if(isPlatformBrowser(this.platformId)){
       const data = JSON.parse(localStorage.getItem("UserDetails")!) || null ? this.crypt.decryptData(JSON.parse(localStorage.getItem("UserDetails")!)): null;
-      console.log('local storage data get', data);
+    
       return data;
      }else{
       return null;

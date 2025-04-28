@@ -36,18 +36,8 @@ export class ProductComponent {
 
   constructor(public productService: ProductService) {
   }
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-   console.log("produits", this.product)
-    
-  }
+
   ngOnChanges() {
-   /* if (Array.isArray(this.productIds)) {
-      this.product$.subscribe(products => {
-        this.products = products.data.filter(product => this.productIds?.includes(product?.id));
-      });
-    }*/
    this.products = this.product;
   }
 }

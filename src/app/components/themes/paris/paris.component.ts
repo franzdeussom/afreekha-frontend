@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, PLATFORM_ID, Inject, inject } from '@angular/core';
-import { AsyncPipe, isPlatformBrowser } from '@angular/common';
-import { Select, Store } from '@ngxs/store';
+import { isPlatformBrowser } from '@angular/common';
+import { Store } from '@ngxs/store';
 import { ThemeOptionService } from '../../../shared/services/theme-option.service';
 import * as data from  '../../../shared/data/owl-carousel';
 import { NewsletterModalComponent } from '../../../shared/components/widgets/modal/newsletter-modal/newsletter-modal.component';
@@ -13,9 +13,7 @@ import { BannerComponent } from '../widgets/banner/banner.component';
 import { HomeBannerComponent } from '../widgets/home-banner/home-banner.component';
 import { HomeData } from 'src/app/shared/interface/account.interface';
 import { HomeState } from 'src/app/shared/state/home.state';
-import { GetHomeData } from 'src/app/shared/action/home.action';
-import { forkJoin, Observable, tap } from 'rxjs';
-import { AccountService } from 'src/app/shared/services/account.service';
+import { Observable} from 'rxjs';
 
 @Component({
     selector: 'app-paris',
@@ -37,30 +35,15 @@ export class ParisComponent {
   public categorySlider = data.categorySlider;
   public isBrowser: boolean;
 
-  constructor(private store: Store,
+  constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private homeService : AccountService,
     private themeOptionService: ThemeOptionService) {     
       this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit() {
-    if (this.isBrowser) {  
-        // Skeleton Loader
-        //document.body.classList.add('skeleton-body');
-
-      /*  forkJoin([getProducts$]).subscribe({
-          complete: () => {
-            document.body.classList.remove('skeleton-body');
-            this.themeOptionService.preloader = false;
-          }
-        });*/
-      }
-
-      
-      // Change color for this layout
+    
       this.themeOptionService.preloader = false;
-     // document.documentElement.style.setProperty('--theme-color','#0da487');
       this.themeOptionService.theme_color = '#0da487';
     }
 

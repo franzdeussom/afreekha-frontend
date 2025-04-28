@@ -56,10 +56,13 @@
       @if (data?.footer?.footer_copyright) {
         <div class="reserve">
           <app-footer-copyright [data]="data"></app-footer-copyright>
+          <p><strong>{{"Developped_by" | translate}} </strong> <span style="color: rgb(218, 158, 46)">G-</span><span style="color: rgb(0, 0, 0);">in</span> </p>
+
         </div>
       }
       <div class="payment">
         <app-footer-payment-options></app-footer-payment-options>
+
       </div>
       @if (data?.footer?.social_media_enable) {
         <app-footer-social-links [data]="data"></app-footer-social-links>

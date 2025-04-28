@@ -3,7 +3,6 @@ import { Store, Action, Selector, State, StateContext } from "@ngxs/store";
 import { HomeData } from "../interface/account.interface";
 import { GetHomeData } from "../action/home.action";
 import { AccountService } from "../services/account.service";
-import { tap } from "rxjs";
 import { ThemeOptionService } from "../services/theme-option.service";
 
 export class HomeStateModel {
@@ -30,7 +29,6 @@ export class HomeState {
     @Action(GetHomeData)
     getHomeData(ctx: StateContext<HomeStateModel>) {
         // Add your logic here
-        console.log("data servicelodding")
     this.homeService.getHomeData().subscribe((result: any) => {
         ctx.patchState(
           {

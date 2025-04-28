@@ -31,7 +31,7 @@
                                                 </div>
                                                 }
                                                 <div class="contact-detail-title">
-                                                    <h4>{{"WhatsApp: click to open WhatsApp" }}</h4>
+                                                    <h4>{{"WhatsApp: click on the icon to chat" }}</h4>
                                                 </div>
     
                                                 <div class="contact-detail-contain">
@@ -95,7 +95,7 @@
                                 <label for="fullname" class="form-label">{{ 'full_name' | translate }}</label>
                                 <div class="custom-input">
                                     <input type="text" class="form-control" id="fullname"
-                                        placeholder="{{ 'enter_full_name' | translate }}" [disabled]="true" formControlName="name">
+                                        placeholder="{{ 'enter_full_name' | translate }}" formControlName="name">
                                     <i class="ri-user-3-fill"></i>
                                     @if (form.controls['name'].touched && form.controls['name'].errors?.['required']) {
                                     <div class="invalid-feedback">
@@ -111,7 +111,7 @@
                                 <label for="email" class="form-label">{{ 'email_address' | translate }}</label>
                                 <div class="custom-input">
                                     <input type="email" class="form-control" id="email"
-                                        placeholder="{{ 'enter_email_address' | translate }}" [disabled]="true" formControlName="email">
+                                        placeholder="{{ 'enter_email_address' | translate }}" formControlName="email">
                                     <i class="ri-mail-fill"></i>
                                     @if (form.controls['email'].touched && form.controls['email'].errors?.['required'])
                                     {
