@@ -55,11 +55,11 @@ export class SearchComponent {
       this.filter['search'] = params['search'];
       this.search.patchValue(params['search'] ? params['search'] : '')
     }
-    this.store.dispatch(new GetProducts(this.filter)).subscribe({
-      next: (val:any) =>{
-        this.products = val.product.product.data
-      }
-    });
+    this.store.dispatch(new GetProducts(this.filter))
+    this.product$.subscribe((val:any)=>{
+      this.products = val.data;
+      this.totalItems = val.data.length;
+    })
    });
   }
 

@@ -12,6 +12,7 @@ import { CategoryState } from "./category.state";
 import { CryptoJsService } from "../services/crypto-js.service";
 import { HomeState } from "./home.state";
 import { HomeData } from "../interface/account.interface";
+import { HttpErrorResponse } from "@angular/common/http";
 
 export class ProductStateModel {
   product = {
@@ -154,11 +155,15 @@ export class ProductState {
       }
 
       if(action?.payload?.['search']) {
-        products = products.filter(product => product.nom_article.substring(0, action?.payload?.['search'].length).toLowerCase() === action?.payload?.['search'].toLowerCase())
+        const filter = products.filter(product => product.nom_article.toLowerCase().includes(action?.payload?.['search'].toLowerCase()))
+        products = filter;
       }
       ctx.patchState({
         product: {
-          data: this.offsetReset ? products : (ctx.getState().product.data.length > 0 ? [...ctx.getState().product.data, ...products]: products),
+          data: this.offsetReset ? 
+                products : (ctx.getState().product.data.length > 0 ?  
+                            (action.payload?.['search'] ?
+                               products : [...ctx.getState().product.data, ...products]) : products),
           total: total ? total : 0
         }
       });
@@ -181,6 +186,7 @@ export class ProductState {
         action.payload['isUniqueFilter'] = this.isUniqueFilter;
       }
     }
+
     this.productService.getProduct(this.offset, action.payload).subscribe((data: any)=>{
         if(data.length > 0){
 
@@ -190,11 +196,24 @@ export class ProductState {
 
           appliedFilter(products, data[0].total);
         }else{
+          
           this.allLoaded = true;
           this.productService.skeletonLoader = false;
 
           return 0;
         }
+    }, (error: HttpErrorResponse)=>{
+      this.productService.skeletonLoader = false;
+      this.allLoaded = true;
+      this.isUniqueFilter = false;
+      this.offset = 0;
+      this.offsetReset = false;
+
+      if(error.status == 400) {
+        throw new Error(error.error[0].message);
+      } else {
+        throw new Error("Something went wrong");
+      }
     })
 
   }

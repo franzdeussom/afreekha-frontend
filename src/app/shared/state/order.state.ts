@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store, Action, Selector, State, StateContext } from "@ngxs/store";
-import { tap } from "rxjs";
 import { GetOrders, ViewOrder, Checkout, PlaceOrder, Clear, VerifyPayment, RePayment } from "../action/order.action";
 import { Order, OrderCheckout } from "../interface/order.interface";
 import { OrderService } from "../services/order.service";
@@ -130,11 +129,11 @@ export class OrderState {
     }
     //api payemnt logic here
 
-    let paymentDone = action.payload.payment_method?.toLowerCase() == "mobile"; //<----- waiting payement api
+    let is_paymentDone = action.payload.payment_method?.toLowerCase() == "mobile"; //<----- waiting payement api
     
     const data = {
       idUser: userData ? userData.user.id: null,
-      statut: paymentDone ? "payé": "en cours",
+      statut: is_paymentDone ? "payé": "en cours",
       article: action.payload.products,
       idAdresse: action.payload.shipping_address_id
     }
@@ -147,7 +146,7 @@ export class OrderState {
                   montantTotalCommandeImpaye: userData.montantTotalCommandeImpaye,
                   montantTotalCommandePaye : userData.montantTotalCommandePaye,
                   nbreTotalCommande : userData.nbreTotalCommande,
-                  isPay: paymentDone
+                  isPay: is_paymentDone
                 })).subscribe({
                   complete: ()=>{
                     this.notif.showSuccess(reslt[0].message);

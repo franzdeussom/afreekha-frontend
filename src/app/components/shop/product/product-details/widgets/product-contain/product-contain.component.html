@@ -1,22 +1,4 @@
-@if ((option?.product?.encourage_order && product.encourage_order) ||
-  (option?.product?.encourage_view && product.encourage_view)) {
-  <div class="product-count">
-    <ul>
-      @if (option?.product?.encourage_order && product.encourage_order) {
-        <li>
-          <i class="ri-flashlight-line"></i>
-          <h6 class="lang">{{ ordersCount }} {{ 'customers_ordered' | translate }}</h6>
-        </li>
-      }
-      @if (option?.product?.encourage_view && product.encourage_view) {
-        <li>
-          <i class="ri-eye-line"></i>
-          <h6 class="lang">{{ viewsCount }} {{ 'active_view_in_this_item' | translate }}</h6>
-        </li>
-      }
-    </ul>
-  </div>
-}
+
 <h2 class="name">{{  product.nom_article }}</h2>
 <div class="price-rating">
   <h3 class="theme-color price">
@@ -24,18 +6,22 @@
        <del class="text-content"> {{ (product.prix) | currencySymbol }}</del>
        <h6> {{ (product.prix - (product.prix * product.pourcentage_promo)/100) | currencySymbol }}</h6>
     }@else {
-    <h6> {{ (product.prix) | currencySymbol }}</h6>
+    <h6 class="product-contain"> {{ (product.prix) | currencySymbol }}</h6>
     }
     @if (product.promo) {
       <span class="offer-top">
-        {{ (product.pourcentage_promo) }}% {{ 'off' | translate }}
+        {{ -(product.pourcentage_promo) }}% {{ 'off' | translate }}
       </span>
     }
     @if (product.couleur) {
-      <li>{{ 'color' | translate }}: {{ product.couleur }}</li>
+      <div class="product-contain">
+          <p>{{ 'color' | translate }}: <span [style]="'color:'+product.couleur+';'"> </span> {{ product.couleur }}</p>
+      </div>
     }
     @if (product.taille) {
-      <li>{{ 'size' | translate }}: {{ product.taille | titlecase}}</li>
+      <div class="product-contain">
+        <p>{{ 'size' | translate }}: {{ product.taille | titlecase}}</p>
+      </div>
     }
   </h3>
   
