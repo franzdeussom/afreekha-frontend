@@ -1,1 +1,0 @@
-import{N as r,Q as o,Wc as n,fc as i}from"./chunk-DWTPP222.js";var m=(()=>{class t{constructor(e){this.http=e,this.preloader=!0}getThemeOption(){return this.http.get(`${n.URL}/theme-option.json`)}static{this.\u0275fac=function(c){return new(c||t)(o(i))}}static{this.\u0275prov=r({token:t,factory:t.\u0275fac,providedIn:"root"})}}return t})();export{m as a};
