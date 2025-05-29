@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  baseURL: 'http://localhost:4200/',
-  URL: 'http://localhost:4200/assets/data',
+  baseURL: 'https://afreekha.store/',
+  URL: 'https://afreekha.store/assets/data',
   URL_API: "https://afreekha.store" //'http://localhost:3001' 
 };
   
