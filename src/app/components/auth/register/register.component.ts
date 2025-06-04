@@ -62,10 +62,7 @@ export class RegisterComponent {
       return
     }
     if(this.form.valid) {
-      this.store.dispatch(new Register(this.form.value)).subscribe({
-         
-        }
-      );
+      this.store.dispatch(new Register(this.form.value));
     }
   }
 }
