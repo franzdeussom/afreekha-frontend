@@ -56,7 +56,12 @@
       @if (data?.footer?.footer_copyright) {
         <div class="reserve">
           <app-footer-copyright [data]="data"></app-footer-copyright>
-          <p><strong>{{"Developped_by" | translate}} </strong> <span style="color: rgb(218, 158, 46)">G-</span><span style="color: rgb(0, 0, 0);">in</span> </p>
+          <p><strong>{{"Developped_by" | translate}} &nbsp; 
+             </strong> 
+             <a href="https://www.facebook.com/DevFrz">
+                 <img src="/assets/images/g-in.jpeg" height="40px" alt="Developed By">
+             </a>
+           </p>
 
         </div>
       }

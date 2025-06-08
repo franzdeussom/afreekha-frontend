@@ -11,7 +11,7 @@ import { CollectionCategoriesComponent } from '../widgets/collection-categories/
     templateUrl: './collection-category-slider.component.html',
     styleUrls: ['./collection-category-slider.component.scss'],
     standalone: true,
-    imports: [CollectionCategoriesComponent, CollectionSidebarComponent, CollectionProductsComponent]
+    imports: [ CollectionSidebarComponent, CollectionProductsComponent]
 })
 export class CollectionCategorySliderComponent {
 

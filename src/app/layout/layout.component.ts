@@ -11,7 +11,6 @@ import { GetDealProducts } from '../shared/action/product.action';
 import { GetUserDetails } from '../shared/action/account.action';
 import { ExitModalComponent } from '../shared/components/widgets/modal/exit-modal/exit-modal.component';
 import { CookieComponent } from '../shared/components/widgets/cookie/cookie.component';
-import { NewsletterModalComponent } from '../shared/components/widgets/modal/newsletter-modal/newsletter-modal.component';
 import { BackToTopComponent } from '../shared/components/widgets/back-to-top/back-to-top.component';
 import { StickyCompareComponent } from '../shared/components/widgets/sticky-compare/sticky-compare.component';
 import { StickyCartComponent } from '../shared/components/widgets/sticky-cart/sticky-cart.component';
@@ -29,7 +28,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     standalone: true,
     imports: [LoadingBarModule, LoaderComponent, HeaderComponent, RouterOutlet, 
       FooterComponent, RecentPurchasePopupComponent, StickyCartComponent, 
-      BackToTopComponent, NewsletterModalComponent, 
+      BackToTopComponent, 
       CookieComponent, ExitModalComponent, AsyncPipe]
 })
 

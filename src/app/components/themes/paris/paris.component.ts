@@ -3,7 +3,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { Store } from '@ngxs/store';
 import { ThemeOptionService } from '../../../shared/services/theme-option.service';
 import * as data from  '../../../shared/data/owl-carousel';
-import { NewsletterModalComponent } from '../../../shared/components/widgets/modal/newsletter-modal/newsletter-modal.component';
 import { ExitModalComponent } from '../../../shared/components/widgets/modal/exit-modal/exit-modal.component';
 import { ImageLinkComponent } from '../../../shared/components/widgets/image-link/image-link.component';
 import { TitleComponent } from '../../../shared/components/widgets/title/title.component';
@@ -28,7 +27,6 @@ export class ParisComponent {
   @Input() slug?: string;
   @Input() data?: HomeData;
 
-  @ViewChild("newsletterModal") NewsletterModal: NewsletterModalComponent;
   @ViewChild("exitModal") ExitModal: ExitModalComponent;
   data$: Observable<HomeData[]> = inject(Store).select(HomeState.homeData) as Observable<HomeData[]>;
 
