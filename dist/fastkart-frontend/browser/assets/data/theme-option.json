@@ -95,8 +95,8 @@
         "footer_copyright": true,
         "copyright_content": "©2025 Afreekha All rights reserved",
         "footer_about": "Découvrez la commodité redéfinie dans notre magasin polyvalent. Des produits aux dernières tendances mode, trouvez tout ce dont vous avez besoin sous un même toit. Votre destination d'achat unique pour une gamme variée de produits.",
-        "about_address": "Mekepe, Douala, Cameroon",
-        "about_email": "support@afreekha.com",
+        "about_address": "Makepe, Douala, Cameroon",
+        "about_email": "support@afreekha.store",
         "footer_categories": [
           6,
           5,
@@ -134,12 +134,12 @@
           }
         ],
         "support_number": "(+237) 6 93 15 74 19",
-        "support_email": "support@afreekha.com",
+        "support_email": "support@afreekha.store",
         "play_store_url": "https://play.google.com/",
         "app_store_url": "https://apple.com/",
         "social_media_enable": true,
-        "facebook": "https://facebook.com/",
-        "instagram": "https://instagram.com/"
+        "facebook": "https://facebook.com/Afreekhaonline",
+        "instagram": "https://www.instagram.com/afree_khaonline/#"
       },
       "collection": {
         "collection_layout": "collection_category_slider",
@@ -233,7 +233,7 @@
         "detail_2": {
           "label": "Email",
           "icon": "ri-mail-line",
-          "text": "support@afreekha.com"
+          "text": "support@afreekha.store"
         },
         "detail_3": {
           "label": "Douala, Makepe",

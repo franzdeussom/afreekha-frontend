@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://afreekha.store/',
-  URL: 'https://afreekha.store/assets/data',
-  URL_API: "https://afreekha.store" //'http://localhost:3001' 
+  baseURL:'https://afreekha.store/', //'http://localhost:3001',
+  URL: 'https://afreekha.store/assets/data', //'http://localhost:4200/assets/data',
+  URL_API: 'https://afreekha.store/api' 
 };
 
 /*
