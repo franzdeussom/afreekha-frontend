@@ -2,3 +2,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../public/assets/scss/app.scss";
+  
+@import '@fontsource/public-sans';
+
+$public-sans-weights: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+$public-sans-styles: (italic, normal);
+
+@import '@fontsource/russo-one';
+
+body {
+  font-family: 'Public Sans', sans-serif;
+}
