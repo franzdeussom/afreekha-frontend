@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store, Action, Selector, State, StateContext } from "@ngxs/store";
-import { GetOrders, ViewOrder, Checkout, PlaceOrder, Clear, VerifyPayment, RePayment } from "../action/order.action";
+import { GetOrders, ViewOrder, Checkout, PlaceOrder, Clear, VerifyPayment, RePayment, ExpressOrder } from "../action/order.action";
 import { Order, OrderCheckout } from "../interface/order.interface";
 import { OrderService } from "../services/order.service";
 import { ClearCart } from "../action/cart.action";
@@ -143,13 +143,13 @@ export class OrderState {
           this.store.dispatch(new ClearCart).subscribe({
             complete: ()=>{
                 this.store.dispatch(new UpdateUserDashboard({
-                  montantTotalCommandeImpaye: userData.montantTotalCommandeImpaye,
-                  montantTotalCommandePaye : userData.montantTotalCommandePaye,
+                  montantTotalCommandeImpaye:  is_paymentDone ? userData.montantTotalCommandeImpaye : (userData.montantTotalCommandeImpaye + reslt[0].amountToBuy),
+                  montantTotalCommandePaye : is_paymentDone ?  (userData.montantTotalCommandePaye + reslt[0].amountToBuy) : userData.montantTotalCommandePaye,
                   nbreTotalCommande : userData.nbreTotalCommande,
                   isPay: is_paymentDone
                 })).subscribe({
                   complete: ()=>{
-                    this.notif.showSuccess(reslt[0].message);
+                    this.notif.showSuccess("Commande envoyée, vous serez contacter par un livreur.");
 
                      this.router.navigateByUrl(`/account/order`);
                   }
@@ -171,7 +171,46 @@ export class OrderState {
         }else{
           this.notif.showError(error.error.errorMessage);
         }
-    })
+    });
+  }
+
+  @Action(ExpressOrder)
+  expressOrder(ctx: StateContext<OrderStateModel>, action: ExpressOrder){
+    let is_paymentDone = action.payload.payment_method?.toLowerCase() == "mobile"; //<----- waiting payement api
+    
+    const data = {
+      idUser: null,
+      statut: is_paymentDone ? "payé": "en cours",
+      article: action.payload.products,
+      idAdresse: action.payload.shipping_address_id ? action.payload.shipping_address_id : null,
+      userData: action.payload.userData,
+      isExpressOrder: true 
+    }
+
+        this.orderService.placeOrder({data: this.crypt.encryptData(data)}).subscribe((reslt: any)=>{
+        if(Object.keys(reslt).length != 0){
+          this.store.dispatch(new ClearCart).subscribe({
+            complete: ()=>{
+               
+                      this.notif.showSuccess("Commande envoyée, vous serez contacter par un livreur.");
+                    
+            },
+          });
+        }
+    }, (error: HttpErrorResponse)=>{
+        if(error.status == 400){
+            this.notif.showError(error.error[0].message);
+        }else if(error.status == 401) {
+            this.notif.showError(error.error.errorMessage);
+            this.router.navigateByUrl('/auth/login')
+        }else if(error.status == 403){
+            this.notif.showError(error.error.errorMessage);
+            this.router.navigateByUrl('/auth/login')
+        }else{
+          this.notif.showError(error.error.errorMessage);
+        }
+    });
+   
   }
 
   @Action(RePayment)

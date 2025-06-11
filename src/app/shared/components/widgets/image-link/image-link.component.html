@@ -2,28 +2,28 @@
   @if ("collection" === 'collection') {
     <a [routerLink]="['/collections']" [queryParams]="{ category: image?.collection }" >
       @if (bgImage) {
-        <div class="h-100 bg-size" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
+        <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }
       @if (!bgImage) {
-        <img src="{{ image?.lien }}" class="h-100 bg-img w-100" alt="{{ image?.lien }}">
+        <img src="{{ image?.lien }}" class="img-fluid  w-100" alt="{{ image?.lien }}">
       }
     </a>
   } @else {
     @if (image?.type === 'product') {
       <a [routerLink]="['/product/', getProductSlug(image?.redirect_link?.link, (product$ | async)?.data!)]">
         @if (bgImage) {
-          <div class="h-100 bg-size" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
+          <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
         }
         @if (!bgImage) {
-          <img src="{{ image?.lien }}" class="h-100 bg-img w-100" alt="{{ image?.lien }}">
+          <img src="{{ image?.lien }}" class="img-fluid w-100" alt="{{ image?.lien }}">
         }
       </a>
     } @else {
       @if (bgImage) {
-        <div class="h-100 bg-size" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
+        <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }
       @if (!bgImage) {
-        <img src="{{ image?.lien }}" class="h-100 bg-img w-100" alt="{{ image?.lien }}">
+        <img src="{{ image?.lien }}" class="img-fluid w-100" alt="{{ image?.lien }}">
       }
     }
   }
@@ -32,18 +32,18 @@
   @if (image?.type === 'product') {
     <a [routerLink]="['/product/', getProductSlug(image?.redirect_link?.link, (product$ | async)?.data!)]">
       @if (bgImage) {
-        <div class="h-100 bg-size" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
+        <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }
       @if (!bgImage) {
-        <img src="{{ image?.lien }}" class="h-100 bg-img w-100" alt="{{ image?.lien }}">
+        <img src="{{ image?.lien }}" class="img-fluid w-100" alt="{{ image?.lien }}">
       }
     </a>
   } @else {
     @if (bgImage) {
-      <div class="h-100 bg-size" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
+      <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
     }
     @if (!bgImage) {
-      <img src="{{ image?.lien }}" class="h-100 bg-img w-100" alt="{{ image?.lien }}">
+      <img src="{{ image?.lien }}" class="img-fluid w-100" alt="{{ image?.lien }}">
     }
   }
 </ng-template>

@@ -89,6 +89,7 @@ export interface CheckoutPayload {
     delivery_description?: string;
     delivery_interval?: string;
     payment_method?: string;
+    userData: {nom: string, prenom: string, tel: string, express_adresse: string}
 }
 
 

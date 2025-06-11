@@ -1,0 +1,19 @@
+.responsive-bg {
+    width: 100%;
+    height: 170px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  @media (min-width: 768px) {
+    .responsive-bg {
+      height: 300px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .responsive-bg {
+      height: 400px;
+    }
+  }
+  

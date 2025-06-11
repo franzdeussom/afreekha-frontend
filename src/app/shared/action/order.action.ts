@@ -21,6 +21,11 @@ export class PlaceOrder {
   constructor(public payload: CheckoutPayload) {}
 }
 
+export class ExpressOrder{
+  static readonly type = "[Order] PlaceOrder";
+  constructor(public payload: CheckoutPayload){}
+}
+
 export class Clear {
   static readonly type = "[Order] Clear";
   constructor() {}

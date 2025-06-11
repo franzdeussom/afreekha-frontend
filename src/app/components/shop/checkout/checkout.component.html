@@ -91,7 +91,7 @@
                 }
               </div>
               @if ((cartItem$ | async)?.length) {
-                <form [formGroup]="form" (ngSubmit)="placeorder()">
+                <form [formGroup]="form">
                   <div class="custom-box-loader">
                     @if (loading) {
                       <div class="box-loader">
@@ -125,9 +125,22 @@
                   <app-button
                     [class]="'btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold'"
                     [id]="'place_order'"
-                    [disabled]="form.valid && checkoutTotal ? false : true">
+                    [type]="'submit'"
+                    (click)="placeorder()"
+                    >
                     {{ 'place_order' | translate }}
                   </app-button>
+                  <p> <em> <strong>*</strong>Utiliser ma session pour passer la commande.</em></p>
+
+                  <app-button
+                    [class]="'btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold'"
+                    [id]="'openModal'"
+                    (click)="launchExpressModal()"
+                    >
+                    {{ 'Commander Directement !' }}
+                  </app-button>
+                  <p> <em> <strong>*</strong> Passer directement une commande express.</em> </p>
+
                 </div>
               </form>
             }
@@ -138,3 +151,4 @@
   </div>
 </section>
 <address-modal #addressModal></address-modal>
+<app-express-user-modal #expressusermodal></app-express-user-modal>

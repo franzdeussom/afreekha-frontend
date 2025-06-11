@@ -24,6 +24,10 @@ import { PaymentBlockComponent } from './payment-block/payment-block.component';
 import { AsyncPipe, isPlatformBrowser } from '@angular/common';
 import { AddressBlockComponent } from './address-block/address-block.component';
 import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcrumb/breadcrumb.component';
+import { ExpressUserModalComponent } from 'src/app/shared/components/widgets/modal/express-user-modal/express-user-modal.component';
+import { AuthState } from 'src/app/shared/state/auth.state';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
     selector: 'app-checkout',
@@ -31,9 +35,9 @@ import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcru
     styleUrls: ['./checkout.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [BreadcrumbComponent, AddressBlockComponent, 
-      PaymentBlockComponent, NoDataComponent, ReactiveFormsModule, LoaderComponent, 
-      ButtonComponent, AddressModalComponent, AsyncPipe, CurrencySymbolPipe, TranslateModule]
+    imports: [BreadcrumbComponent, AddressBlockComponent,
+    PaymentBlockComponent, NoDataComponent, ReactiveFormsModule, LoaderComponent,
+    ButtonComponent, AddressModalComponent, AsyncPipe, CurrencySymbolPipe, TranslateModule, ExpressUserModalComponent]
 })
 export class CheckoutComponent {
 
@@ -58,7 +62,11 @@ export class CheckoutComponent {
   public checkoutTotal: OrderCheckout;
   public loading: boolean = false;
 
+  @ViewChild("expressusermodal") ExpressUserModal: ExpressUserModalComponent;
+
   constructor(private store: Store,
+        private router: Router,
+        private notification: NotificationService,
     private formBuilder: FormBuilder, @Inject(PLATFORM_ID) private platformId: object) {
     this.store.dispatch(new GetCartItems());
     this.store.dispatch(new GetSettingOption());
@@ -153,11 +161,30 @@ export class CheckoutComponent {
   }
 
   placeorder() {
+    const isAuth = this.store.selectSnapshot(AuthState.isAuthenticated);
     if(this.form.valid) {
-      if(this.cpnRef && !this.cpnRef.nativeElement.value) {
-        this.form.controls['coupon'].reset();
+
+      if(isAuth){
+
+        if(this.cpnRef && !this.cpnRef.nativeElement.value) {
+          this.form.controls['coupon'].reset();
+        }
+        this.store.dispatch(new PlaceOrder(this.form.value));
+      }else{
+        this.router.navigateByUrl('/auth/login');
       }
-      this.store.dispatch(new PlaceOrder(this.form.value));
+    
+    }else{
+      this.notification.showError("Veuillez remplir tous les champs, ou connecter vous a votre compte.");
+      this.router.navigateByUrl('/auth/login');
+    }
+   
+   
+  }
+
+  launchExpressModal() {
+    if(isPlatformBrowser(this.platformId)){
+      this.ExpressUserModal.openModal(this.form.value);
     }
   }
 

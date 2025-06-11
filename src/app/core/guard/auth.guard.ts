@@ -22,7 +22,7 @@ export class AuthGuard {
 
     // Redirect to the login page
     if(!this.store.selectSnapshot(state => state.auth && state.auth.access_token)) {
-      return this.router.createUrlTree(['/auth/login']);
+      //return this.router.createUrlTree(['/auth/login']);
     }
 
     this.store.dispatch(new GetUserDetails()).subscribe({

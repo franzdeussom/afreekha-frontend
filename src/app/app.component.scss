@@ -1,0 +1,16 @@
+.whatsapp-button {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 1050;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+
+.whatsapp-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* remplit tout le bouton sans déformation */
+  }
