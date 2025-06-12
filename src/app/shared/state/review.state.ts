@@ -34,21 +34,22 @@ export class ReviewState {
 
   @Action(GetReview)
   getReview(ctx: StateContext<ReviewStateModel>, action: GetReview) {
-    return this.reviewsService.getReview(action.payload).pipe(
-      tap({
-        next: result => {
-          ctx.patchState({
-            review: {
-              data: result.data,
-              total: result?.total ? result?.total : result.data ? result.data.length : 0
-            }
-          });
-        },
-        error: err => {
-          throw new Error(err?.error?.message);
-        }
-      })
-    );
+    // return this.reviewsService.getReview(action.payload).pipe(
+    //   tap({
+    //     next: result => {
+    //       ctx.patchState({
+    //         review: {
+    //           data: result.data,
+    //           total: result?.total ? result?.total : result.data ? result.data.length : 0
+    //         }
+    //       });
+    //     },
+    //     error: err => {
+    //       throw new Error(err?.error?.message);
+    //     }
+    //   })
+    // );
+    return;
   }
 
   @Action(SendReview)

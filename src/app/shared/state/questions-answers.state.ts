@@ -33,25 +33,26 @@ export class QuestionAnswersState {
 
   @Action(GetQuestionAnswers)
   getQuestionAnswers(ctx: StateContext<QuestionStateModel>, action: GetQuestionAnswers) {
-    this.questionsAnswersService.skeletonLoader = true;
-    return this.questionsAnswersService.getQuestionAnswers(action.slug).pipe(
-      tap({
-        next: result => {
-          ctx.patchState({
-            question: {
-              data: result.data,
-              total: result?.total ? result?.total : result.data ? result.data.length : 0
-            }
-          });
-        },
-        complete:() => {
-          this.questionsAnswersService.skeletonLoader = false;
-        },
-        error: err => {
-          throw new Error(err?.error?.message);
-        }
-      })
-    );
+    // this.questionsAnswersService.skeletonLoader = true;
+    // return this.questionsAnswersService.getQuestionAnswers(action.slug).pipe(
+    //   tap({
+    //     next: result => {
+    //       ctx.patchState({
+    //         question: {
+    //           data: result.data,
+    //           total: result?.total ? result?.total : result.data ? result.data.length : 0
+    //         }
+    //       });
+    //     },
+    //     complete:() => {
+    //       this.questionsAnswersService.skeletonLoader = false;
+    //     },
+    //     error: err => {
+    //       throw new Error(err?.error?.message);
+    //     }
+    //   })
+    // );
+    return;
   }
 
   @Action(SendQuestion)

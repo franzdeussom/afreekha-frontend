@@ -135,7 +135,8 @@ export class OrderState {
       idUser: userData ? userData.user.id: null,
       statut: is_paymentDone ? "payé": "en cours",
       article: action.payload.products,
-      idAdresse: action.payload.shipping_address_id
+      idAdresse: action.payload.shipping_address_id,
+      isExpressOrder: false,
     }
    
     this.orderService.placeOrder({data: this.crypt.encryptData(data)}).subscribe((reslt: any)=>{
