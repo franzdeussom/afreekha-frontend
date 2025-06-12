@@ -4,11 +4,12 @@
 
 export const environment = {
   production: false,
-  baseURL: 'http://localhost:4200/', //'https://afreekha.store/',
-  URL: 'http://localhost:4200/assets/data', //'https://afreekha.store/assets/data',
-  URL_API: 'http://localhost:3001' //"https://afreekha.store"  
+  baseURL: 'https://afreekha.store/', //'http://localhost:3001/',
+  URL: 'https://afreekha.store/assets/data', // 'http://localhost:3001/assets/data',
+  URL_API: "https://afreekha.store" //'http://localhost:3001'  
 };
   
+/*
 
 /*
 * For easier debugging in development mode, you can import the following file
