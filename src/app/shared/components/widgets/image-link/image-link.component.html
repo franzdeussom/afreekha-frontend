@@ -4,9 +4,14 @@
       @if (bgImage) {
         <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }
-      @if (!bgImage) {
-        <img src="{{ image?.lien }}" class="img-fluid .responsive-img" alt="{{ image?.lien }}">
+      @if (!bgImage && !isBaner) {
+          <img src="{{ image?.lien }}" class="img-fluid mx-auto d-block max-height-500" style="object-fit: contain; margin: 0;" alt="{{ image?.lien }}"> 
+         
       }
+      @if (!bgImage && isBaner) {
+        <img src="{{ image?.lien }}" class="img-fluid bg-img w-100" alt="{{ image?.lien }}"> 
+
+        }
     </a>
   } @else {
     @if (image?.type === 'product') {
@@ -15,7 +20,7 @@
           <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
         }
         @if (!bgImage) {
-          <img src="{{ image?.lien }}" class="img-fluid .responsive-img" alt="{{ image?.lien }}">
+          <img src="{{ image?.lien }}" class="h-50 bg-img w-100" alt="{{ image?.lien }}">
         }
       </a>
     } @else {
@@ -23,7 +28,7 @@
         <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }
       @if (!bgImage) {
-        <img src="{{ image?.lien }}" class="img-fluid .responsive-img" alt="{{ image?.lien }}">
+        <img src="{{ image?.lien }}" class="h-50 bg-img w-100" alt="{{ image?.lien }}">
       }
     }
   }
@@ -35,7 +40,7 @@
         <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }
       @if (!bgImage) {
-        <img src="{{ image?.lien }}" class="img-fluid .responsive-img" alt="{{ image?.lien }}">
+        <img src="{{ image?.lien }}" class=".responsive-img h-50 bg-img w-100" alt="{{ image?.lien }}">
       }
     </a>
   } @else {
@@ -43,7 +48,7 @@
       <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
     }
     @if (!bgImage) {
-      <img src="{{ image?.lien }}" class="img-fluid .responsive-img" alt="{{ image?.lien }}">
+      <img src="{{ image?.lien }}" class=".responsive-img h-50 bg-img w-100" alt="{{ image?.lien }}">
     }
   }
 </ng-template>

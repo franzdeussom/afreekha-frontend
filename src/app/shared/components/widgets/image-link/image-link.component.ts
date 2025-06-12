@@ -21,7 +21,8 @@ export class ImageLinkComponent {
   @Input() link: string;
   @Input() bgImage: boolean;
   @Input() class: string;
-
+  @Input() isBaner: boolean = false;
+  
   constructor(){}
 
   getProductSlug(id: number, products: Product[]){

@@ -3,17 +3,15 @@ import { isPlatformBrowser } from '@angular/common';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { UpdateSession } from '../../../../../shared/action/theme-option.action';
 import { ThemeOptionState } from '../../../../../shared/state/theme-option.state';
 import { TranslateModule } from '@ngx-translate/core';
-import { ButtonComponent } from '../../button/button.component';
 
 @Component({
     selector: 'app-exit-modal',
     templateUrl: './exit-modal.component.html',
     styleUrls: ['./exit-modal.component.scss'],
     standalone: true,
-    imports: [ButtonComponent, TranslateModule]
+    imports: [TranslateModule]
 })
 export class ExitModalComponent {
 
@@ -31,15 +29,15 @@ export class ExitModalComponent {
     this.exit$.subscribe(res => this.exit = res);
   }
 
-  @HostListener('window:mouseout', ['$event'])
-  onMouseOut(event: MouseEvent) {
-    if (event.clientY <= 0) {
-      if(this.exit === true){
-        this.openModal();
-        this.store.dispatch(new UpdateSession('exit', false));
-      }
-    }
-  }
+  // @HostListener('window:mouseout', ['$event'])
+  // onMouseOut(event: MouseEvent) {
+  //   if (event.clientY <= 0) {
+  //     if(this.exit === true){
+  //       this.openModal();
+  //       this.store.dispatch(new UpdateSession('exit', false));
+  //     }
+  //   }
+  // }
 
   async openModal() {
     if (isPlatformBrowser(this.platformId)) {  

@@ -1,27 +1,28 @@
-.responsive-bg {
-    width: 100%;
-    height: 100px;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  @media (min-width: 768px) {
-    .responsive-bg {
-      height: 30px;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .responsive-bg {
-      height: 100px;
-    }
+
+
+.max-height-500 {
+  max-height: 300px; /* Limite la hauteur maximale */
+  height: auto; /* Conserve les proportions de l'image */
+  width: auto; /* Empêche l'image d'être étirée horizontalement */
+
+  // Responsive adjustments
+  @media (max-width: 768px) { // Pour les tablettes et petits écrans
+    max-height: 200px;
+    width: 100%; /* Prend toute la largeur disponible */
+    height: auto;
+    margin: 0 auto; /* Centre l'image horizontalement */
+    display: block; /* Assure que l'image est un bloc pour le centrage */
+    object-fit: cover; /* Ajuste l'image pour couvrir le conteneur sans déformation */
+    object-position: center; /* Centre l'image dans le conteneur */
   }
 
-  .responsive-img {
-    width: 85%; /* L'image occupe 85% de la largeur du parent */
-    max-height: 80px; /* Limite la hauteur maximale */
-    object-fit: contain; /* Empêche le rognage et conserve les proportions */
-    display: block; /* Nécessaire pour le centrage avec margin auto */
+  @media (max-width: 576px) { // Pour les téléphones
+    max-height: 150px;
+    width: 100%; /* Prend toute la largeur disponible */
+    height: auto;
     margin: 0 auto; /* Centre l'image horizontalement */
+    display: block; /* Assure que l'image est un bloc pour le centrage */
+    object-fit: cover; /* Ajuste l'image pour couvrir le conteneur sans déformation */
+    object-position: center; /* Centre l'image dans le conteneur */
   }
-  
+}
