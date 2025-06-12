@@ -25,7 +25,7 @@ import { RouterLink } from '@angular/router';
     standalone: true,
     providers:[CurrencySymbolPipe],
     imports: [RouterLink, ButtonComponent, 
-      ProductDetailModalComponent_1, VariationModalComponent, TranslateModule, TitleCasePipe, CurrencySymbolPipe]
+      ProductDetailModalComponent_1, VariationModalComponent, TranslateModule, CurrencySymbolPipe, TitleCasePipe, CurrencySymbolPipe]
 })
 export class ProductBoxHorizontalComponent {
 

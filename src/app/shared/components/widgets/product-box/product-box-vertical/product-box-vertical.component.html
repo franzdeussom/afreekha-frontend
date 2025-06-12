@@ -8,13 +8,12 @@
           <h6 class="name">{{ product.nom_article }}</h6>
         </a>
         @if (product.prix) {
-          <span>{{ product.prix }}</span>
+          <span>{{ product.prix  | currencySymbol}}</span>
         }
-        <div class="vertical-price">
+        <div class="vertical-price text-wrap">
           @if (product.promo) {
-             <h5 class="price theme-color">{{ (product.prix - (product.prix * product.pourcentage_promo)/100) | currencySymbol }}</h5>
-
-            <del class="text-content">{{  product.prix | currencySymbol }}</del>
+            <h5 class="price theme-color">{{ (product.prix - (product.prix * product.pourcentage_promo)/100) | currencySymbol }}</h5>
+            <del class="text-content">{{ product.prix | currencySymbol }}</del>
           }
         </div>
       </div>

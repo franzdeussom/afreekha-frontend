@@ -35,7 +35,7 @@
         <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }
       @if (!bgImage) {
-        <img src="{{ image?.lien }}" class="img-fluid w-100" alt="{{ image?.lien }}">
+        <img src="{{ image?.lien }}" class="img-fluid .responsive-img" alt="{{ image?.lien }}">
       }
     </a>
   } @else {

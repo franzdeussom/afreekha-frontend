@@ -53,7 +53,7 @@
       </a>
       <p>{{ product.description }}</p>
       @if (product.prix) {
-        <h6 class="unit mt-1">{{ product.prix }}</h6>
+        <h6 class="unit mt-1">{{ product.prix  | currencySymbol}}</h6>
       }
       <h5 class="sold text-content">
         @if (product.promo) {
