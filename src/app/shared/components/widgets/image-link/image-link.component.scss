@@ -1,6 +1,6 @@
 .responsive-bg {
     width: 100%;
-    height: 170px;
+    height: 100px;
     background-size: cover;
     background-position: center;
   }
@@ -13,13 +13,13 @@
   
   @media (min-width: 1024px) {
     .responsive-bg {
-      height: 400px;
+      height: 100px;
     }
   }
 
   .responsive-img {
     width: 85%; /* L'image occupe 85% de la largeur du parent */
-    max-height: 400px; /* Limite la hauteur maximale */
+    max-height: 80px; /* Limite la hauteur maximale */
     object-fit: contain; /* Empêche le rognage et conserve les proportions */
     display: block; /* Nécessaire pour le centrage avec margin auto */
     margin: 0 auto; /* Centre l'image horizontalement */
