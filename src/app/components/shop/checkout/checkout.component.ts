@@ -161,19 +161,13 @@ export class CheckoutComponent {
   }
 
   placeorder() {
-    const isAuth = this.store.selectSnapshot(AuthState.isAuthenticated);
     if(this.form.valid) {
-
-      if(isAuth){
 
         if(this.cpnRef && !this.cpnRef.nativeElement.value) {
           this.form.controls['coupon'].reset();
         }
         this.store.dispatch(new PlaceOrder(this.form.value));
-      }else{
-        this.router.navigateByUrl('/auth/login');
-      }
-    
+         
     }else{
       this.notification.showError("Veuillez remplir tous les champs, ou connecter vous a votre compte.");
       this.router.navigateByUrl('/auth/login');
