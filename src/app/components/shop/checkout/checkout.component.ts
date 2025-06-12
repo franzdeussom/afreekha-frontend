@@ -169,8 +169,7 @@ export class CheckoutComponent {
         this.store.dispatch(new PlaceOrder(this.form.value));
          
     }else{
-      this.notification.showError("Veuillez remplir tous les champs, ou connecter vous a votre compte.");
-      this.router.navigateByUrl('/auth/login');
+      this.notification.showError("Veuillez choisir les options dans les champs, ou connecter vous a votre compte.");
     }
    
    

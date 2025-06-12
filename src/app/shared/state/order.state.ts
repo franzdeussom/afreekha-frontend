@@ -124,7 +124,7 @@ export class OrderState {
   placeOrder(ctx: StateContext<OrderStateModel>, action: PlaceOrder) {
     const userData = this.store.selectSnapshot(AccountState.user) as any;
    
-    if(userData.user.id){
+    if(!userData.user.id){
       this.router.navigateByUrl('/auth/login');
     }
     //api payemnt logic here
