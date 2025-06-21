@@ -17,6 +17,9 @@
       @if (product?.taille) {
         <li>{{ 'taille' | translate }}: {{ product?.taille | titleCase }} </li>
       }
+      @if (product?.garantie) {
+        <li>{{ 'warranty' | translate }}: {{ product?.garantie }}</li>
+      }
     </ul>
   </div>
 </div>

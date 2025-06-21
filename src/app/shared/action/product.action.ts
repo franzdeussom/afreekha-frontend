@@ -5,6 +5,12 @@ export class GetProducts {
   constructor(public payload?: Params, public resetOffset?: boolean) {}
 }
 
+export class SearchProducts {
+  static readonly type = "[Product] Search";
+  constructor(public payload: string) {}
+}
+
+
 export class GetRelatedProducts {
   static readonly type = "[Product] Related Get";
   constructor(public payload?: Params) {}

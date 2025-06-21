@@ -20,6 +20,29 @@
     </div>
   </div>
 }
+
+@if (articles.length != 0) {
+  <div class="container-fluid-lg">
+    <div class="banner-slider">
+      <owl-carousel-o [options]="bannerSlider">
+        @for (article of articles; track article) {
+          <ng-container carouselSlide>
+            @if (true) {
+              <ng-template carouselSlide>
+                <app-theme-product
+                [product]="articles"
+                [slider]="true"
+                [style]="'horizontal'">
+              </app-theme-product>
+              </ng-template>
+            }
+          </ng-container>
+        }
+      </owl-carousel-o>
+    </div>
+  </div>
+}
+
 <!-- Banner Vertical Style-->
 @if (banners && style == 'vertical') {
   <div [class]="class">
@@ -30,7 +53,7 @@
 }
 <!-- Banner Full Width Style-->
 @if (banners && style == 'full_width') {
-  <div>
-    <app-image-link [class]="'banner-contain'" [image]="banners" [bgImage]="false"></app-image-link>
+  <div >
+    <app-image-link [class]="'banner-contain'" [isBaner]="isBaner" [image]="banners" [bgImage]="false"></app-image-link>
   </div>
 }

@@ -38,5 +38,8 @@ export class ProductService {
   updateProduct(id: string, payload: ProductModel): Observable<ProductModel>{
     return this.http.put<ProductModel>(`${environment.URL}/api${ROUTES_API.ARTICLE.UPDATE(id)}`, payload);
   }
+  search(payload: string): Observable<ProductModel> {
+    return this.http.get<ProductModel>(`${environment.URL_API}/api${ROUTES_API.ARTICLE.SEARCH(payload)}`);
+  }
 
 }

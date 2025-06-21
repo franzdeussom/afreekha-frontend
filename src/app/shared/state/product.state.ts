@@ -3,7 +3,8 @@ import { Router } from "@angular/router";
 import { Store, Action, Selector, State, StateContext } from "@ngxs/store";
 import { tap } from "rxjs";
 import { GetProducts, GetStoreProducts, 
-         GetRelatedProducts, GetProductBySlug, GetDealProducts, 
+         GetRelatedProducts, GetProductBySlug, GetDealProducts,
+         SearchProducts, 
          } from "../action/product.action";
 import { Product, ProductModel } from "../interface/product.interface";
 import { ProductService } from "../services/product.service";
@@ -24,6 +25,7 @@ export class ProductStateModel {
   relatedProducts: Product[] | [];
   storeProducts: Product[] | [];
   dealProducts: Product[] | [];
+  searchProducts: Product[] | [];
 }
 
 @State<ProductStateModel>({
@@ -37,7 +39,9 @@ export class ProductStateModel {
     categoryProducts: [],
     relatedProducts: [],
     storeProducts: [],
-    dealProducts: []
+    dealProducts: [],
+    searchProducts: []
+
   },
 })
 @Injectable()
@@ -77,6 +81,11 @@ export class ProductState {
   @Selector()
   static dealProducts(state: ProductStateModel) {
     return state.dealProducts;
+  }
+
+  @Selector()
+  static searchProducts(state: ProductStateModel) {
+    return state.searchProducts;
   }
 
   @Action(GetProducts)
@@ -216,6 +225,21 @@ export class ProductState {
       }
     })
 
+  }
+
+  @Action(SearchProducts)
+  searchProduct(ctx: StateContext<ProductStateModel>, action: SearchProducts){
+    
+    this.productService.search(action.payload).subscribe((response: any)=> {
+      ctx.patchState(
+        {
+          searchProducts: response.length != 0 ? response[0].data : []
+        }
+      )
+      return;
+    });
+
+    return 0;
   }
 
   @Action(GetRelatedProducts)

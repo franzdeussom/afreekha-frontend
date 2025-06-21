@@ -10,15 +10,23 @@ export const productSlider: OwlOptions = {
   responsive: {
     0: {
       items: 2,
+      autoplay: true,
+      autoplayTimeout: 5500,
     },
     530: {
       items: 3,
+      autoplay: true,
+      autoplayTimeout: 5500,
     },
     749: {
       items: 4,
+      autoplay: true,
+      autoplayTimeout: 5500,
     },
     1000: {
       items: 5,
+      autoplay: true,
+      autoplayTimeout: 5500,
     },
   },
 };

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { MobileMenu } from '../../../../../shared/interface/menu.interface';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Component({
@@ -11,46 +12,14 @@ import { MobileMenu } from '../../../../../shared/interface/menu.interface';
     imports: [RouterLink]
 })
 export class MobileMenuComponent {
+  language: string = '';
 
-  public menuItem: MobileMenu[] = [
-    {
-      id: 1,
-      active: true,
-      title: 'Home',
-      icon: 'ri-home-2',
-      path: '/'
-    },
-    {
-      id: 2,
-      active: false,
-      title: 'Category',
-      icon: 'ri-apps-line js',
-      path: '/collections'
-    },
-    {
-      id: 3,
-      active: false,
-      title: 'Search',
-      icon: 'ri-search-2',
-      path: '/search'
-    },
-    {
-      id: 4,
-      active: false,
-      title: 'My Wish',
-      icon: 'ri-heart-3',
-      path: '/wishlist'
-    },
-    {
-      id: 5,
-      active: false,
-      title: 'Cart',
-      icon: 'fly-cate ri-shopping-bag',
-      path: '/cart'
-    }
-  ]
+  public menuItem: MobileMenu[] =[]
 
-  constructor(private router: Router){
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object){
+    this.language = this.getInitialLanguage();
+    this.menuItem = this.initMenu();
+    
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.menuItem?.forEach((menu: MobileMenu) => {
@@ -62,6 +31,52 @@ export class MobileMenuComponent {
       }
     })
 
+  }
+  initMenu(): any[]{
+    return  [
+      {
+        id: 1,
+        active: true,
+        title: this.language === 'fr' ? 'Accueil' : 'Home',
+        icon: 'ri-home-2',
+        path: '/'
+      },
+      {
+        id: 2,
+        active: false,
+        title: this.language === 'fr' ? 'Catégories' : 'Category',
+        icon: 'ri-apps-line js',
+        path: '/collections'
+      },
+      {
+        id: 3,
+        active: false,
+        title: this.language === 'fr' ? 'Recherche' : 'Search',
+        icon: 'ri-search-2',
+        path: '/search'
+      },
+      {
+        id: 4,
+        active: false,
+        title: this.language === 'fr' ? 'Favoris' : 'Favorites',
+        icon: 'ri-heart-3',
+        path: '/wishlist'
+      },
+      {
+        id: 5,
+        active: false,
+        title: this.language === 'fr' ? 'Panier' : 'Cart',
+        icon: 'fly-cate ri-shopping-bag',
+        path: '/cart'
+      }
+    ]
+  }
+  private getInitialLanguage(): string {
+    if (isPlatformBrowser(this.platformId)) {
+      const storedLanguage = localStorage.getItem("language");
+      return storedLanguage ? JSON.parse(storedLanguage).code : 'en';
+    }
+    return 'en'; // Fallback pour le serveur
   }
 
   activeMenu(menu: MobileMenu){

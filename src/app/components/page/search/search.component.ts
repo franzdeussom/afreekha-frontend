@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, debounceTime, distinctUntilChanged } from 'rxjs';
-import { GetProducts } from '../../../shared/action/product.action';
+import { GetProducts, SearchProducts } from '../../../shared/action/product.action';
 import { NoDataComponent } from '../../../shared/components/widgets/no-data/no-data.component';
 import { ProductBoxComponent } from '../../../shared/components/widgets/product-box/product-box.component';
 import { SkeletonProductBoxComponent } from '../../../shared/components/widgets/product-box/skeleton-product-box/skeleton-product-box.component';
@@ -32,7 +32,7 @@ export class SearchComponent {
     items: [{ label: "Search", active: true }]
   }
 
-  product$: Observable<ProductModel> = inject(Store).select(ProductState.product);
+  product$: Observable<Product[]> = inject(Store).select(ProductState.searchProducts);
 
   public products: Product[];
   public search = new FormControl();
@@ -55,10 +55,10 @@ export class SearchComponent {
       this.filter['search'] = params['search'];
       this.search.patchValue(params['search'] ? params['search'] : '')
     }
-    this.store.dispatch(new GetProducts(this.filter))
+    this.store.dispatch(new SearchProducts(this.filter['search']))
     this.product$.subscribe((val:any)=>{
-      this.products = val.data;
-      this.totalItems = val.data.length;
+      this.products = val;
+      this.totalItems = val.length;
     })
    });
   }

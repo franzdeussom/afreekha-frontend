@@ -3,6 +3,7 @@ export const ROUTES_API = {
         GET: (id: string) => `/article/${id}`,
         GET_BY_ID: (id: string) => `/article-single/${id}`,
         CREATE: '/articles',
+        SEARCH: (query: string)=> `/article-search/${query}`,
         UPDATE: (id: string) => `/admin/article/${id}`,
         DELETE: (id: string) => `/admin/article/${id}`
     },

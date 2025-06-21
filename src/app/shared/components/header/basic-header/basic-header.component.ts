@@ -23,7 +23,7 @@ import { Category } from 'src/app/shared/interface/category.interface';
     templateUrl: './basic-header.component.html',
     styleUrls: ['./basic-header.component.scss'],
     standalone: true,
-    imports: [TopbarComponent, NavbarMenuButtonComponent, LogoComponent, 
+    imports: [TopbarComponent, LogoComponent, 
       CategoriesComponent, SearchComponent, SearchBoxComponent, CallComponent, 
       WishlistComponent, CartComponent, MyAccountComponent, CategoriesBlockComponent,
        ButtonComponent, MenuComponent, DealComponent, TranslateModule]

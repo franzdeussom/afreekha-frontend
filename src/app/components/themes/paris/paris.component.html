@@ -94,22 +94,10 @@
 
           <!-- Two Column Banner Section Start-->
           @if (true) {
+            
             <div class="section-t-space section-b-space">
-              <div class="row g-md-4 g-3">
-                <div class="col-md-6">
-                  <div class="banner-contain hover-effect">
-                    <app-image-link [image]="data?.temp?.main_two_pic?.[1]"
-                      [bgImage]="false" [isBaner]="true">
-                    </app-image-link>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="banner-contain hover-effect">
-                    <app-image-link [image]="data?.temp?.main_two_pic?.[0]"
-                      [bgImage]="false">
-                    </app-image-link>
-                  </div>
-                </div>
+              <div class="banner-section ratio_60">
+                <app-theme-banner [style]="'horizontal'" [banners]="data?.temp?.main_two_pic"></app-theme-banner>
               </div>
             </div>
           }
@@ -136,6 +124,7 @@
             <div class="section-b-space ratio_12">
               <app-theme-banner
                 class="sale-banner"
+                [isBaner]="true"
                 [banners]="data?.temp?.main_banner?.[0] ? data?.temp?.main_banner?.[0]: null"
                 [style]="'full_width'">
               </app-theme-banner>

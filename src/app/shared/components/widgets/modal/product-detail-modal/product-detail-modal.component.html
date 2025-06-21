@@ -75,6 +75,9 @@
                       @if (product.quantite > 0) {
                         <li>{{ 'quantity' | translate }}: {{ product.quantite }} {{ 'items_left' | translate }}</li>
                       }
+                      @if (product.garantie) {
+                        <li>{{ 'warranty' | translate }}: {{ product.garantie }}</li>
+                      }
                     </ul>
                   </div>
                 </div>

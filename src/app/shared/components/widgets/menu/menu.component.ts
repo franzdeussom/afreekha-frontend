@@ -8,16 +8,14 @@ import { BlogState } from '../../../../shared/state/blog.state';
 import { Blog, BlogModel } from '../../../../shared/interface/blog.interface';
 import * as data from '../../../../shared/data/menu'
 import { TranslateModule } from '@ngx-translate/core';
-import { ProductBoxComponent } from '../product-box/product-box.component';
-import { RouterLink } from '@angular/router';
-import { NgTemplateOutlet, NgClass, DatePipe } from '@angular/common';
+
 
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.scss'],
     standalone: true,
-    imports: [NgTemplateOutlet, NgClass, RouterLink, ProductBoxComponent, DatePipe, TranslateModule]
+    imports: [ TranslateModule]
 })
 export class MenuComponent {
 

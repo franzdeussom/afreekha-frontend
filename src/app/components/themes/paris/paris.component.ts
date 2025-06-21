@@ -4,7 +4,6 @@ import { Store } from '@ngxs/store';
 import { ThemeOptionService } from '../../../shared/services/theme-option.service';
 import * as data from  '../../../shared/data/owl-carousel';
 import { ExitModalComponent } from '../../../shared/components/widgets/modal/exit-modal/exit-modal.component';
-import { ImageLinkComponent } from '../../../shared/components/widgets/image-link/image-link.component';
 import { TitleComponent } from '../../../shared/components/widgets/title/title.component';
 import { ProductComponent } from '../widgets/product/product.component';
 import { CategoriesComponent } from '../widgets/categories/categories.component';
@@ -20,7 +19,7 @@ import { Observable} from 'rxjs';
     styleUrls: ['./paris.component.scss'],
     standalone: true,
     imports: [HomeBannerComponent, BannerComponent, CategoriesComponent, 
-      ProductComponent, TitleComponent, ImageLinkComponent]
+      ProductComponent, TitleComponent]
 })
 export class ParisComponent {
 
