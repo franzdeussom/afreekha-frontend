@@ -5,7 +5,7 @@
         <div class="responsive-bg" [ngClass]="class" [ngStyle]="{'background-image': 'url(' + image?.lien + ')'}"></div>
       }
       @if (!bgImage && !isBaner) {
-          <img src="{{ image?.lien }}" class="img-fluid mx-auto d-block max-height-500" style="object-fit: contain; margin: 0;" alt="{{ image?.lien }}"> 
+          <img src="{{ image?.lien }}" class="d-block" style="object-fit: contain; margin: 0;" alt="{{ image?.lien }}"> 
          
       }
       @if (!bgImage && isBaner) {

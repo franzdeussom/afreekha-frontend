@@ -54,6 +54,20 @@
 <!-- Banner Full Width Style-->
 @if (banners && style == 'full_width') {
   <div >
-    <app-image-link [class]="'banner-contain'" [isBaner]="isBaner" [image]="banners" [bgImage]="false"></app-image-link>
+    <owl-carousel-o [options]="bannerSlider">
+        @for (banner of banners; track banner) {
+          <ng-container carouselSlide>
+            @if (true) {
+              <ng-template carouselSlide>
+                <a href="#">
+                  <div class="banner-contain hover-effect">
+                    <app-image-link [class]="'banner-contain'" [image]="banner" [bgImage]="false"></app-image-link>
+                  </div>
+                </a>
+              </ng-template>
+            }
+          </ng-container>
+        }
+      </owl-carousel-o>
   </div>
 }

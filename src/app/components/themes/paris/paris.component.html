@@ -125,7 +125,7 @@
               <app-theme-banner
                 class="sale-banner"
                 [isBaner]="true"
-                [banners]="data?.temp?.main_banner?.[0] ? data?.temp?.main_banner?.[0]: null"
+                [banners]="data?.temp?.main_banner ? data?.temp?.main_banner: null"
                 [style]="'full_width'">
               </app-theme-banner>
             </div>

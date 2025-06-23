@@ -25,7 +25,7 @@ import {
   Zoom,
   core_default,
   freeMode
-} from "./chunk-T3KLC4IR.js";
+} from "./chunk-X7JLFO2O.js";
 import "./chunk-NQ4HTGF6.js";
 export {
   A11y,
