@@ -134,7 +134,7 @@ export const productSlider6ItemMargin: OwlOptions = {
   },
 };
 
-// Banner Slider
+// Banner Slider change items
 export const bannerSlider: OwlOptions = {
   loop: true,
   nav: false,
@@ -148,17 +148,17 @@ export const bannerSlider: OwlOptions = {
       autoplayTimeout: 5500,
     },
     525: {
-      items: 2,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 4500,
     },
     870: {
-      items: 3,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 5500,
     },
     1190: {
-      items: 4,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 5500,
     },

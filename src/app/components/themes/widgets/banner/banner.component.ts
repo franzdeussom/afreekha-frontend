@@ -24,4 +24,5 @@ export class BannerComponent {
   
   public bannerSlider = data.bannerSlider;
 
+
 }
