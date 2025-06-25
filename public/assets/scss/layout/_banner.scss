@@ -11,7 +11,7 @@
 
   .banner-contain {
     img {
-      // height: calc(74px + (136 - 74) * ((100vw - 320px) / (1920 - 320))) !important;
+      height: calc(74px + (136 - 74) * ((100vw - 320px) / (1920 - 320))) !important;
       object-position: center;
       object-fit: cover;
     }
@@ -22,11 +22,13 @@
   border-radius: 5px;
   overflow: hidden;
   position: relative;
-  height: 100%;
+  height: 300px;
+  margin: auto;
 
   img {
     object-fit: cover;
     object-position: left;
+    border: 1pz solid green ;
   }
 
   .banner-details {

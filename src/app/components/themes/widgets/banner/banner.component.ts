@@ -17,12 +17,16 @@ export class BannerComponent {
 
   @Input() style: string = 'horizontal';
   @Input() isBaner: boolean = false;
+  @Input() isCenter: boolean = false;
+  @Input() isPrincipal: boolean = false;
   @Input() class: string | null;
   @Input() contentClass: string;
   @Input() banners: any;
   @Input() articles: Product[] = [];
   
   public bannerSlider = data.bannerSlider;
+  public bannerSliderCenter = data.bannerSliderCenter
+  public bannerSliderPrincipal = data.bannerSliderPrincipal
 
 
 }

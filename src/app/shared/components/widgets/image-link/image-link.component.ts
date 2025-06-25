@@ -20,8 +20,10 @@ export class ImageLinkComponent {
   @Input() image: any;
   @Input() link: string;
   @Input() bgImage: boolean;
+  @Input() isPrincipal: boolean=false;
+  @Input() isCenter: boolean=false;
   @Input() class: string;
-  @Input() isBaner: boolean = false;
+  @Input() isBaner: boolean=true;
   
   constructor(){}
 

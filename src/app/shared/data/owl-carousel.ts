@@ -135,6 +135,35 @@ export const productSlider6ItemMargin: OwlOptions = {
 };
 
 // Banner Slider change items
+export const bannerSliderPrincipal: OwlOptions = {
+  loop: true,
+  nav: false,
+  dots: false,
+  items: 4,
+  margin: 20,
+  responsive: {
+    0: {
+      items: 1,
+      autoplay: true,
+      autoplayTimeout: 5500,
+    },
+    525: {
+      items: 2,
+      autoplay: true,
+      autoplayTimeout: 4500,
+    },
+    870: {
+      items: 3,
+      autoplay: true,
+      autoplayTimeout: 5500,
+    },
+    1190: {
+      items: 4,
+      autoplay: true,
+      autoplayTimeout: 5500,
+    },
+  },
+};
 export const bannerSlider: OwlOptions = {
   loop: true,
   nav: false,
@@ -159,6 +188,35 @@ export const bannerSlider: OwlOptions = {
     },
     1190: {
       items: 1,
+      autoplay: true,
+      autoplayTimeout: 5500,
+    },
+  },
+};
+export const bannerSliderCenter: OwlOptions = {
+  loop: true,
+  nav: false,
+  dots: false,
+  items: 4,
+  margin: 20,
+  responsive: {
+    0: {
+      items: 1,
+      autoplay: true,
+      autoplayTimeout: 5500,
+    },
+    525: {
+      items: 2,
+      autoplay: true,
+      autoplayTimeout: 4500,
+    },
+    870: {
+      items: 3,
+      autoplay: true,
+      autoplayTimeout: 5500,
+    },
+    1190: {
+      items: 4,
       autoplay: true,
       autoplayTimeout: 5500,
     },

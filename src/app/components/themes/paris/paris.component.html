@@ -9,7 +9,7 @@
 
   <!-- Banner Section Start -->
   <section class="banner-section ratio_60">
-    <app-theme-banner [style]="'horizontal'" [banners]="data?.temp?.slider"></app-theme-banner>
+    <app-theme-banner [style]="'horizontal'" [isPrincipal]="true" [banners]="data?.temp?.slider"></app-theme-banner>
   </section>
   <!-- Banner Section End -->
 
@@ -97,11 +97,11 @@
             
             <div class="section-t-space section-b-space">
               <div class="banner-section ratio_60">
-                <app-theme-banner [style]="'horizontal'" [banners]="data?.temp?.main_two_pic"></app-theme-banner>
+                <app-theme-banner [style]="'horizontal'" [isCenter]="true"  [banners]="data?.temp?.main_two_pic" ></app-theme-banner>
               </div>
             </div>
           }
-          <!-- Two Column Banner Section End-->
+          Two Column Banner Section End
 
           <!-- Section Start -->
           @if (true) {
@@ -119,12 +119,12 @@
           }
           <!-- Section End -->
 
-          <!-- Coupons Banner Section Start -->
+          <!-- Coupons Banner Section Start i remove sale-banner's class here  -->
           @if (true) {
             <div class="section-b-space ratio_12">
               <app-theme-banner
-                class="sale-banner"
-                [isBaner]="true"  
+                class=""
+                [isBaner]="true"
                 [banners]="data?.temp?.main_banner ? data?.temp?.main_banner: null"
                 [style]="'full_width'">
               </app-theme-banner>
