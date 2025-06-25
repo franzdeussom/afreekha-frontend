@@ -2,7 +2,7 @@ import { createRequire } from 'module';const require = createRequire(import.meta
 import {
   CommonModule,
   NgClass
-} from "./chunk-FBMT6VM5.js";
+} from "./chunk-QFTPQR56.js";
 import {
   ChangeDetectorRef,
   Component,
@@ -32,9 +32,9 @@ import {
   ɵɵsanitizeUrl,
   ɵɵstyleProp,
   ɵɵviewQuery
-} from "./chunk-3AJPYROH.js";
-import "./chunk-5IW5ZEPE.js";
+} from "./chunk-53F3JYN3.js";
 import "./chunk-UOPINYA3.js";
+import "./chunk-5IW5ZEPE.js";
 import "./chunk-RPWZ4CMX.js";
 import "./chunk-NQ4HTGF6.js";
 

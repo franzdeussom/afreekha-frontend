@@ -1,7 +1,7 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   core_default
-} from "./chunk-X7JLFO2O.js";
+} from "./chunk-T3KLC4IR.js";
 import {
   AsyncPipe,
   CommonModule,
@@ -13,7 +13,7 @@ import {
   NgSwitchDefault,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-FBMT6VM5.js";
+} from "./chunk-QFTPQR56.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -62,11 +62,11 @@ import {
   ɵɵtemplate,
   ɵɵtemplateRefExtractor,
   ɵɵviewQuery
-} from "./chunk-3AJPYROH.js";
+} from "./chunk-53F3JYN3.js";
+import "./chunk-UOPINYA3.js";
 import {
   require_cjs
 } from "./chunk-5IW5ZEPE.js";
-import "./chunk-UOPINYA3.js";
 import "./chunk-RPWZ4CMX.js";
 import {
   __toESM
