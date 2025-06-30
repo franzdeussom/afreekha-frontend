@@ -128,18 +128,24 @@
                     [type]="'submit'"
                     (click)="placeorder()"
                     >
-                    {{ 'place_order' | translate }}
+                    @if (!isLogged()) {
+                       <span> {{ "create_account" | translate }} </span>
+                    }@else{
+                       <span> {{ "place_order" | translate }} </span>
+
+                    }
                   </app-button>
-                  <p> <em> <strong>*</strong>Utiliser ma session pour passer la commande.</em></p>
+  
+                  <p> <em> <strong>*</strong> {{"account_use_to_order" | translate }}</em></p>
 
                   <app-button
                     [class]="'btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold'"
                     [id]="'openModal'"
                     (click)="launchExpressModal()"
                     >
-                    {{ 'Commander Directement !' }}
+                    {{ 'commande_expresse' | translate }}
                   </app-button>
-                  <p> <em> <strong>*</strong> Passer directement une commande express.</em> </p>
+                  <p> <em> <strong>*</strong> {{ "direct_checkout" | translate}} </em> </p>
 
                 </div>
               </form>

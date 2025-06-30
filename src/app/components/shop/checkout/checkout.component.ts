@@ -161,24 +161,31 @@ export class CheckoutComponent {
   }
 
   placeorder() {
+   if(!this.isLogged()){
+        this.notification.showError("Veuillez vous connecter pour passer une commande avec votre compte.");
+        this.router.navigateByUrl('/auth/login');
+   } else{
     if(this.form.valid) {
 
-        if(this.cpnRef && !this.cpnRef.nativeElement.value) {
-          this.form.controls['coupon'].reset();
-        }
-        this.store.dispatch(new PlaceOrder(this.form.value));
-         
-    }else{
-      this.notification.showError("Veuillez choisir les options dans les champs, ou connecter vous a votre compte.");
-    }
-   
-   
+          if(this.cpnRef && !this.cpnRef.nativeElement.value) {
+            this.form.controls['coupon'].reset();
+          }
+          this.store.dispatch(new PlaceOrder(this.form.value));
+          
+      }else{
+        this.notification.showError("Veuillez choisir les options dans les champs, ou reconnecter vous a votre compte.");
+      }
+   }   
   }
 
   launchExpressModal() {
     if(isPlatformBrowser(this.platformId)){
       this.ExpressUserModal.openModal(this.form.value);
     }
+  }
+
+  isLogged(){
+    return this.store.selectSnapshot(AuthState.token);
   }
 
   ngOnDestroy() {
