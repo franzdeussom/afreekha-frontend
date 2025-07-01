@@ -1,7 +1,7 @@
 <div class="bg-effect">
   <!-- Home Section Start -->
   @if (false) {
-    <section class="home-section pt-2">
+    <section class="home-section pt-2"  style="display: flex; justify-content: center; align-items: center;">
       <app-theme-home-banner [theme]="'paris'" [data]="data?.v_img"></app-theme-home-banner>
     </section>
   }
@@ -9,7 +9,7 @@
 
   <!-- Banner Section Start -->
   <section class="banner-section ratio_60">
-    <app-theme-banner [style]="'horizontal'" [isPrincipal]="true" [banners]="data?.temp?.slider"></app-theme-banner>
+    <app-theme-banner [style]="'horizontal'" [isPrincipal]="true" [isCenter]="false" [banners]="data?.temp?.slider"></app-theme-banner>
   </section>
   <!-- Banner Section End -->
 
