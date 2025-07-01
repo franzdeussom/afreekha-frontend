@@ -32,7 +32,7 @@
               <app-theme-banner
                 [class]="'ratio_156 section-t-space'"
                 [style]="'vertical'"
-                [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[1]: null">
+                [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[0]: null">
               </app-theme-banner>
               <!-- Sidebar Vertical Banner -->
               <app-theme-banner
@@ -101,7 +101,6 @@
               </div>
             </div>
           }
-          Two Column Banner Section End
 
           <!-- Section Start -->
           @if (true) {
