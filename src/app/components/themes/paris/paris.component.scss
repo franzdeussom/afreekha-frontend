@@ -1,0 +1,20 @@
+.psticky {
+    width: auto;
+    height: 285x;
+    overflow-y: auto;        /* permet le scroll vertical */
+    overflow-x: hidden;      /* empêche le scroll horizontal */
+  }
+  .scrollable-box {
+    width: 339px;
+    height: 285px;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+  
+    /* Masquer scrollbar */
+    scrollbar-width: none;      
+    -ms-overflow-style: none;     
+  }
+  
+  .scrollable-box::-webkit-scrollbar {
+    display: none;                
+  }

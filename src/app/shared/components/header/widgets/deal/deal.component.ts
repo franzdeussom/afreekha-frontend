@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-deal',
   standalone:true,
-  imports: [ButtonComponent, DealsModalComponent,TranslateModule],
+  imports: [DealsModalComponent,TranslateModule],
   templateUrl: './deal.component.html',
   styleUrls: ['./deal.component.scss']
 })

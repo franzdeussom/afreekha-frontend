@@ -12,13 +12,17 @@ import { HomeBannerComponent } from '../widgets/home-banner/home-banner.componen
 import { HomeData } from 'src/app/shared/interface/account.interface';
 import { HomeState } from 'src/app/shared/state/home.state';
 import { Observable} from 'rxjs';
-
+import { DealComponent } from 'src/app/shared/components/header/widgets/deal/deal.component';
+import { Product } from 'src/app/shared/interface/product.interface';
+import { ProductState } from 'src/app/shared/state/product.state';
+import { RouterLink } from '@angular/router';
+import { CurrencySymbolPipe } from 'src/app/shared/pipe/currency-symbol.pipe';
 @Component({
     selector: 'app-paris',
     templateUrl: './paris.component.html',
     styleUrls: ['./paris.component.scss'],
     standalone: true,
-    imports: [HomeBannerComponent, BannerComponent, CategoriesComponent, 
+    imports: [HomeBannerComponent, BannerComponent, DealComponent, CategoriesComponent, 
       ProductComponent, TitleComponent]
 })
 export class ParisComponent {
@@ -31,10 +35,11 @@ export class ParisComponent {
 
   public categorySlider = data.categorySlider;
   public isBrowser: boolean;
-
+  dealProducts$: Observable<Product[]> = inject(Store).select(ProductState.dealProducts) as Observable<Product[]>;
+  products : Product[] = [];
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private themeOptionService: ThemeOptionService) {     
+    private themeOptionService: ThemeOptionService, private store: Store) {     
       this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
@@ -42,6 +47,9 @@ export class ParisComponent {
     
       this.themeOptionService.preloader = false;
       this.themeOptionService.theme_color = '#0da487';
+      this.dealProducts$.subscribe((val)=>{
+              this.products = this.store.selectSnapshot(ProductState.dealProducts) as Product[];
+      })
     }
 
   ngOnDestroy() {

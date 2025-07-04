@@ -6,7 +6,7 @@ export const productSlider: OwlOptions = {
   nav: false,
   items: 5,
   margin: 0,
-  dots: false,
+  dots: true,
   responsive: {
     0: {
       items: 2,
@@ -37,7 +37,7 @@ export const productSliderMargin: OwlOptions = {
   nav: false,
   items: 5,
   margin: 20,
-  dots: false,
+  dots: true,
   responsive: {
     0: {
       items: 1,
@@ -63,7 +63,7 @@ export const productSlider2: OwlOptions = {
   nav: false,
   items: 5,
   margin: 15,
-  dots: false,
+  dots: true,
   responsive: {
     0: {
       items: 2,
@@ -85,7 +85,7 @@ export const productSlider6Item: OwlOptions = {
   loop: true,
   nav: false,
   items: 6,
-  dots: false,
+  dots: true,
   responsive: {
     0: {
       items: 2,
@@ -111,7 +111,7 @@ export const productSlider6ItemMargin: OwlOptions = {
   nav: false,
   items: 6,
   margin: 24,
-  dots: false,
+  dots: true,
   responsive: {
     0: {
       margin: 16,
@@ -138,8 +138,8 @@ export const productSlider6ItemMargin: OwlOptions = {
 export const bannerSliderPrincipal: OwlOptions = {
   loop: true,
   nav: false,
-  dots: false,
-  items: 4,
+  dots: true,
+  items: 1,
   margin: 20,
   responsive: {
     0: {
@@ -148,17 +148,17 @@ export const bannerSliderPrincipal: OwlOptions = {
       autoplayTimeout: 5500,
     },
     525: {
-      items: 2,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 4500,
     },
     870: {
-      items: 3,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 5500,
     },
     1190: {
-      items: 4,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 5500,
     },
@@ -167,8 +167,8 @@ export const bannerSliderPrincipal: OwlOptions = {
 export const bannerSlider: OwlOptions = {
   loop: true,
   nav: false,
-  dots: false,
-  items: 4,
+  dots: true,
+  items: 1,
   margin: 20,
   responsive: {
     0: {
@@ -196,8 +196,8 @@ export const bannerSlider: OwlOptions = {
 export const bannerSliderCenter: OwlOptions = {
   loop: true,
   nav: false,
-  dots: false,
-  items: 4,
+  dots: true,
+  items: 2,
   margin: 20,
   responsive: {
     0: {
@@ -227,7 +227,7 @@ export const bannerSliderCenter: OwlOptions = {
 export const customOptionsItem3: OwlOptions = {
   loop: true,
   nav: false,
-  dots: false,
+  dots: true,
   margin: 20,
   items: 3,
   responsive: {
@@ -249,7 +249,7 @@ export const customOptionsItem3: OwlOptions = {
 export const customOptionsItem4: OwlOptions = {
   loop: true,
   nav: false,
-  dots: false,
+  dots: true,
   margin: 20,
   items: 4,
   responsive: {
@@ -272,7 +272,7 @@ export const customOptionsItem4: OwlOptions = {
 export const categorySlider: OwlOptions = {
   loop: true,
   nav: false,
-  dots: false,
+  dots: true,
   items: 7,
   margin: 20,
   responsive: {
@@ -400,7 +400,7 @@ export const productThumbSlider: OwlOptions = {
 export const productSliderLayout: OwlOptions = {
   items: 4,
   loop: true,
-  dots: false,
+  dots: true,
   margin: 15,
   navSpeed: 300,
   responsive: {

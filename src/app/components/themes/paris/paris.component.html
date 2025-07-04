@@ -1,16 +1,48 @@
 <div class="bg-effect">
   <!-- Home Section Start -->
   @if (false) {
-    <section class="home-section pt-2">
+    <section class="home-section pt-2"  style="display: flex; justify-content: center; align-items: center;">
       <app-theme-home-banner [theme]="'paris'" [data]="data?.v_img"></app-theme-home-banner>
     </section>
   }
-  <!-- Home Section End -->
 
-  <!-- Banner Section Start -->
-  <section class="banner-section ratio_60">
-    <app-theme-banner [style]="'horizontal'" [isPrincipal]="true" [banners]="data?.temp?.slider"></app-theme-banner>
+  <section class="product-section">
+    <div class="container-fluid-lg">
+      <div class="row g-sm-4 g-3">
+    
+        <!-- Colonne gauche : menu -->
+        <div class="col-xl-3 d-none d-xl-block">
+          <div class="p-sticky psticky">
+            @if ((data?.list_categories?.length || 0) > 0) {
+              <div class="scrollable-box">
+                <app-theme-categories
+                  [category]="data?.list_categories || []"
+                  [style]="'vertical'">
+                </app-theme-categories>
+              </div>
+            }
+          </div>
+        </div>
+    
+        <!-- Colonne centrale : bannière -->
+        <div class="col-12 col-md-12 col-xl-6 text-center">
+          <div class="section-b-space ratio_12">
+            <app-theme-banner [style]="'horizontal'" [style]="'full_width'" [isCenter]="true" [banners]="data?.temp?.slider ? data?.temp?.slider: null"></app-theme-banner>
+          </div>
+        </div>
+    
+        <!-- Colonne droite : pub -->
+        <div class="col-xl-3 d-none d-xl-block">
+          <div class="p-sticky psticky">
+            <div class="scrollable-box">
+              <app-deal [data]="null"></app-deal>
+           </div>
+         </div>
+       </div>  
+      </div>
+    </div>
   </section>
+
   <!-- Banner Section End -->
 
   <!-- Product Section Start -->
@@ -21,18 +53,12 @@
         @if (true) {
           <div class="col-xxl-3 col-xl-4 d-none d-xl-block">
             <div class="p-sticky">
-              <!-- Sidebar Category Vertical Style -->
-              @if ((data?.list_categories?.length || 0) > 0) {
-                <app-theme-categories
-                  [category]="data?.list_categories || []"
-                  [style]="'vertical'">
-                </app-theme-categories>
-              }
+              
               <!-- Sidebar Vertical Banner -->
               <app-theme-banner
                 [class]="'ratio_156 section-t-space'"
                 [style]="'vertical'"
-                [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[1]: null">
+                [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[0]: null">
               </app-theme-banner>
               <!-- Sidebar Vertical Banner -->
               <app-theme-banner

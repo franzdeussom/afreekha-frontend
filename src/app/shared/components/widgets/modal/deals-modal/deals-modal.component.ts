@@ -14,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
     styleUrls: ['./deals-modal.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [ButtonComponent, RouterLink, NoDataComponent, TranslateModule, CurrencySymbolPipe]
+    imports: [RouterLink, NoDataComponent, TranslateModule, CurrencySymbolPipe]
 })
 
 export class DealsModalComponent {
