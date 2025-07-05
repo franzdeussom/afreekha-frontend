@@ -7,8 +7,8 @@
       <div class="row">
         <div class="col-xl-5">
           <div class="faq-contain">
-            <h2>{{ 'Frequently Asked Questions' }}</h2>
-            <p>{{ 'We are answering most frequent questions. No worries if you not find exact one. You can find out more by searching.' }}</p>
+            <h2>{{ 'frequently_asked_question' | translate }}</h2>
+            <p>{{ 'subtile_faq' | translate }}</p>
           </div>
         </div>
         <div class="col-xl-7">
@@ -27,7 +27,7 @@
                     <div ngbAccordionBody>
                       <ng-template>
                         <div class="accordion-body">
-                          <p>{{ faq.description }}</p>
+                          <p [innerHTML]="faq.description"></p>
                         </div>
                       </ng-template>
                     </div>

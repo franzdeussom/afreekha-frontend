@@ -3,7 +3,7 @@
     "options": {
       "general": {
         "site_title": "Afreekha",
-        "site_tagline": "Shop Unique, Sell Exceptional – Afreekha's Multi-Vendor Universe.",
+        "site_tagline": "Leader e-commerce en Afrique",
         "cart_style": "cart_sidebar",
         "back_to_top_enable": true,
         "language_direction": "ltr",
@@ -119,7 +119,11 @@
             "link": "wishlist"
           },
           {
-            "label": "Contact Us",
+            "label": "FAQ",
+            "link": "faq"
+          },
+          {
+            "label": "Contactez nous",
             "link": "contact-us"
           }
         ],
@@ -248,10 +252,10 @@
       },
       "seo": {
         "meta_tags": "Afreekha",
-        "meta_title": "Online Marketplace, Vendor Collaboration, E-commerce Platform",
-        "meta_description": "Discover Afreekha Marketplace – a vibrant online platform where vendors unite to showcase their products, creating a diverse shopping experience. Explore a wide range of offerings and connect with sellers on a single platform.",
-        "og_title": "Afreekha Marketplace: Uniting Vendors for Shopping Excellence",
-        "og_description": "Experience a unique shopping journey at Afreekha Marketplace, where vendors collaborate to provide a vast array of products. Explore, shop, and connect in one convenient destination.",
+        "meta_title": "Afreekha | Leader e-commerce en Afrique",
+        "meta_description": "Afreekha | Leader e-commerce en Afrique, disposant une gamme de produits électroménagers variés à une seule adresse.",
+        "og_title": "Afreekha Marketplace: Leader e-commerce en Afrique",
+        "og_description": "Leader e-commerce en Afrique, disposant une gamme de produits électroménagers variés à une seule adresse.",
         "og_image_id": 4,
         "og_image": {
           "id": 4,
@@ -265,7 +269,7 @@
           "created_by_id": "1",
           "created_at": "2023-08-24T08:16:03.000000Z",
           "updated_at": "2023-08-24T08:16:03.000000Z",
-          "original_url": "assets/images/data/LOO.jpg"
+          "original_url": "assets/images/logo/afreekha.png"
         }
       }
     }

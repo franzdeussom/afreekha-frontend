@@ -122,22 +122,7 @@
                       </h4>
                     </li>
                   </ul>
-                  <app-button
-                    [class]="'btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold'"
-                    [id]="'place_order'"
-                    [type]="'submit'"
-                    (click)="placeorder()"
-                    >
-                    @if (!isLogged()) {
-                       <span> {{ "create_account" | translate }} </span>
-                    }@else{
-                       <span> {{ "place_order" | translate }} </span>
-
-                    }
-                  </app-button>
-  
-                  <p> <em> <strong>*</strong> {{"account_use_to_order" | translate }}</em></p>
-
+               
                   <app-button
                     [class]="'btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold'"
                     [id]="'openModal'"
@@ -146,6 +131,23 @@
                     {{ 'commande_expresse' | translate }}
                   </app-button>
                   <p> <em> <strong>*</strong> {{ "direct_checkout" | translate}} </em> </p>
+
+                  <app-button
+                  [class]="'btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold'"
+                  [id]="'place_order'"
+                  [type]="'submit'"
+                  (click)="placeorder()"
+                  >
+                  @if (!isLogged()) {
+                     <span> {{ "create_account" | translate }} </span>
+                  }@else{
+                     <span> {{ "place_order" | translate }} </span>
+
+                  }
+                </app-button>
+
+                <p> <em> <strong>*</strong> {{"account_use_to_order" | translate }}</em></p>
+
 
                 </div>
               </form>

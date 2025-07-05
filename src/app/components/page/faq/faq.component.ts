@@ -10,13 +10,14 @@ import { NgbAccordionDirective, NgbAccordionItem, NgbAccordionHeader, NgbAccordi
 import { SkeletonPageComponent } from '../skeleton-page/skeleton-page.component';
 import { AsyncPipe } from '@angular/common';
 import { BreadcrumbComponent } from '../../../shared/components/widgets/breadcrumb/breadcrumb.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-faq',
     templateUrl: './faq.component.html',
     styleUrls: ['./faq.component.scss'],
     standalone: true,
-    imports: [BreadcrumbComponent, SkeletonPageComponent, NgbAccordionDirective, NgbAccordionItem, NgbAccordionHeader, NgbAccordionToggle, NgbAccordionButton, NgbCollapse, NgbAccordionCollapse, NgbAccordionBody, AsyncPipe]
+    imports: [BreadcrumbComponent, TranslateModule, SkeletonPageComponent, NgbAccordionDirective, NgbAccordionItem, NgbAccordionHeader, NgbAccordionToggle, NgbAccordionButton, NgbCollapse, NgbAccordionCollapse, NgbAccordionBody, AsyncPipe]
 })
 export class FaqComponent {
 

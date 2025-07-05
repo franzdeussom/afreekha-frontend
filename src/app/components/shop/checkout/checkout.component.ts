@@ -162,8 +162,8 @@ export class CheckoutComponent {
 
   placeorder() {
    if(!this.isLogged()){
-        this.notification.showError("Veuillez vous connecter pour passer une commande avec votre compte.");
-        this.router.navigateByUrl('/auth/login');
+        this.notification.showError("Veuillez vous connecter ou créer un compte pour passer une commande avec ce dernier .");
+        this.router.navigateByUrl('/auth/register');
    } else{
     if(this.form.valid) {
 
@@ -173,7 +173,7 @@ export class CheckoutComponent {
           this.store.dispatch(new PlaceOrder(this.form.value));
           
       }else{
-        this.notification.showError("Veuillez choisir les options dans les champs, ou reconnecter vous a votre compte.");
+        this.notification.showError("Veuillez choisir les options dans les champs, ou reconnecter vous à votre compte.");
       }
    }   
   }

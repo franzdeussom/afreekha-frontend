@@ -97,7 +97,7 @@ export class AppComponent {
             clearTimeout(this.timeoutId);
             // Set site title
             return this.titleService.setTitle(theme?.general?.site_title && theme?.general?.site_tagline
-              ? `${theme?.general?.site_title} | ${theme?.general?.site_tagline}` : 'Afreekha Marketplace: Where Vendors Shine Together')
+              ? `${theme?.general?.site_title} | ${theme?.general?.site_tagline}` : 'Leader e-commerce en Afrique')
           } else {
              this.updateMessage();
           }
