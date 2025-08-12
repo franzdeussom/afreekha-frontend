@@ -2,7 +2,7 @@
   @if (data?.product_slider_1?.status
     && data?.product_slider_1?.product_ids?.length) {
     <div class="{{col ? col : 'col-xxl-3 col-xl-4 col-sm-6'}}">
-      <div class="category-menu">
+      <div class="category-menu" >
         <h3>{{ data?.product_slider_1?.title }}</h3>
         <app-theme-product
           [productIds]="data?.product_slider_1?.product_ids || []"

@@ -11,7 +11,9 @@ import { BannerComponent } from '../widgets/banner/banner.component';
 import { HomeBannerComponent } from '../widgets/home-banner/home-banner.component';
 import { HomeData } from 'src/app/shared/interface/account.interface';
 import { HomeState } from 'src/app/shared/state/home.state';
+import { TimerComponent } from '../../timer/timer.component';
 import { Observable} from 'rxjs';
+import { AboutmeComponent } from '../../aboutme/aboutme.component';
 
 @Component({
     selector: 'app-paris',
@@ -19,7 +21,7 @@ import { Observable} from 'rxjs';
     styleUrls: ['./paris.component.scss'],
     standalone: true,
     imports: [HomeBannerComponent, BannerComponent, CategoriesComponent, 
-      ProductComponent, TitleComponent]
+      ProductComponent, TitleComponent,TimerComponent, AboutmeComponent]
 })
 export class ParisComponent {
 

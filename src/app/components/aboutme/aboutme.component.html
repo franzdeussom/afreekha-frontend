@@ -1,0 +1,38 @@
+
+<div class="containers">
+    <div class="aboutme" [class.voirPlus]="voirPlus">
+  <h2 class="about-title">Bienvenue chez AFREEKHA</h2>
+  <p>
+    Nous sommes une entreprise passionnée par l’innovation, le confort et la
+    praticité au quotidien. Depuis notre création, nous avons pour mission de
+    rendre les meilleurs outils, gadgets et équipements accessibles à tous — en
+    particulier en Afrique.
+  </p>
+  <h4 class="about-subtitle">Notre promesse :</h4>
+  <h5><> Des produits utiles et de qualité</h5>
+  <ul>
+    <li>Des prix accessibles</li>
+    <li>Un service client à l’écoute</li>
+    <li>Des livraisons rapides et sécurisées</li>
+  </ul>
+  <p>Chez <strong>AFREEKHA</strong>, nous sélectionnons chaque article avec soin
+  pour répondre à vos besoins réels :  que
+ce soit pour bricoler, organiser votre maison, cuisiner plus facilement ou améliorer votre quotidien.</p>
+  <h4 class="about-subtitle">Pourquoi nous faire confiance ?</h4>
+  <ul>
+    <li>Nous testons nos produits avant de les proposer</li>
+    <li>Nos clients nous recommandent pour notre sérieux</li>
+    <li>Nous accompagnons votre achat du début à la fin</li>
+  </ul>
+  <p><strong>Notre vision</strong>: Construire une grande plateforme africaine de commerce en ligne, où l’on trouve des
+solutions simples et efficaces pour mieux vivre.</p>
+</div>
+<button (click)="voirPlus=!voirPlus">
+  {{
+    voirPlus
+      ? "Voir Moins... ^
+    "
+      : "Voir Plus...ᐯ "
+  }}
+</button>
+</div>

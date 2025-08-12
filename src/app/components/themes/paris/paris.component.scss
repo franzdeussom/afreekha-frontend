@@ -1,0 +1,14 @@
+.ventes_flash, ._12, .best_sells{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+@media only screen and (min-width: 1201px) {
+    .category-menu{
+        height: 600px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+}

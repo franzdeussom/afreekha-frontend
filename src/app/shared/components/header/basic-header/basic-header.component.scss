@@ -1,0 +1,125 @@
+.top-nav {
+  background-color: #4c9889;
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0 30px 5px 30px;
+    gap: 5px;
+    > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+      span:first-child {
+        width: 30px;
+        height: 30px;
+        img {
+          width: 100%;
+        }
+      }
+      
+    }
+  }
+}
+
+// Media Queries pour différents écrans
+// Téléphones mobiles (petits écrans)
+@media only screen and (max-width: 480px) {
+  .top-nav {
+      .topbar {
+        padding: 0 10px 0 10px;
+      // flex-direction: column;
+      padding-bottom: 5px;
+
+      div {
+        span:last-child {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+// Tablettes et grands téléphones
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .top-nav {
+      .topbar {
+      padding-bottom: 10px;
+
+      div {
+        span:last-child {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+// Petits ordinateurs portables
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
+  .top-nav {
+    .topbar {
+        padding: 0 20px 0 20px;
+      padding-bottom: 10px;
+
+      div {
+        gap: 10px;
+
+        span:last-child {
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}
+
+// Grands écrans (ordinateurs de bureau)
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+  .top-nav {
+    .topbar {
+      padding-bottom: 10px;
+
+     > div {
+        gap: 10px;
+
+        span:not(:last-child) span:last-child {
+          font-size: 22px;
+          white-space: nowrap;
+            text-overflow: ellipsis;
+          overflow: hidden;
+        }
+         &:not(:last-child) span:last-child::after {
+      content: "|";
+      margin-left: 50px;
+    }
+      }
+    }
+  }
+}
+
+// Très grands écrans
+@media only screen and (min-width: 1201px) {
+  .top-nav {
+    .topbar {
+      padding-bottom: 15px;
+
+      >div {
+        gap: 10px;
+
+        span:last-child {
+          font-size: 24px;
+        }
+        &:not(:last-child) span:last-child::after {
+      content: "|";
+      margin-left: 50px;
+    }
+
+        span:first-child {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+  }
+}
