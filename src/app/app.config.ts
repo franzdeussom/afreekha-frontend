@@ -49,6 +49,8 @@ import { GlobalErrorHandlerInterceptor } from './core/interceptors/global-error-
 import { HomeState } from './shared/state/home.state';
 import { CountryPipe } from './shared/pipe/country.pipe';
 import { StatePipe } from './shared/pipe/state.pipe';
+import { BrandsState } from './shared/state/brands.state';
+import { MoreServiceState } from './shared/state/more-service.state';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -102,6 +104,7 @@ export const appConfig: ApplicationConfig = {
         ThemeState,
         ThemeOptionState,
         CategoryState,
+        MoreServiceState,
         PageState,
         AttributeState,
         ProductState,
@@ -110,6 +113,7 @@ export const appConfig: ApplicationConfig = {
         HomeState,
         BlogState,
         TagState,
+        BrandsState,
         WishlistState,
         CompareState,
         OrderState,

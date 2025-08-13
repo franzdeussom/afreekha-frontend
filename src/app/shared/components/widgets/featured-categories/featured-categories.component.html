@@ -1,0 +1,18 @@
+@if (featuredCategorie.length > 0) {
+<div class="row mt-3 justify-content-center">
+  <div class="col-12">
+    <div class="bg-white py-2">
+    <div class="container-fluid">
+      <div class="d-flex flex-row overflow-auto align-items-center">
+        @for (item of featuredCategorie; track $index) {
+          <a href="javascript:void(0)" (click)="redirection(item.nom!)" class="text-black text-decoration-none px-4 flex-shrink-0 d-flex align-items-center">
+            <img [src]="item.urlLogo" alt="waiting img..." class="me-2" style="width:20px; height:20px;">
+            {{item.nom}}
+          </a>
+        }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

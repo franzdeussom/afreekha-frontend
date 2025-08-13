@@ -1,0 +1,8 @@
+.d-flex::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .d-flex {
+    -ms-overflow-style: none;  /* IE et Edge */
+    scrollbar-width: none;  /* Firefox */
+  }

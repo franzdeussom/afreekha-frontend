@@ -17,6 +17,7 @@ import { LogoComponent } from '../widgets/logo/logo.component';
 import { NavbarMenuButtonComponent } from '../widgets/navbar-menu-button/navbar-menu-button.component';
 import { TopbarComponent } from '../widgets/topbar/topbar.component';
 import { Category } from 'src/app/shared/interface/category.interface';
+import { FeaturedCategoriesComponent } from '../../widgets/featured-categories/featured-categories.component';
 
 @Component({
     selector: 'app-basic-header',
@@ -26,7 +27,7 @@ import { Category } from 'src/app/shared/interface/category.interface';
     imports: [TopbarComponent, LogoComponent, 
       CategoriesComponent, SearchComponent, SearchBoxComponent, CallComponent, 
       WishlistComponent, CartComponent, MyAccountComponent, CategoriesBlockComponent,
-       ButtonComponent, MenuComponent, DealComponent, TranslateModule]
+       ButtonComponent, MenuComponent, DealComponent, FeaturedCategoriesComponent,TranslateModule]
 })
 export class BasicHeaderComponent {
 

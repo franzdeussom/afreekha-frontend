@@ -18,4 +18,9 @@ export interface Attachment {
     created_at?: string;
     updated_at?: string;
     deleted_at?: string;
+
+    idImage: number;
+    lien: string;
+    collection: string;
+    position: string;
 }

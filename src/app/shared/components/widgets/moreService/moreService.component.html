@@ -1,0 +1,31 @@
+@if(moreServiceOne && moreServiceOne.length > 0) {
+  <div class="container my-4 d-none d-md-block">
+    <h5 class="bg-dark text-white p-4 text-center">{{("plus_doffre_et_services" | translate).toUpperCase() }}</h5>
+    <div class="row g-3">
+      @for (item of moreServiceOne; track $index) {
+        <div class="col-md-3" style="cursor: pointer;" (click)="redirection(item.collection)">
+          <div class="card border-0">
+            <img [src]="item.lien" class="card-img-top img-fluid" alt="{{item.lien}}">
+          </div>
+        </div>
+      }
+     
+    </div>
+  </div>
+}
+
+@if (moreServiceTwo && moreServiceTwo.length > 0) {
+  <div class="container my-4 d-none d-md-block">
+  <h5 class="bg-dark text-white p-4 text-center">{{"plus_doffre_et_services" | translate }}</h5>
+  <div class="row g-3">
+    @for (item of moreServiceTwo; track $index) {
+      <div class="col-md-3" style="cursor: pointer;" (click)="redirection(item.collection)">
+        <div class="card border-0">
+          <img [src]="item.lien" class="card-img-top img-fluid" alt="{{item.lien}}">
+        </div>
+      </div>
+    }
+   
+  </div>
+ </div>
+}
