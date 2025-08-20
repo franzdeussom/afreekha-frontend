@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { NgbRatingConfig, NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { ProductState } from '../../../../shared/state/product.state';
-import { ProductModel } from '../../../../shared/interface/product.interface';
+import { Product, ProductModel } from '../../../../shared/interface/product.interface';
 import * as data from '../../../../shared/data/owl-carousel'
 import { Deal, DealOfDays } from '../../../../shared/interface/theme.interface';
 import { AddToWishlist } from '../../../../shared/action/wishlist.action';
@@ -73,11 +73,11 @@ export class DealComponent {
   }
 
 
-  addToWishlist(id: number) {
-    this.store.dispatch(new AddToWishlist({ product_id: id }));
+  addToWishlist(product: Product) {
+    this.store.dispatch(new AddToWishlist(product));
   }
 
-  addToCompare(id: number) {
-    this.store.dispatch(new AddToCompare({ product_id: id }));
+  addToCompare(product: Product) {
+    this.store.dispatch(new AddToCompare(product));
   }
 }
