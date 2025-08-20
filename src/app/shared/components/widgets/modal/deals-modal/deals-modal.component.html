@@ -1,50 +1,53 @@
-<!-- Colonne gauche : deals directement affichés -->
-    
-    <!-- Deals Section -->
-    <div class="category-menu deals-box p-3 rounded shadow-sm psticky">
-      <div class="modal-header p-0 mb-3 border-bottom">
-        <div>
-          <h5 class="modal-title" id="deal_today">{{ 'deal_today' | translate }}</h5>
-          <p class="text-content">{{ 'recommended_deals_for_you' | translate }}</p>
-        </div>
+<ng-template #dealsModal let-modal>
+  <div class="modal-content">
+    <div class="modal-header">
+      <div>
+        <h5 class="modal-title w-100" id="deal_today">{{ 'deal_today' | translate }}</h5>
+        <p class="text-content">{{ 'recommended_deals_for_you' | translate }}</p>
       </div>
-
-      <div class="modal-body p-0">
-        @if (products.length) {
-          <div class="deal-offer-box">
-            <ul class="deal-offer-list list-unstyled">
-              <div class="scrollable-box">
-              @for (product of products; track product) {
-                <li>
-                  <div class="category-list">
-                   
-                    <a [routerLink]="['/product/', product.idArticle]" class="deal-image me-2" (click)="closeModal()">
-                      <img [src]="product?.Images ? product.Images[0].lien : 'assets/images/product.png'" alt="product" class="img-fluid rounded" style="width: 60px; height: 60px;">
+      <app-button [type]="'button'" [class]="'btn btn-close'" [id]="'close_deal_modal_btn'" (click)="modal.dismiss('Cross click')">
+        <i class="ri-close-line"></i>
+      </app-button>
+    </div>
+    <div class="modal-body">
+      @if (products.length) {
+        <div class="deal-offer-box">
+          <ul class="deal-offer-list">
+            @for (product of products; track product) {
+              <li class="list-1">
+                <div class="deal-offer-contain">
+                  <a [routerLink]="['/product/', product.idArticle]" class="deal-image" (click)="closeModal()">
+                        <img [src]="product?.Images ?
+                                    product.Images[0].lien :
+                                    'assets/images/product.png'" alt="product">
                     </a>
-                    <a [routerLink]="['/product/', product.idArticle]" class="deal-contain text-dark text-decoration-none">
-                     <ul>
-                         <li> 
-                          <h6>{{ product?.nom_article }}</h6>                          
-                        </li>
-                        <li>
-                             @if (product.promo) {
-                                <h5 class="price theme-color">{{ (product.prix - (product.prix * product.pourcentage_promo)/100) | currencySymbol }}</h5>
-                              }
-                        </li>
-                     </ul>
+                    <a [routerLink]="['/product/', product.idArticle]" class="deal-contain">
+                      <h5 class="fw-semibold">{{ product?.nom_article }}</h5>
+                      <h6>
+                        @if (product.promo) {
+                        {{ (product.prix - (product.prix * product.pourcentage_promo)/100) | currencySymbol }}
+
+                          <del>{{ product.prix | currencySymbol }}</del>
+                        }@else {
+                          {{ product.prix | currencySymbol }}
+                        }
+                        
+                      </h6>
                     </a>
                   </div>
                 </li>
               }
-             </div>
-
             </ul>
           </div>
-        } @else {
+        }
+        <!-- No Data -->
+        @if (!products.length) {
           <app-no-data
             [class]="'no-data-added bg-light'"
-            [text]="'No Product Found'">
-          </app-no-data>
-        }
-      </div>
+            [text]="'No Product Found'"
+            >
+        </app-no-data>
+      }
     </div>
+  </div>
+</ng-template>

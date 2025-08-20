@@ -55,10 +55,9 @@
           </div>
         </div>
       </div>
-     <app-featured-categories></app-featured-categories>
     </div>
   </div>
-<div class="container-fluid-lg mt-3">
+  <div class="container-fluid-lg mt-3">
     <div class="row">
       <div class="col-12">
         <div class="header-nav">
@@ -83,6 +82,11 @@
               }
             </div>
           </div>
+          @if (data?.header?.today_deals?.length) {
+            <div class="header-nav-right">
+              <app-deal [data]="data"></app-deal>
+            </div>
+          }
         </div>
       </div>
     </div>
