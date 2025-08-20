@@ -10,15 +10,15 @@
                 @if ((user$ | async)?.profile_image && (user$ | async)?.profile_image?.original_url) {
                 <img [src]="(user$ | async)?.profile_image?.original_url" class="img-fluid" alt="profile">
                 } @else {
-                <h3>{{ (user$ | async)?.user?.nom?.charAt(0)?.toString()?.toUpperCase() }}</h3>
+                <h3 style="color: white">{{ (user$ | async)?.user?.nom?.charAt(0)?.toString()?.toUpperCase() }}</h3>
                 }
             </div>
             }
         </div>
         <div class="delivery-detail">
-            <h6>{{ 'hi' | translate }}, {{ ((isAuthenticated$ | async) ? (user$ | async)?.user?.nom : 'user' | translate) }}
+            <h6 style="color: white">{{ 'hi' | translate }}, {{ ((isAuthenticated$ | async) ? (user$ | async)?.user?.nom : 'user' | translate) }}
             </h6>
-            <h5>{{ 'my_account' | translate }}</h5>
+            <h5 style="color: white">{{ 'my_account' | translate }}</h5>
         </div>
     </div>
     <div class="onhover-div onhover-div-login">

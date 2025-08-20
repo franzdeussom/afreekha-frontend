@@ -19,13 +19,15 @@ import { RouterLink } from '@angular/router';
 import { CurrencySymbolPipe } from 'src/app/shared/pipe/currency-symbol.pipe';
 import { BrandsComponent } from 'src/app/shared/components/widgets/brands/brands.component';
 import { MoreServiceComponent } from 'src/app/shared/components/widgets/moreService/moreService.component';
+import { TimerComponent } from '../../timer/timer.component';
+import { AboutmeComponent } from '../../aboutme/aboutme.component';
 @Component({
     selector: 'app-paris',
     templateUrl: './paris.component.html',
     styleUrls: ['./paris.component.scss'],
     standalone: true,
     imports: [HomeBannerComponent, BannerComponent, DealComponent, CategoriesComponent,MoreServiceComponent,
-      ProductComponent, TitleComponent, BrandsComponent]
+      ProductComponent, TitleComponent, BrandsComponent, TimerComponent, AboutmeComponent]
 })
 export class ParisComponent {
 

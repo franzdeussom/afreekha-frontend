@@ -182,12 +182,12 @@ export const bannerSlider: OwlOptions = {
       autoplayTimeout: 4500,
     },
     870: {
-      items: 1,
+      items: 2,
       autoplay: true,
       autoplayTimeout: 5500,
     },
     1190: {
-      items: 1,
+      items: 2,
       autoplay: true,
       autoplayTimeout: 5500,
     },
@@ -211,7 +211,7 @@ export const bannerSliderCenter: OwlOptions = {
       autoplayTimeout: 4500,
     },
     870: {
-      items: 3,
+      items: 2,
       autoplay: true,
       autoplayTimeout: 5500,
     },
