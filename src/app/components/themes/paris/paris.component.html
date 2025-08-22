@@ -201,6 +201,9 @@
   }-->
   <!-- Newsletter Section End -->
 <div class="orther container-fluid-lg">
+  <div class="ventes_flash">
+            <app-timer></app-timer>
+          </div>
   @if (true) {
           <div class="_12">
             <app-theme-banner
@@ -214,10 +217,6 @@
             </app-theme-banner>
           </div>
           }
-
-           <div class="ventes_flash">
-            <app-timer></app-timer>
-          </div>
           <div class="best_sells">
             @if (data?.third_section?.article?.length || 0 >= 1) {
           <app-title
