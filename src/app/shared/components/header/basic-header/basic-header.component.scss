@@ -1,6 +1,11 @@
 .d-flex::-webkit-scrollbar {
     display: none;
   }
+
+  .searchbox {
+    display: flex;
+    justify-content: center;
+  }
   
   .d-flex {
     -ms-overflow-style: none;  /* IE et Edge */

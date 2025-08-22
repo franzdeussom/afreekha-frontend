@@ -2,7 +2,7 @@
 @if (style == 'basic') {
   <div class="input-group">
     <input type="search" class="form-control" placeholder="Search here.." [formControl]="term">
-    <app-button [type]="'button'" [class]="'btn'" [spinner]="false" [id]="'basic_search_btn'" (click)="redirectToSearch()">
+    <app-button [type]="'button'" [class]="'btn'" style="background-color: white;" [spinner]="false" [id]="'basic_search_btn'" (click)="redirectToSearch()">
       <i class="ri-search-line"></i>
     </app-button>
   </div>

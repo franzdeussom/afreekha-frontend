@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Attachment } from 'src/app/shared/interface/attachment.interface';
@@ -9,7 +10,8 @@ import { BrandsState } from 'src/app/shared/state/brands.state';
   selector: 'app-brands',
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.scss'],
-  standalone: true
+  standalone: true,
+  imports: [TranslateModule]
 })
 export class BrandsComponent implements OnInit {
   brands : Attachment[] = [];

@@ -1,7 +1,12 @@
 <ul>
-  @for (category of data; track category) {
+  @for (category of data.slice(0, 4); track category;) {
     <li>
       <a href="javascript:void(0)" [routerLink]="['/collections']" [queryParams]="{ category: category?.nom, nui: category.idCategorie}" class="text-content">{{ category.nom }}</a>
+    </li>
+  }
+@if (data.length >= 5) {
+    <li>
+      <a href="javascript:void(0)" [routerLink]="['/collections']" class="text-content">{{ 'Voir plus...' }}</a>
     </li>
   }
 </ul>
