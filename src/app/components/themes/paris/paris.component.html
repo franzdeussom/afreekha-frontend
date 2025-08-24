@@ -1,5 +1,5 @@
 <div class="containers">
-  <div class="bg-effect">
+  <div class="bg-effect container-fluid">
   <!-- Home Section Start -->
   @if (false) {
   <section
@@ -13,8 +13,8 @@
   </section>
   }
 
-  <section class="product-section">
-    <div class="container-fluid">
+  <section class="product-section container-fluid">
+    <div class="container_header container-fluid">
       <div class="">
     
         <!-- Colonne gauche : menu -->
@@ -64,7 +64,7 @@
 
   <!-- Product Section Start -->
   <section class="product-section">
-    <div class="container-fluid-lg">
+    <div class="container-fluid">
       <div class="row g-sm-4 g-3">
         <!-- Left Content Start -->
         @if (true) {
@@ -119,7 +119,7 @@
             [description]="data?.secode_section?.description"
           >
           </app-title>
-          <div class="section-b-space">
+          <div class="deal section-b-space">
             <app-theme-product
               [product]="data?.secode_section?.article || []"
               [slider]="true"
@@ -152,7 +152,7 @@
           <!-- Two Column Banner Section Start-->
           @if (true) {
 
-          <div class="section-t-space section-b-space">
+          <div class=" section-b-space">
             <div class="banner-section ratio_60">
               <app-theme-banner
                 [style]="'horizontal'"
@@ -165,18 +165,20 @@
 
           <!-- Section Start -->
           @if (true) {
-          <app-title
+          <div class="tendance">
+            <app-title
             [title]="data?.fourth_section?.title"
             [description]="data?.fourth_section?.description"
           >
           </app-title>
-          <div class="section-b-space">
+          <div class="">
             <app-theme-product
               [product]="data?.fourth_section?.article || []"
               [slider]="true"
               [style]="'horizontal'"
             >
             </app-theme-product>
+          </div>
           </div>
           }
           <!-- Section End -->
@@ -200,7 +202,7 @@
     </section>
   }-->
   <!-- Newsletter Section End -->
-<div class="orther container-fluid-lg">
+<div class="orther container-fluid">
   <div class="ventes_flash">
             <app-timer></app-timer>
           </div>
@@ -231,12 +233,15 @@
           </app-theme-product>
           }
           </div>
-          <!-- Our Best Seller Section End -->
+          <div class="partner">
+            <app-brands></app-brands>
+          </div>
            
            <div class="aboutme">
             <app-aboutme></app-aboutme>
            </div>
+</div>
 
-           <app-brands></app-brands>
-           
+</section>
+</div>
 </div>

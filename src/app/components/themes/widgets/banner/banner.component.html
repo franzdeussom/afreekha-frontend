@@ -1,6 +1,6 @@
 <!-- Banner Horizontal Style-->
 @if (banners && style == 'horizontal' && isCenter==false && isPrincipal==true) {
-  <div class="container-fluid-lg" >
+  <div class="container-fluid header_container" >
     <div class="banner-slider">
       <owl-carousel-o [options]="bannerSliderPrincipal">
         @for (banner of banners; track banner) {
@@ -43,7 +43,7 @@
 }
 
 @if (articles.length != 0) {
-  <div class="container-fluid-lg" >
+  <div class="container-fluid" >
     <div class="banner-slider">
       <owl-carousel-o [options]="bannerSlider">
         @for (article of articles; track article) {
@@ -67,7 +67,7 @@
 <!-- Banner Vertical Style-->
 @if (banners && style == 'vertical') {
   <div [class]="class">
-    <div class="home-contain hover-effect">
+    <div class="home-contain hover-effect" style="width: 300px; height: 300px;">
       <app-image-link [class]="'banner-contain'" [image]="banners" [bgImage]="false"></app-image-link>
     </div>
   </div>

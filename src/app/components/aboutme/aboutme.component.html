@@ -1,6 +1,6 @@
 
 <div class="containers">
-    <div class="aboutme" [class.voirPlus]="voirPlus">
+    <div class="aboutme" [class.voirPlus]="voirPlus" [ngStyle]="!voirPlus?{'overflow':'hidden'}:{'overflow':'scroll'}">
   <h2 class="about-title">Bienvenue chez AFREEKHA</h2>
   <p>
     Nous sommes une entreprise passionnée par l’innovation, le confort et la

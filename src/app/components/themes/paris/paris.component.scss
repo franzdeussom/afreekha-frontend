@@ -1,3 +1,10 @@
+.container_header{
+  @media (max-width: 576px) { // Pour les téléphones
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .psticky {
     width: auto;
     height: 285x;
@@ -27,7 +34,7 @@
 
 @media only screen and (min-width: 1201px) {
     .category-menu{
-        height: 600px;
+        height: 500px;
         overflow-y: scroll;
         scrollbar-width: none;
         -ms-overflow-style: none;

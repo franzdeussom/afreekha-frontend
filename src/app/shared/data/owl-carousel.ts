@@ -40,7 +40,7 @@ export const productSliderMargin: OwlOptions = {
   dots: true,
   responsive: {
     0: {
-      items: 1,
+      items: 2,
     },
     400: {
       items: 2,
@@ -172,12 +172,12 @@ export const bannerSlider: OwlOptions = {
   margin: 20,
   responsive: {
     0: {
-      items: 1,
+      items: 2,
       autoplay: true,
       autoplayTimeout: 5500,
     },
     525: {
-      items: 1,
+      items: 2,
       autoplay: true,
       autoplayTimeout: 4500,
     },
@@ -201,7 +201,7 @@ export const bannerSliderCenter: OwlOptions = {
   margin: 20,
   responsive: {
     0: {
-      items: 1,
+      items: 2,
       autoplay: true,
       autoplayTimeout: 5500,
     },

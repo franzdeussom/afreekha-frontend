@@ -8,6 +8,16 @@
   border-radius: 10px;
   font-weight: bold;
   color: #ff5722;
+  .timer_date{
+    display: flex;
+    gap: 10px;
+    font-weight: normal;
+    justify-content: center;
+    align-items: center;
+    span:first-child{
+      font-size: 14px;
+    }
+  }
   span{
     color: #fff;
     font-size: 14px;
@@ -16,7 +26,6 @@
       color: #fff;
       width: 100%;
     }
-   
   }
   span:first-child{
     font-size: 20px;
@@ -39,3 +48,29 @@
     }
   }
 }
+
+@media (max-width: 768px) { // Pour les téléphones
+  .timer{
+    padding: 0 10px;
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    span:first-child{
+      font-size: 14px;
+    }
+    span:last-child{
+      font-size: 10px;
+    }
+  }
+  .timer_date{
+    flex-direction: column;
+  }
+  }
+
+  @media (max-width: 430px){
+    .timer{
+      span:last-child{
+        font-size: 9px;
+      }
+    }
+  }

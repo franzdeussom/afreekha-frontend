@@ -1,7 +1,10 @@
 @if(statusTimer == true){
-  <div class="timer container-fluid-lg">
+  <div class="timer container-fluid">
     <span>Ventes Flash</span>
-  <span class="time"><strong>Termine dans {{ remainingTime }}</strong></span>
+  <div class="timer_date">
+    <span>Termine dans</span>
+    <span class="time"><strong> {{ remainingTime }}</strong></span>
+  </div>
   <span><a (click)="goToCategory()">Voir Plus</a></span>
 </div>
 }
