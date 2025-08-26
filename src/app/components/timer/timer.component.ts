@@ -22,7 +22,7 @@ export class TimerComponent implements OnInit, OnDestroy{
       this.timerService.getTimer().subscribe((result:any)=>{
         this.statusTimer = result.reps.status
         this.collectionTimer = result.reps.collection
-        console.log("status:", this.statusTimer, this.collectionTimer)
+        // console.log("status:", this.statusTimer, this.collectionTimer)
       })
   }
 

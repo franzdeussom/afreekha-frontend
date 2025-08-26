@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, PLATFORM_ID, Inject, inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Store } from '@ngxs/store';
 import { ThemeOptionService } from '../../../shared/services/theme-option.service';
 import * as data from  '../../../shared/data/owl-carousel';
@@ -21,15 +21,17 @@ import { BrandsComponent } from 'src/app/shared/components/widgets/brands/brands
 import { MoreServiceComponent } from 'src/app/shared/components/widgets/moreService/moreService.component';
 import { TimerComponent } from '../../timer/timer.component';
 import { AboutmeComponent } from '../../aboutme/aboutme.component';
+import {Breakpoints, BreakpointObserver} from "@angular/cdk/layout";
 @Component({
     selector: 'app-paris',
     templateUrl: './paris.component.html',
     styleUrls: ['./paris.component.scss'],
     standalone: true,
-    imports: [HomeBannerComponent, BannerComponent, DealComponent, CategoriesComponent,MoreServiceComponent,
+    imports: [HomeBannerComponent, BannerComponent, CategoriesComponent,MoreServiceComponent,CommonModule,
       ProductComponent, TitleComponent, BrandsComponent, TimerComponent, AboutmeComponent]
 })
 export class ParisComponent {
+  isMobile : boolean= false
 
   @Input() slug?: string;
   @Input() data?: HomeData;
@@ -41,10 +43,16 @@ export class ParisComponent {
   public isBrowser: boolean;
   dealProducts$: Observable<Product[]> = inject(Store).select(ProductState.dealProducts) as Observable<Product[]>;
   products : Product[] = [];
-  constructor(
+  constructor(private beakpointObserver: BreakpointObserver,
     @Inject(PLATFORM_ID) private platformId: Object,
     private themeOptionService: ThemeOptionService, private store: Store) {     
       this.isBrowser = isPlatformBrowser(this.platformId);
+      this.beakpointObserver.observe([Breakpoints.Handset]).subscribe(
+        res=>{
+          this.isMobile = res.matches
+          // console.log('mobile value:', this.isMobile,"mathes:",res.matches)
+        }
+      )
   }
 
   ngOnInit() {
