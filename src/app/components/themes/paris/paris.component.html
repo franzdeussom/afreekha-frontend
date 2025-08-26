@@ -1,24 +1,24 @@
 <div class="containers">
-  <div class="bg-effect container-fluid">
-  <!-- Home Section Start -->
-  @if (false) {
-  <section
-    class="home-section pt-2"
-    style="display: flex; justify-content: center; align-items: center"
-  >
-    <app-theme-home-banner
-      [theme]="'paris'"
-      [data]="data?.v_img"
-    ></app-theme-home-banner>
-  </section>
-  }
+  <ng-container *ngIf="!isMobile">
+    <div class="bg-effect container-fluid">
+      <!-- Home Section Start -->
+      @if (false) {
+      <section
+        class="home-section pt-2"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <app-theme-home-banner
+          [theme]="'paris'"
+          [data]="data?.v_img"
+        ></app-theme-home-banner>
+      </section>
+      }
 
-  <section class="product-section container-fluid">
-    <div class="container_header container-fluid">
-      <div class="">
-    
-        <!-- Colonne gauche : menu -->
-        <!-- <div class="col-xl-3 d-none d-xl-block">
+      <section class="product-section container-fluid">
+        <div class="container_header container-fluid">
+          <div class="">
+            <!-- Colonne gauche : menu -->
+            <!-- <div class="col-xl-3 d-none d-xl-block">
           <div class="p-sticky psticky">
             @if ((data?.list_categories?.length || 0) > 0) {
               <div class="scrollable-box">
@@ -30,183 +30,182 @@
             }
           </div>
         </div> -->
-    
-        <!-- Colonne centrale : bannière -->
-        <div class="">
-          <!-- <div class="section-b-space ratio_12">
+
+            <!-- Colonne centrale : bannière -->
+            <div class="">
+              <!-- <div class="section-b-space ratio_12">
            <app-theme-banner [style]="'horizontal'" [style]="'full_width'" [isCenter]="true" [banners]="data?.temp?.slider ? data?.temp?.slider: null"></app-theme-banner>
             
           </div> -->
-          <section class="banner-section ratio_60">
-            <app-theme-banner
-              [style]="'horizontal'"
-              [isPrincipal]="true"
-              [isCenter]="false"
-              [banners]="data?.temp?.slider"
-            ></app-theme-banner>
-          </section>
-        </div>
-    
-        <!-- Colonne droite : pub -->
-        <!-- <div class="col-xl-3 d-none d-xl-block">
+              <section class="banner-section ratio_60">
+                <app-theme-banner
+                  [style]="'horizontal'"
+                  [isPrincipal]="true"
+                  [isCenter]="false"
+                  [banners]="data?.temp?.slider"
+                ></app-theme-banner>
+              </section>
+            </div>
+
+            <!-- Colonne droite : pub -->
+            <!-- <div class="col-xl-3 d-none d-xl-block">
           <div class="p-sticky psticky">
             <div class="scrollable-box">
               <app-deal [data]="null"></app-deal>
            </div>
          </div>
        </div>   -->
-      </div>
-    </div>
-  <!-- Banner Section Start -->
-  
+          </div>
+        </div>
+        <!-- Banner Section Start -->
 
-  <!-- Banner Section End -->
+        <!-- Banner Section End -->
 
-  <!-- Product Section Start -->
-  <section class="product-section">
-    <div class="container-fluid">
-      <div class="row g-sm-4 g-3">
-        <!-- Left Content Start -->
-        @if (true) {
-        <div class="col-xxl-3 col-xl-4 d-none d-xl-block">
-          <div class="p-sticky">
-            <!-- Sidebar Category Vertical Style -->
-            @if ((data?.list_categories?.length || 0) > 0) {
-            <app-theme-categories
-              [category]="data?.list_categories || []"
-              [style]="'vertical'"
-            >
-            </app-theme-categories>
-            }
-            <!-- Sidebar Vertical Banner -->
-            <app-theme-banner
-              [class]="'ratio_156 section-t-space'"
-              [style]="'vertical'"
-              [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[0]: null"
-            >
-            </app-theme-banner>
-            <!-- Sidebar Vertical Banner -->
-            <app-theme-banner
-              [class]="'ratio_medium section-t-space'"
-              [style]="'vertical'"
-              [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[1]: null"
-            >
-            </app-theme-banner>
-            <!-- Products -->
-            @if (data?.firt_section?.article?.length || 0 >= 1) {
-            <div class="section-t-space category_menu_parent">
-              <div class="category-menu">
-                <h3>{{ data?.firt_section?.title }}</h3>
-                <app-theme-product
-                  [style]="'vertical'"
-                  [product]="data?.firt_section?.article || []"
-                >
-                </app-theme-product>
+        <!-- Product Section Start -->
+        <section class="product-section">
+          <div class="container-fluid">
+            <div class="row g-sm-4 g-3">
+              <!-- Left Content Start -->
+              @if (true) {
+              <div class="col-xxl-3 col-xl-4 d-none d-xl-block">
+                <div class="p-sticky">
+                  <!-- Sidebar Category Vertical Style -->
+                  @if ((data?.list_categories?.length || 0) > 0) {
+                  <app-theme-categories
+                    [category]="data?.list_categories || []"
+                    [style]="'vertical'"
+                  >
+                  </app-theme-categories>
+                  }
+                  <!-- Sidebar Vertical Banner -->
+                  <app-theme-banner
+                    [class]="'ratio_156 section-t-space'"
+                    [style]="'vertical'"
+                    [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[0]: null"
+                  >
+                  </app-theme-banner>
+                  <!-- Sidebar Vertical Banner -->
+                  <app-theme-banner
+                    [class]="'ratio_medium section-t-space'"
+                    [style]="'vertical'"
+                    [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[1]: null"
+                  >
+                  </app-theme-banner>
+                  <!-- Products -->
+                  @if (data?.firt_section?.article?.length || 0 >= 1) {
+                  <div class="section-t-space category_menu_parent">
+                    <div class="category-menu">
+                      <h3>{{ data?.firt_section?.title }}</h3>
+                      <app-theme-product
+                        [style]="'vertical'"
+                        [product]="data?.firt_section?.article || []"
+                      >
+                      </app-theme-product>
+                    </div>
+                  </div>
+                  }
+                </div>
               </div>
+              }
+              <!-- Left Content End -->
+
+              <!-- Right Content Start -->
+              <div
+                [class]="true ? 'col-xxl-9 col-xl-8' : 'col-xxl-12 col-xl-12'"
+              >
+                <!-- Top Save Today Section Start -->
+                @if (data?.secode_section?.article?.length || 0 >= 1) {
+                <app-title
+                  [title]="data?.secode_section?.title"
+                  [description]="data?.secode_section?.description"
+                >
+                </app-title>
+                <div class="deal section-b-space">
+                  <app-theme-product
+                    [product]="data?.secode_section?.article || []"
+                    [slider]="true"
+                    [style]="'horizontal'"
+                  >
+                  </app-theme-product>
+                </div>
+                }
+                <!-- Top Save Today Section End -->
+
+                <!-- Categories Section Start-->
+                @if (true) {
+                <div>
+                  <app-title
+                    [title]="'Decouvrez plus...'"
+                    [description]="'Par categorie !'"
+                  >
+                  </app-title>
+                  <app-theme-categories
+                    [sliderOption]="categorySlider"
+                    [category]="data?.list_categories || []"
+                    [theme]="'paris'"
+                    [style]="'horizontal'"
+                  >
+                  </app-theme-categories>
+                </div>
+                }
+                <!-- Categories Section End-->
+
+                <!-- Two Column Banner Section Start-->
+                @if (true) {
+
+                <div class="section-b-space">
+                  <div class="banner-section ratio_60">
+                    <app-theme-banner
+                      [style]="'horizontal'"
+                      [isCenter]="true"
+                      [banners]="data?.temp?.main_two_pic"
+                    ></app-theme-banner>
+                  </div>
+                </div>
+                }
+
+                <!-- Section Start -->
+                @if (true) {
+                <div class="tendance">
+                  <app-title
+                    [title]="data?.fourth_section?.title"
+                    [description]="data?.fourth_section?.description"
+                  >
+                  </app-title>
+                  <div class="">
+                    <app-theme-product
+                      [product]="data?.fourth_section?.article || []"
+                      [slider]="true"
+                      [style]="'horizontal'"
+                    >
+                    </app-theme-product>
+                  </div>
+                </div>
+                }
+                <!-- Section End -->
+
+                <!-- Coupons Banner Section Start i remove sale-banner's class here  -->
+              </div>
+              <!-- Right Content End -->
             </div>
-            }
           </div>
-        </div>
-        }
-        <!-- Left Content End -->
 
-        <!-- Right Content Start -->
-        <div [class]="true ? 'col-xxl-9 col-xl-8' : 'col-xxl-12 col-xl-12'">
-          <!-- Top Save Today Section Start -->
-          @if (data?.secode_section?.article?.length || 0 >= 1) {
-          <app-title
-            [title]="data?.secode_section?.title"
-            [description]="data?.secode_section?.description"
-          >
-          </app-title>
-          <div class="deal section-b-space">
-            <app-theme-product
-              [product]="data?.secode_section?.article || []"
-              [slider]="true"
-              [style]="'horizontal'"
-            >
-            </app-theme-product>
-          </div>
-          }
-          <!-- Top Save Today Section End -->
+          <app-moreService></app-moreService>
+        </section>
+        <!-- Product Section End -->
 
-          <!-- Categories Section Start-->
-          @if (true) {
-          <div>
-            <app-title
-              [title]="'Decouvrez plus...'"
-              [description]="'Par categorie !'"
-            >
-            </app-title>
-            <app-theme-categories
-              [sliderOption]="categorySlider"
-              [category]="data?.list_categories || []"
-              [theme]="'paris'"
-              [style]="'horizontal'"
-            >
-            </app-theme-categories>
-          </div>
-          }
-          <!-- Categories Section End-->
-
-          <!-- Two Column Banner Section Start-->
-          @if (true) {
-
-          <div class=" section-b-space">
-            <div class="banner-section ratio_60">
-              <app-theme-banner
-                [style]="'horizontal'"
-                [isCenter]="true"
-                [banners]="data?.temp?.main_two_pic"
-              ></app-theme-banner>
-            </div>
-          </div>
-          }
-
-          <!-- Section Start -->
-          @if (true) {
-          <div class="tendance">
-            <app-title
-            [title]="data?.fourth_section?.title"
-            [description]="data?.fourth_section?.description"
-          >
-          </app-title>
-          <div class="">
-            <app-theme-product
-              [product]="data?.fourth_section?.article || []"
-              [slider]="true"
-              [style]="'horizontal'"
-            >
-            </app-theme-product>
-          </div>
-          </div>
-          }
-          <!-- Section End -->
-
-          <!-- Coupons Banner Section Start i remove sale-banner's class here  -->
-        </div>
-        <!-- Right Content End -->
-      </div>
-    </div>
-
-    <app-moreService></app-moreService>
-
-
-  </section>
-  <!-- Product Section End -->
-
-  <!-- Newsletter Section Start 
+        <!-- Newsletter Section Start 
   @if (data?.content?.news_letter?.status) {
     <section class="newsletter-section section-b-space">
       <app-newsletter [data]="data?.content?.news_letter!"></app-newsletter>
     </section>
   }-->
-  <!-- Newsletter Section End -->
-<div class="orther container-fluid">
-  <div class="ventes_flash">
+        <!-- Newsletter Section End -->
+        <div class="orther container-fluid">
+          <div class="ventes_flash">
             <app-timer></app-timer>
           </div>
-  @if (true) {
+          @if (true) {
           <div class="_12">
             <app-theme-banner
               class=""
@@ -221,27 +220,268 @@
           }
           <div class="best_sells">
             @if (data?.third_section?.article?.length || 0 >= 1) {
-          <app-title
-            [title]="data?.third_section?.title"
-            [description]="data?.third_section?.description"
-          >
-          </app-title>
-          <app-theme-product
-            [product]="data?.third_section?.article || []"
-            [style]="'classic'"
-          >
-          </app-theme-product>
-          }
+            <app-title
+              [title]="data?.third_section?.title"
+              [description]="data?.third_section?.description"
+            >
+            </app-title>
+            <app-theme-product
+              [product]="data?.third_section?.article || []"
+              [style]="'classic'"
+            >
+            </app-theme-product>
+            }
           </div>
           <div class="partner">
             <app-brands></app-brands>
           </div>
-           
-           <div class="aboutme">
-            <app-aboutme></app-aboutme>
-           </div>
-</div>
 
-</section>
-</div>
+          <div class="aboutme">
+            <app-aboutme></app-aboutme>
+          </div>
+        </div>
+      </section>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="isMobile">
+    <div class="bg-effect container-fluid">
+      <!-- Home Section Start -->
+      @if (false) {
+      <section
+        class="home-section pt-2"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <app-theme-home-banner
+          [theme]="'paris'"
+          [data]="data?.v_img"
+        ></app-theme-home-banner>
+      </section>
+      }
+
+      <section class="product-section container-fluid">
+        <div class="container_header container-fluid">
+          <div class="">
+            <!-- Colonne gauche : menu -->
+            <!-- <div class="col-xl-3 d-none d-xl-block">
+          <div class="p-sticky psticky">
+            @if ((data?.list_categories?.length || 0) > 0) {
+              <div class="scrollable-box">
+                <app-theme-categories
+                  [category]="data?.list_categories || []"
+                  [style]="'vertical'">
+                </app-theme-categories>
+              </div>
+            }
+          </div>
+        </div> -->
+
+            <!-- Colonne centrale : bannière -->
+            <div class="">
+              <!-- <div class="section-b-space ratio_12">
+           <app-theme-banner [style]="'horizontal'" [style]="'full_width'" [isCenter]="true" [banners]="data?.temp?.slider ? data?.temp?.slider: null"></app-theme-banner>
+            
+          </div> -->
+              <section class="banner-section ratio_60">
+                <app-theme-banner
+                  [style]="'horizontal'"
+                  [isPrincipal]="true"
+                  [isCenter]="false"
+                  [banners]="data?.temp?.slider"
+                ></app-theme-banner>
+              </section>
+            </div>
+
+            <!-- Colonne droite : pub -->
+            <!-- <div class="col-xl-3 d-none d-xl-block">
+          <div class="p-sticky psticky">
+            <div class="scrollable-box">
+              <app-deal [data]="null"></app-deal>
+           </div>
+         </div>
+       </div>   -->
+          </div>
+        </div>
+        <div class="ventes_flash">
+        <app-timer></app-timer>
+      </div>
+
+        <section class="product-section">
+          <div class="container-fluid">
+            <div class="row g-sm-4 g-3">
+              <!-- Left Content Start -->
+              @if (true) {
+              <div class="col-xxl-3 col-xl-4 d-none d-xl-block">
+                <div class="p-sticky">
+                  <!-- Sidebar Category Vertical Style -->
+                  @if ((data?.list_categories?.length || 0) > 0) {
+                  <app-theme-categories
+                    [category]="data?.list_categories || []"
+                    [style]="'vertical'"
+                  >
+                  </app-theme-categories>
+                  }
+                  <!-- Sidebar Vertical Banner -->
+                  <app-theme-banner
+                    [class]="'ratio_156 section-t-space'"
+                    [style]="'vertical'"
+                    [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[0]: null"
+                  >
+                  </app-theme-banner>
+                  <!-- Sidebar Vertical Banner -->
+                  <app-theme-banner
+                    [class]="'ratio_medium section-t-space'"
+                    [style]="'vertical'"
+                    [banners]="data?.temp?.side?.[1] ? data?.temp?.side?.[1]: null"
+                  >
+                  </app-theme-banner>
+                  <!-- Products -->
+                  @if (data?.firt_section?.article?.length || 0 >= 1) {
+                  <div class="section-t-space category_menu_parent">
+                    <div class="category-menu">
+                      <h3>{{ data?.firt_section?.title }}</h3>
+                      <app-theme-product
+                        [style]="'vertical'"
+                        [product]="data?.firt_section?.article || []"
+                      >
+                      </app-theme-product>
+                    </div>
+                  </div>
+                  }
+                </div>
+              </div>
+              }
+              <!-- Left Content End -->
+
+              <!-- Right Content Start -->
+              <div
+                [class]="true ? 'col-xxl-9 col-xl-8' : 'col-xxl-12 col-xl-12'"
+              >
+                <!-- Top Save Today Section Start -->
+                @if (data?.secode_section?.article?.length || 0 >= 1) {
+                <app-title
+                  [title]="data?.secode_section?.title"
+                  [description]="data?.secode_section?.description"
+                >
+                </app-title>
+                <div class="deal section-b-space">
+                  <app-theme-product
+                    [product]="data?.secode_section?.article || []"
+                    [slider]="true"
+                    [style]="'horizontal'"
+                  >
+                  </app-theme-product>
+                </div>
+                }
+                <!-- Top Save Today Section End -->
+
+                <!-- Categories Section Start-->
+                @if (true) {
+                <div>
+                  <app-title
+                    [title]="'Decouvrez plus...'"
+                    [description]="'Par categorie !'"
+                  >
+                  </app-title>
+                  <app-theme-categories
+                    [sliderOption]="categorySlider"
+                    [category]="data?.list_categories || []"
+                    [theme]="'paris'"
+                    [style]="'horizontal'"
+                  >
+                  </app-theme-categories>
+                </div>
+                }
+                <!-- Categories Section End-->
+
+                <!-- Two Column Banner Section Start-->
+                @if (true) {
+
+                <div class="section-b-space">
+                  <div class="banner-section ratio_60">
+                    <app-theme-banner
+                      [style]="'horizontal'"
+                      [isCenter]="true"
+                      [banners]="data?.temp?.main_two_pic"
+                    ></app-theme-banner>
+                  </div>
+                </div>
+                }
+
+                <!-- Section Start -->
+                @if (true) {
+                <div class="tendance">
+                  <app-title
+                    [title]="data?.fourth_section?.title"
+                    [description]="data?.fourth_section?.description"
+                  >
+                  </app-title>
+                  <div class="">
+                    <app-theme-product
+                      [product]="data?.fourth_section?.article || []"
+                      [slider]="true"
+                      [style]="'horizontal'"
+                    >
+                    </app-theme-product>
+                  </div>
+                </div>
+                }
+                <!-- Section End -->
+
+                <!-- Coupons Banner Section Start i remove sale-banner's class here  -->
+              </div>
+              <!-- Right Content End -->
+            </div>
+          </div>
+
+          <app-moreService></app-moreService>
+        </section>
+        <!-- Product Section End -->
+
+        <!-- Newsletter Section Start 
+  @if (data?.content?.news_letter?.status) {
+    <section class="newsletter-section section-b-space">
+      <app-newsletter [data]="data?.content?.news_letter!"></app-newsletter>
+    </section>
+  }-->
+        <!-- Newsletter Section End -->
+        <div class="orther container-fluid">
+          @if (true) {
+          <div class="_12">
+            <app-theme-banner
+              class=""
+              [isBaner]="true"
+              [banners]="
+                data?.temp?.main_banner ? data?.temp?.main_banner : null
+              "
+              [style]="'full_width'"
+            >
+            </app-theme-banner>
+          </div>
+          }
+          <div class="best_sells">
+            @if (data?.third_section?.article?.length || 0 >= 1) {
+            <app-title
+              [title]="data?.third_section?.title"
+              [description]="data?.third_section?.description"
+            >
+            </app-title>
+            <app-theme-product
+              [product]="data?.third_section?.article || []"
+              [style]="'classic'"
+            >
+            </app-theme-product>
+            }
+          </div>
+          <div class="partner">
+            <app-brands></app-brands>
+          </div>
+
+          <div class="aboutme">
+            <app-aboutme></app-aboutme>
+          </div>
+        </div>
+      </section>
+    </div>
+  </ng-container>
 </div>

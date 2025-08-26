@@ -40,8 +40,18 @@
 // Media Queries pour différents écrans
 // Téléphones mobiles (petits écrans)
 @media only screen and (max-width: 480px) {
-  .top-nav {
-      .topbar {
+  
+    .top-nav {
+      .topbarContainer{
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 100%;
+    .topbar {
+      display: flex;
+      animation: scroll 20s linear infinite;
         .sav,.meilleurs_prix{
           display: none;
         }
@@ -55,6 +65,11 @@
         }
       }
     }
+  }
+  }
+  @keyframes scroll {
+    0%{transform: translateX(300px);}
+    100%{transform: translateX(-300px);}
   }
 }
 

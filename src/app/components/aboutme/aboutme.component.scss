@@ -8,6 +8,8 @@
         font-size: 16px;
     font-family:  'montserrat', 'Helvetica Neue', sans-serif;
   max-height: 100px; /* hauteur fermée */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   transition: max-height 0.5s ease;
   .about-title {
   font-weight: bold;
