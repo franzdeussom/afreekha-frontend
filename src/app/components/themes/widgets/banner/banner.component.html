@@ -20,10 +20,32 @@
     </div>
   </div>
 }
-@if (banners && style == 'horizontal' && isCenter==true) {
+@if (banners && style == 'horizontal' && isCenter==true && isPrincipal==false) {
   <div class="">
     <div class="banner-slider" >
       <owl-carousel-o [options]="bannerSliderCenter">
+        @for (banner of banners; track banner) {
+          <ng-container carouselSlide>
+            @if (true) {
+              <ng-template carouselSlide>
+                <a href="#">
+                  <div class="banner-contain hover-effect">
+                    <app-image-link [class]="'banner-contain'" [image]="banner" [bgImage]="false"></app-image-link>
+                  </div>
+                </a>
+              </ng-template>
+            }
+          </ng-container>
+        }
+      </owl-carousel-o>
+    </div>
+  </div>
+}
+
+@if (banners && style == 'horizontal' && isCenter==false && isPrincipal==false) {
+  <div class="mt-4">
+    <div class="banner-slider" >
+      <owl-carousel-o [options]="bannerSlider">
         @for (banner of banners; track banner) {
           <ng-container carouselSlide>
             @if (true) {

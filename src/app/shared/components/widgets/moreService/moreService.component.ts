@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { BannerComponent } from 'src/app/components/themes/widgets/banner/banner.component';
 import { MoreServiceState } from 'src/app/shared/state/more-service.state';
 
 @Component({
@@ -10,7 +11,7 @@ import { MoreServiceState } from 'src/app/shared/state/more-service.state';
   templateUrl: './moreService.component.html',
   styleUrls: ['./moreService.component.scss'],
   standalone: true,
-  imports: [TranslateModule]
+  imports: [TranslateModule, BannerComponent]
 })
 export class MoreServiceComponent implements OnInit {
 
