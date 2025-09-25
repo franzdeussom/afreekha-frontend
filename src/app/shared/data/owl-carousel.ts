@@ -172,17 +172,17 @@ export const bannerSlider: OwlOptions = {
   margin: 20,
   responsive: {
     0: {
-      items: 2,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 5500,
     },
     525: {
-      items: 2,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 4500,
     },
     870: {
-      items: 2,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 5500,
     },
@@ -201,17 +201,17 @@ export const bannerSliderCenter: OwlOptions = {
   margin: 20,
   responsive: {
     0: {
-      items: 2,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 5500,
     },
     525: {
-      items: 2,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 4500,
     },
     870: {
-      items: 2,
+      items: 1,
       autoplay: true,
       autoplayTimeout: 5500,
     },

@@ -18,6 +18,7 @@ export class BannerComponent {
   @Input() style: string = 'horizontal';
   @Input() isBaner: boolean = false;
   @Input() isCenter: boolean = false;
+  @Input() isMoreService: boolean = false;
   @Input() isPrincipal: boolean = false;
   @Input() class: string | null;
   @Input() contentClass: string;

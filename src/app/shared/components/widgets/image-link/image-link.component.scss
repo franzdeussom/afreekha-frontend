@@ -1,28 +1,41 @@
+/* Par défaut (mobile) → montrer toute l’image */
+.banner-img{
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
 
-
-.max-height-500 {
-  max-height: 300px; /* Limite la hauteur maximale */
-  height: auto; /* Conserve les proportions de l'image */
-  width: auto; /* Empêche l'image d'être étirée horizontalement */
-
-  // Responsive adjustments
-  @media (max-width: 768px) { // Pour les tablettes et petits écrans
-    max-height: 200px;
-    width: 100%; /* Prend toute la largeur disponible */
-    height: auto;
-    margin: 0 auto; /* Centre l'image horizontalement */
-    display: block; /* Assure que l'image est un bloc pour le centrage */
-    object-fit: cover; /* Ajuste l'image pour couvrir le conteneur sans déformation */
-    object-position: center; /* Centre l'image dans le conteneur */
-  }
-
-  @media (max-width: 576px) { // Pour les téléphones
-    max-height: 150px;
-    width: 100%; /* Prend toute la largeur disponible */
-    height: auto;
-    margin: 0 auto; /* Centre l'image horizontalement */
-    display: block; /* Assure que l'image est un bloc pour le centrage */
-    object-fit: cover; /* Ajuste l'image pour couvrir le conteneur sans déformation */
-    object-position: center; /* Centre l'image dans le conteneur */
+@media (min-width: 768px) {
+  .banner-img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    overflow: hidden;
   }
 }
+
+.img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Mobile par défaut → image carrée 262x262 */
+.img-wrappers{
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* ou cover si tu veux remplir le carré */
+}
+
+/* Sur les écrans moyens et + (tablette, PC) → image s’adapte */
+@media (min-width: 768px) {
+  .img-wrapper img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+}
+

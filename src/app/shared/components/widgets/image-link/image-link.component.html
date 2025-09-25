@@ -8,11 +8,23 @@
           <img src="{{ image?.lien }}" class="d-block" style="object-fit: contain; margin: 0;" alt="{{ image?.lien }}"> 
       } -->
       @if (!bgImage && isBaner) {
-        <img src="{{ image?.lien }}" style="width: 100%;height: 100%;  object-fit: cover; overflow: hidden;" alt="{{ image?.lien }}"> 
+        <img src="{{ image?.lien }}"  class="img-fluid banner-img" alt="{{ image?.lien }}"> 
         <!-- <div style="width: 100%; padding-top: 35%; background-image: url('{{ image?.lien }}'); 
                     background-size: contain; background-repeat: no-repeat; background-position: center;">
         </div> -->
         }
+        @if (!bgImage && !isBaner && !isMoreService) {
+          <div class="img-wrapper">
+            <img src="{{ image?.lien }}" 
+                 alt="{{ image?.lien }}">
+          </div>
+          }
+
+          @if (!bgImage && !isBaner && isMoreService) {
+            <div style="height: 100%;">
+                  <img [src]="image.lien" class="card-img-top img-fluid" alt="{{image.lien}}">
+            </div>
+          }
     </a>
   } @else {
     @if (image?.type === 'product') {

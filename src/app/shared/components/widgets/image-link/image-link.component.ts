@@ -22,6 +22,7 @@ export class ImageLinkComponent {
   @Input() bgImage: boolean;
   @Input() isPrincipal: boolean=false;
   @Input() isCenter: boolean=false;
+  @Input() isMoreService: boolean=false;
   @Input() class: string;
   @Input() isBaner: boolean=true;
   

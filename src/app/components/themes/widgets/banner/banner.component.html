@@ -9,7 +9,7 @@
               <ng-template carouselSlide>
                 <a href="#">
                   <div class="banner-contain hover-effect">
-                    <app-image-link [class]="'banner-contain'" [image]="banner" [bgImage]="false"></app-image-link>
+                    <app-image-link [class]="''" [image]="banner" [isBaner]="isPrincipal" [bgImage]="false"></app-image-link>
                   </div>
                 </a>
               </ng-template>
@@ -29,8 +29,8 @@
             @if (true) {
               <ng-template carouselSlide>
                 <a href="#">
-                  <div class="banner-contain hover-effect">
-                    <app-image-link [class]="'banner-contain'" [image]="banner" [bgImage]="false"></app-image-link>
+                  <div class="hover-effect">
+                    <app-image-link [class]="'banner-contain'" [isBaner]="isPrincipal" [image]="banner" [bgImage]="false"></app-image-link>
                   </div>
                 </a>
               </ng-template>
@@ -42,7 +42,7 @@
   </div>
 }
 
-@if (banners && style == 'horizontal' && isCenter==false && isPrincipal==false) {
+@if (banners && style == 'horizontal' && isCenter==false && isPrincipal==false && !isMoreService) {
   <div class="mt-4">
     <div class="banner-slider" >
       <owl-carousel-o [options]="bannerSlider">
@@ -52,7 +52,29 @@
               <ng-template carouselSlide>
                 <a href="#">
                   <div class="banner-contain hover-effect">
-                    <app-image-link [class]="'banner-contain'" [image]="banner" [bgImage]="false"></app-image-link>
+                    <app-image-link [class]="'banner-contain'" [isBaner]="isPrincipal" [image]="banner" [bgImage]="false"></app-image-link>
+                  </div>
+                </a>
+              </ng-template>
+            }
+          </ng-container>
+        }
+      </owl-carousel-o>
+    </div>
+  </div>
+}
+
+@if (banners && style == 'horizontal' && isCenter==false && isPrincipal==false && isMoreService) {
+  <div class="mt-4">
+    <div class="banner-slider" >
+      <owl-carousel-o [options]="bannerSliderCenter">
+        @for (banner of banners; track banner) {
+          <ng-container carouselSlide>
+            @if (true) {
+              <ng-template carouselSlide>
+                <a href="#">
+                  <div class="hover-effect">
+                    <app-image-link [class]="'banner-contain'" [isBaner]="isPrincipal" [isMoreService]="isMoreService" [image]="banner" [bgImage]="false"></app-image-link>
                   </div>
                 </a>
               </ng-template>
