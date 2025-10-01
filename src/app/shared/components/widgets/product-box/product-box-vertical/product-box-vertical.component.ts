@@ -3,6 +3,7 @@ import { Product } from '../../../../../shared/interface/product.interface';
 import { CurrencySymbolPipe } from '../../../../pipe/currency-symbol.pipe';
 
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-product-box-vertical',
@@ -10,9 +11,15 @@ import { RouterLink } from '@angular/router';
     styleUrls: ['./product-box-vertical.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [RouterLink, CurrencySymbolPipe]
+    imports: [RouterLink, CurrencySymbolPipe, CommonModule]
 })
 export class ProductBoxVerticalComponent {
+ public voirPlus: boolean = false;
 
   @Input() product: Product;
+
+  toggleVoirPlus() {
+    this.voirPlus = !this.voirPlus;
+  }
+
 }

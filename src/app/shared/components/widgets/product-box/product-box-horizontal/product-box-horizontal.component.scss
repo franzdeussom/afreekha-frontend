@@ -1,0 +1,5 @@
+.text-wrap {
+    word-wrap: break-word; /* Permet de couper les mots si nécessaire */
+    word-break: break-word; /* Gère les longues chaînes sans espaces */
+    overflow-wrap: break-word; /* Compatibilité supplémentaire */
+  }

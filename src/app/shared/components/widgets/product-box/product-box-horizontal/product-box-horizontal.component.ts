@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ProductDetailModalComponent as ProductDetailModalComponent_1 } from '../../modal/product-detail-modal/product-detail-modal.component';
 import { ButtonComponent } from '../../button/button.component';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -24,7 +25,7 @@ import { RouterLink } from '@angular/router';
     styleUrls: ['./product-box-horizontal.component.scss'],
     standalone: true,
     providers:[CurrencySymbolPipe],
-    imports: [RouterLink, ButtonComponent, 
+    imports: [RouterLink, ButtonComponent, CommonModule,
       ProductDetailModalComponent_1, VariationModalComponent, TranslateModule, CurrencySymbolPipe, TitleCasePipe, CurrencySymbolPipe]
 })
 export class ProductBoxHorizontalComponent {
@@ -32,6 +33,7 @@ export class ProductBoxHorizontalComponent {
   @Input() product: Product;
   @Input() class: string;
   @Input() close: boolean;
+  
 
   cartItem$: Observable<Cart[]> = inject(Store).select(CartState.cartItems) as Observable<Cart[]>;
 
@@ -41,6 +43,7 @@ export class ProductBoxHorizontalComponent {
   public cartItem: Cart | null;
   public currentDate: number | null;
   public saleStartDate: number | null;
+  public voirPlus: boolean = false;
 
   constructor(private store: Store,
     config: NgbRatingConfig) {
@@ -78,6 +81,10 @@ export class ProductBoxHorizontalComponent {
 
   addToCompar(product: Product){
     this.store.dispatch(new AddToCompare(product));
+  }
+
+  toggleVoirPlus() {
+    this.voirPlus = !this.voirPlus;
   }
 
 }

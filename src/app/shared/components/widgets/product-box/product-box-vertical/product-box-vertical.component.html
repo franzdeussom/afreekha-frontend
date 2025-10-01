@@ -3,10 +3,10 @@
         <img [src]="product.Images ? (product.Images[0].lien ? product.Images[0].lien : product.lien) : (product.lien ? product.lien: 'assets/images/product.png')" alt="product">
     </a>
     <div class="offer-detail">
-      <div>
-        <a [routerLink]="['/product/', product.idArticle]" class="text-title">
-          <h6 class="name">{{ product.nom_article }}</h6>
-        </a>
+      <div class="text-wrap">
+        <div [routerLink]="['/product/', product.idArticle]" style="cursor: pointer;">
+          <h5 class="name text-wrap"><strong> {{ product.nom_article }}</strong></h5>
+        </div>
         @if (product.prix) {
           <span>{{ product.prix  | currencySymbol}}</span>
         }
