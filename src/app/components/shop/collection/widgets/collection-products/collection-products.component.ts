@@ -45,7 +45,7 @@ export class CollectionProductsComponent {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
       if(!this.productState.allLoaded){
         this.productState.offsetReset = false;
-        this.store.dispatch(new GetProducts(this.filter));
+        //this.store.dispatch(new GetProducts(this.filter));
 
       }
         
