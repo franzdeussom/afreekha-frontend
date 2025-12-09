@@ -1,6 +1,6 @@
 @if(moreServiceOne && moreServiceOne.length > 0) {
-  <div class="container my-4 d-none d-md-block">
-    <h5 class="bg-dark text-white p-4 text-center">{{("plus_doffre_et_services" | translate).toUpperCase() }}</h5>
+  <div class="container my-4 d-none d-md-block" style="width: 100%;">
+    <h5 class="bg-dark text-white p-4 text-center mx-auto">{{("plus_doffre_et_services" | translate).toUpperCase() }}</h5>
     <div class="row g-3">
       @for (item of moreServiceOne; track $index) {
         <div class="col-md-3" style="cursor: pointer;" (click)="redirection(item.collection)">
@@ -15,8 +15,8 @@
 }
 
 @if (moreServiceTwo && moreServiceTwo.length > 0) {
-  <div class="container my-4 d-none d-md-block">
-  <h5 class="bg-dark text-white p-4 text-center">{{"plus_doffre_et_services" | translate }}</h5>
+  <div class="container my-4 d-none d-md-block"  style="width: 100%;">
+  <h5 class="bg-dark text-white p-4 text-center mx-auto">{{"plus_doffre_et_services" | translate }}</h5>
   <div class="row g-3">
     @for (item of moreServiceTwo; track $index) {
       <div class="col-md-3" style="cursor: pointer;" (click)="redirection(item.collection)">
@@ -28,4 +28,23 @@
    
   </div>
  </div>
+
+
+ <!-- //affichage mobile -->
+ <div class="container my-4 d-block d-md-none" style="width: 100%;">
+  <h5 class="bg-dark text-white p-3 text-center mx-auto">{{("plus_doffre_et_services" | translate).toUpperCase() }}</h5>
+  <div class="row g-2">
+    <app-theme-banner
+    [style]="'horizontal'"
+    [isCenter]="false"
+    [isPrincipal]="false"
+    [isMoreService]="true"
+    [banners]="moreServiceOne.concat(moreServiceTwo)"
+
+    >
+
+    </app-theme-banner>
+  </div>
+</div>
+  
 }

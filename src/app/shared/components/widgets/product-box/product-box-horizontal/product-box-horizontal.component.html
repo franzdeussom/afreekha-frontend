@@ -14,7 +14,7 @@
     </ng-template>
     <div class="product-image">
       <a [routerLink]="['/product/', product.idArticle]">
-              <img [src]="product.Images ? (product.Images[0].lien ? product.Images[0].lien : product.lien) : 'assets/images/product.png'" class="img-fluid" [alt]="'product'">
+              <img [src]="product.Images ? (product.Images.length > 0 ? product.Images[0].lien : product.lien) : 'assets/images/product.png'" class="img-fluid" [alt]="'product'">
         </a>
         @if (close) {
           <div class="product-header-top">
@@ -48,9 +48,9 @@
       }
     </div>
     <div class="product-detail">
-      <a [routerLink]="['/product/', product.idArticle]">
-        <h6 class="name">{{ product.nom_article }}</h6>
-      </a>
+      <div [routerLink]="['/product/', product.idArticle]" style="cursor: pointer;">
+        <h5 class="name text-wrap"><strong> {{ product.nom_article }}</strong></h5>
+      </div>
       <p>{{ product.description }}</p>
       @if (product.prix) {
         <h6 class="unit mt-1">{{ product.prix  | currencySymbol}}</h6>

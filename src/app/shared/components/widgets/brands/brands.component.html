@@ -1,4 +1,5 @@
-<div class="container py-4">
+@if (brands.length > 0) {
+  <div class="container py-4">
   <h5 class="bg-dark text-white p-4 text-center">{{ "our_brands" | translate }}</h5>
   <div class="row g-3 mt-2 justify-content-center">
     @for (brand of brands; track $index) {
@@ -12,3 +13,4 @@
 
   </div>
 </div>
+}
