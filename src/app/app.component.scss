@@ -14,3 +14,38 @@
     height: 100%;
     object-fit: cover; /* remplit tout le bouton sans déformation */
   }
+
+  .whatsapp-button {
+    animation: bigGlow 1.8s infinite ease-in-out;
+    transition: transform 0.2s ease-in-out;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.15);
+}
+
+@keyframes bigGlow {
+    0% {
+        box-shadow:
+            0 0 10px #25D366,
+            0 0 20px #25D366,
+            0 0 40px #25D366;
+        transform: scale(1);
+    }
+    50% {
+        box-shadow:
+            0 0 20px #25D366,
+            0 0 40px #25D366,
+            0 0 70px #25D366,
+            0 0 170px #25D366; 
+        transform: scale(1.1);
+    }
+    100% {
+        box-shadow:
+            0 0 10px #25D366,
+            0 0 20px #25D366,
+            0 0 40px #25D366;
+        transform: scale(1);
+    }
+}
+

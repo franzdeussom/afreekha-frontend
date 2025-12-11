@@ -30,6 +30,7 @@ export class ExpressUserModalComponent {
   public modalOpen: boolean = false;
   public flicker: boolean = false;
   public isBrowser: boolean;
+
   commande: any;
   @ViewChild("profileModal", { static: false }) ProfileModal: TemplateRef<string>;
   

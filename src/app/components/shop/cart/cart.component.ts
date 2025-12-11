@@ -43,7 +43,8 @@ export class CartComponent {
       product_id: item.product.id,
       variation: item.variation,
       variation_id: item?.variation_id ? item?.variation_id : null,
-      quantity: qty
+      quantity: qty,
+      actionType: "ADD_TO_CART"
     }
     this.store.dispatch(new UpdateCart(params));
   }

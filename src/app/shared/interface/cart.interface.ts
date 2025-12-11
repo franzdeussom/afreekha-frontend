@@ -27,4 +27,6 @@ export interface CartAddOrUpdate {
     variation: any | null;
     variation_id: number | null;
     quantity: number;
+
+    actionType: 'BUY'|'ADD_TO_CART'
 }

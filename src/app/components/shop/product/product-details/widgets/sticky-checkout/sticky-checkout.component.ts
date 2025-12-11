@@ -67,7 +67,8 @@ export class StickyCheckoutComponent {
         product: product ? product : null,
         variation: this.selectedVariation ? this.selectedVariation : null,
         variation_id: this.selectedVariation?.id ? this.selectedVariation?.id! : null,
-        quantity: this.productQty
+        quantity: this.productQty,
+        actionType: "ADD_TO_CART"
       }
       this.store.dispatch(new AddToCart(params));
     }

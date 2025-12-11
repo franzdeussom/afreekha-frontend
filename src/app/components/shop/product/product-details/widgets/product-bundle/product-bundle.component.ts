@@ -74,7 +74,8 @@ export class ProductBundleComponent {
           product: product ? product : null,
           variation: null,
           variation_id: null,
-          quantity: 1
+          quantity: 1,
+          actionType: "ADD_TO_CART"
         }
         this.store.dispatch(new AddToCart(params));
       }

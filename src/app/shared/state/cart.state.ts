@@ -118,8 +118,8 @@ export class CartState {
       return (prev + Number(curr.sub_total));
     }, 0);
 
-    output.stickyCartOpen = true;
-    output.sidebarCartOpen = true;
+    output.stickyCartOpen = action.payload.actionType == "BUY" ? false:true;
+    output.sidebarCartOpen = action.payload.actionType == "BUY" ? false:true;
     
     ctx.patchState(output);
 

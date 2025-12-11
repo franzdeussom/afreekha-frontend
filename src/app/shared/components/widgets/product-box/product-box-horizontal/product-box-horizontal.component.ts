@@ -66,7 +66,8 @@ export class ProductBoxHorizontalComponent {
       product_id: product?.idArticle,
       variation_id: this.cartItem ? this.cartItem?.variation_id : null,
       variation: product,
-      quantity: qty
+      quantity: qty,
+      actionType: "ADD_TO_CART"
     }
     this.store.dispatch(new AddToCart(params));
   }

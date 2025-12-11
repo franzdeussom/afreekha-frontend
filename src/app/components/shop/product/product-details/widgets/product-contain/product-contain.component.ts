@@ -102,7 +102,8 @@ export class ProductContainComponent {
         product: product ? product : null,
         variation: product,
         variation_id: this.cartItem ? this.cartItem?.variation_id : null,
-        quantity: this.productQty
+        quantity: this.productQty,
+        actionType: "ADD_TO_CART"
       }
       this.store.dispatch(new AddToCart(params));
     }
@@ -116,7 +117,8 @@ export class ProductContainComponent {
         product: product ? product : null,
         variation: product,
         variation_id: this.selectedVariation?.id ? this.selectedVariation?.id! : null,
-        quantity: this.productQty
+        quantity: this.productQty,
+        actionType: "BUY"
       }
       this.store.dispatch(new AddToCart(params)).subscribe({
         complete: () => {
